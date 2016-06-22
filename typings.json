@@ -1,0 +1,10 @@
+{
+  "name": "request-form-v2",
+  "dependencies": {},
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160619025852",
+    "angular-translate": "registry:dt/angular-translate#2.4.0+20160619081544",
+    "jquery": "registry:dt/jquery#1.10.0+20160620094458",
+    "underscore": "registry:dt/underscore#1.7.0+20160622050840"
+  }
+}
