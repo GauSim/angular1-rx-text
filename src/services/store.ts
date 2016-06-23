@@ -9,6 +9,7 @@ export enum CABIN_AVAILABILITY { available, onRequest }
 
 export interface ISailSelectItem {
     id: number;
+    cruiseId:number;
     title: string;
     startDate:string;
     endDate:string;
@@ -52,9 +53,14 @@ export interface IFormState {
     selectedCruiseNid:number;
     selectedSailId:number;
     selectedCabintypeNid:number;
+
     sailSelect:ISailSelectItem[];
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     cabintypeSelect:ICabintypeSelectItem[];
+
+    allCabintypes:ICabintypeSelectItem[];
+    allSails:ISailSelectItem[];
+
     paxSeniorSelect:IPaxSelectItem[];
     paxAdultSelect:IPaxSelectItem[];
     paxJuniorSelect:IPaxSelectItem[];
@@ -90,13 +96,15 @@ function initialState() {
     });
 
 
-    const sailSelect:ISailSelectItem[] = [
-        {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016'},
-        {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016'},
-        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016'}
+    const allSails:ISailSelectItem[] = [
+        {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016', cruiseId: 1},
+        {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016', cruiseId: 1},
+        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
     ];
 
-    const cabintypeSelect:ICabintypeSelectItem[] = [
+    const sailSelect = allSails.filter(item => item.cruiseId === 1);
+
+    const allCabintypes:ICabintypeSelectItem[] = [
         {
             id: 1,
             sailId: 1,
@@ -189,8 +197,12 @@ function initialState() {
         }
     ];
 
+    const cabintypeSelect = allCabintypes.filter(item => item.sailId === sailSelect[0].id);
+
     const state:IFormState = {
         sailSelect,
+        allCabintypes,
+        allSails,
         cabintypeSelect,
         paxSeniorSelect,
         paxAdultSelect,
@@ -203,7 +215,7 @@ function initialState() {
         num_junior: 0,
         num_child: 0,
         num_baby: 0,
-        selectedCruiseNid: 0,
+        selectedCruiseNid: 1,
         selectedSailId: sailSelect[0].id,
         selectedCabintypeNid: cabintypeSelect[0].id
     };
@@ -242,24 +254,33 @@ export class Store extends EventEmitter<IFormState> {
 
         switch (type) {
             case ACTIONS.SET_SAIL_ID:
+
                 nextState = _.extend({}, nextState, {selectedSailId: payload});
                 nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.formatCabintypeSelect(nextState),
-                    sailSelect: this._providers.formatSailSelect(nextState)
+                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
                 });
+
+
+                // reset selectedCabintypeNid if sail is changed;
+                if (!nextState.cabintypeSelect.some(e => e.id === nextState.selectedCabintypeNid)) {
+                    // const cheapestAvailableCabin = this._providers.getCheapestAvailableCabin(nextState.cabintypeSelect);
+                    // nextState = _.extend({}, {selectedCabintypeNid: cheapestAvailableCabin.id});
+                }
+
                 break;
             case ACTIONS.SET_CABIN_ID:
                 nextState = _.extend({}, nextState, {selectedCabintypeNid: payload});
                 nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.formatCabintypeSelect(nextState),
-                    sailSelect: this._providers.formatSailSelect(nextState)
+                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
                 });
                 break;
             case ACTIONS.SET_PAX_COUNT:
                 nextState = _.extend({}, nextState, payload);
                 nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.formatCabintypeSelect(nextState),
-                    sailSelect: this._providers.formatSailSelect(nextState)
+                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
                 });
                 break;
             default:

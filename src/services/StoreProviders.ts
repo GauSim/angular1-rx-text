@@ -15,33 +15,47 @@ export class StoreProviders {
     getAvailableCabins = (cabins:ICabintypeSelectItem[]):ICabintypeSelectItem[] => cabins.filter(item => item.availability === CABIN_AVAILABILITY.available);
     getCheapestAvailableCabin = compose(this.getCheapestCabin, this.getAvailableCabins);
     getCabinsBySailId = (cabins:ICabintypeSelectItem[], sailId:number):ICabintypeSelectItem[] => cabins.filter(item => item.sailId === sailId);
+    getSailsByCruiseId = (sails:ISailSelectItem[], cruiseId:number):ISailSelectItem[] => sails.filter(item => item.cruiseId === cruiseId);
+
 
     formatCabinTitle = (item:ICabintypeSelectItem):string => {
         const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : 'N/A';
         return `${item.cabinName} (${displayPrice})`;
     };
 
-    formatCabintypeSelect = (nextState:IFormState):ICabintypeSelectItem[] => {
-
-        return nextState.cabintypeSelect.reduce((list, item:ICabintypeSelectItem)=> {
+    formatCabintype = (cabins:ICabintypeSelectItem[]):ICabintypeSelectItem[] => {
+        return cabins.reduce((list, item:ICabintypeSelectItem)=> {
             const title = this.formatCabinTitle(item);
             return [...list, _.extend({}, item, {title})];
         }, []);
     };
 
-    formatSailTitle = (nextState:IFormState, item:ISailSelectItem):string => {
 
-        const cabinsForSail = this.getCabinsBySailId(nextState.cabintypeSelect, item.id);
+    getFormatedCabintypeSelect = (allCabins:ICabintypeSelectItem[], selectedSailId:number):ICabintypeSelectItem[] => {
+        const cabinsForSelectedSail = this.getCabinsBySailId(allCabins, selectedSailId);
+        return this.formatCabintype(cabinsForSelectedSail);
+    };
+
+    formatSailTitle = (allCabins:ICabintypeSelectItem[], item:ISailSelectItem):string => {
+
+        const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
         const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
         const displayPrice = (cheapestAvailable) ? `ab ${cheapestAvailable.price} ${cheapestAvailable.currency}` : 'N/A';
 
         return `${item.startDate} ${item.endDate} (${displayPrice})`;
     };
 
-    formatSailSelect = (nextState:IFormState):ISailSelectItem[] => {
-        return nextState.sailSelect.reduce((list, item:ISailSelectItem)=> {
 
-            const title = this.formatSailTitle(nextState, item);
+    getSailSelect = (allCabins:ICabintypeSelectItem[], allSails:ISailSelectItem[], selectedCruiseNid:number):ISailSelectItem[] => {
+        const sailsForCruise = this.getSailsByCruiseId(allSails, selectedCruiseNid);
+        return this.formatSail(allCabins, sailsForCruise);
+    };
+
+
+    formatSail = (allCabins:ICabintypeSelectItem[], sails:ISailSelectItem[]):ISailSelectItem[] => {
+        return sails.reduce((list, item:ISailSelectItem)=> {
+
+            const title = this.formatSailTitle(allCabins, item);
 
             return [...list, _.extend({}, item, {title})];
         }, []);
