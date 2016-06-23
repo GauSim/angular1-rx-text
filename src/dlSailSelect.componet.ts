@@ -6,6 +6,7 @@ const template = `
         data-ng-disabled="ctrl.isLoading"
         data-ng-if="ctrl.sailSelect.length"
         data-ng-model="ctrl.selectedSailId"
+        data-ng-change="ctrl.onChange(ctrl.selectedSailId)"
         data-ng-options="sail.id as sail.title for sail in ctrl.sailSelect">
 </select>
 `;
@@ -17,7 +18,15 @@ class Controller implements ng.IComponentController {
     selectedSailId:number;
     sailSelect:ISailSelectItem[];
 
-    constructor(store:Store, $scope:ng.IScope) {
+    onChange = (payload:number) => {
+        this.store
+            .dispatchState({
+                type: ACTIONS.SET_SAIL_ID,
+                payload
+            }, 'saildd');
+    };
+
+    constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
 
         this.selectedSailId = state.selectedSailId;
@@ -30,18 +39,6 @@ class Controller implements ng.IComponentController {
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
-        $scope.$watch('ctrl.selectedSailId', (payload, last) => {
-
-            if (!payload || payload === last) {
-                return;
-            }
-
-            store
-                .dispatchState({
-                    type: ACTIONS.SET_SAIL_ID,
-                    payload
-                });
-        });
     }
 }
 const dlSailSelect:ng.IComponentOptions = {

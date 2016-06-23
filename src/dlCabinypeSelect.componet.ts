@@ -6,6 +6,7 @@ const template = `
         data-ng-disabled="ctrl.isLoading"
         data-ng-if="ctrl.cabintypeSelect.length"
         data-ng-model="ctrl.selectedCabintypeNid"
+        data-ng-change="ctrl.onChange(ctrl.selectedCabintypeNid)"
         data-ng-options="cabintype.id as cabintype.title group by cabintype.type for cabintype in ctrl.cabintypeSelect">
 </select>
 `;
@@ -17,7 +18,16 @@ class Controller implements ng.IComponentController {
     selectedCabintypeNid:number;
     cabintypeSelect:ICabintypeSelectItem[];
 
-    constructor(store:Store, $scope:ng.IScope) {
+
+    onChange = (payload:number) => {
+        this.store
+            .dispatchState({
+                type: ACTIONS.SET_CABIN_ID,
+                payload
+            }, 'cabinDD');
+    };
+
+    constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
 
         this.selectedCabintypeNid = state.selectedCabintypeNid;
@@ -30,16 +40,6 @@ class Controller implements ng.IComponentController {
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
-        $scope.$watch('ctrl.selectedCabintypeNid', (payload, last) => {
-            if (!payload || payload === last) {
-                return;
-            }
-            store
-                .dispatchState({
-                    type: ACTIONS.SET_CABIN_ID,
-                    payload
-                })
-        })
     }
 }
 

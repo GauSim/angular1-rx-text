@@ -48,6 +48,13 @@ const template = `
 </dl-pax-age-input>
 `;
 
+export interface paxConfig {
+    num_seniors:number;
+    num_adults:number;
+    num_junior:number;
+    num_child:number;
+    num_baby:number;
+}
 
 class Controller implements ng.IComponentController {
 
@@ -121,7 +128,7 @@ class Controller implements ng.IComponentController {
             return;
         }
 
-        const payload = {
+        const payload:paxConfig = {
             num_seniors: this.num_seniors,
             num_adults: this.num_adults,
             num_junior: this.num_junior,
@@ -136,7 +143,7 @@ class Controller implements ng.IComponentController {
             .dispatchState({
                 type: ACTIONS.SET_PAX_COUNT,
                 payload
-            });
+            }), 'paxDD';
     };
 
 }

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/Store.ts" afterPath="$PROJECT_DIR$/src/services/Store.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreProviders.ts" afterPath="$PROJECT_DIR$/src/services/StoreProviders.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSailSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlSailSelect.componet.ts" />
     </list>
     <ignored path="angular1-rx-text.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,10 +43,61 @@
       <file leaf-file-name="Store.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31456044">
-              <caret line="265" column="54" selection-start-line="265" selection-start-column="54" selection-end-line="265" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.5572034">
+              <caret line="269" column="36" selection-start-line="269" selection-start-column="36" selection-end-line="269" selection-end-column="36" />
               <folding>
-                <element signature="e#2799#5320#0" expanded="false" />
+                <element signature="e#2853#5374#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoreDispatchers.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="15" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlPaxSelect.componet.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dlPaxSelect.componet.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="130" column="31" selection-start-line="130" selection-start-column="22" selection-end-line="130" selection-end-column="31" />
+              <folding>
+                <marker date="1466707348000" expanded="true" signature="172:492" placeholder="..." />
+                <marker date="1466707348000" expanded="true" signature="236:492" placeholder="..." />
+                <marker date="1466707348000" expanded="true" signature="512:827" placeholder="..." />
+                <marker date="1466707348000" expanded="true" signature="847:1165" placeholder="..." />
+                <marker date="1466707348000" expanded="true" signature="1185:1498" placeholder="..." />
+                <marker date="1466707348000" expanded="true" signature="1518:1826" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlCabinypeSelect.componet.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+              <folding>
+                <marker date="1466705622000" expanded="true" signature="122:476" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlSailSelect.componet.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dlSailSelect.componet.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+              <folding>
+                <marker date="1466705536000" expanded="true" signature="117:410" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -72,12 +124,13 @@
         <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/src/dlForm.componet.ts" />
         <option value="$PROJECT_DIR$/src/services/OperatorService.ts" />
-        <option value="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" />
-        <option value="$PROJECT_DIR$/src/dlSailSelect.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" />
-        <option value="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" />
         <option value="$PROJECT_DIR$/src/services/store.ts" />
         <option value="$PROJECT_DIR$/src/services/StoreProviders.ts" />
+        <option value="$PROJECT_DIR$/src/dlSailSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
         <option value="$PROJECT_DIR$/src/services/Store.ts" />
       </list>
     </option>
@@ -91,10 +144,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1920" />
     <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="width" value="1280" />
+    <option name="height" value="729" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -245,25 +297,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="23" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="729" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16719915" sideWeight="0.81349206" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.81349206" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16719915" sideWeight="0.18650794" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21658032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21507065" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4976452" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -638,31 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dlSailSelect.componet.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="44" />
-          <folding>
-            <marker date="1466686467000" expanded="true" signature="117:350" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dlPaxSelect.componet.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
-          <folding>
-            <marker date="1466686355000" expanded="true" signature="172:492" placeholder="..." />
-            <marker date="1466686355000" expanded="true" signature="236:492" placeholder="..." />
-            <marker date="1466686355000" expanded="true" signature="512:827" placeholder="..." />
-            <marker date="1466686355000" expanded="true" signature="847:1165" placeholder="..." />
-            <marker date="1466686355000" expanded="true" signature="1185:1498" placeholder="..." />
-            <marker date="1466686355000" expanded="true" signature="1518:1826" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -670,16 +697,6 @@
           <folding>
             <marker date="1466686490000" expanded="true" signature="136:570" placeholder="..." />
             <marker date="1466686490000" expanded="true" signature="382:563" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-          <folding>
-            <marker date="1466686508000" expanded="true" signature="122:410" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -692,12 +709,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlSailSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <marker date="1466705536000" expanded="true" signature="117:410" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding>
+            <marker date="1466705622000" expanded="true" signature="122:476" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlPaxSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="31" selection-start-line="130" selection-start-column="22" selection-end-line="130" selection-end-column="31" />
+          <folding>
+            <marker date="1466707348000" expanded="true" signature="172:492" placeholder="..." />
+            <marker date="1466707348000" expanded="true" signature="236:492" placeholder="..." />
+            <marker date="1466707348000" expanded="true" signature="512:827" placeholder="..." />
+            <marker date="1466707348000" expanded="true" signature="847:1165" placeholder="..." />
+            <marker date="1466707348000" expanded="true" signature="1185:1498" placeholder="..." />
+            <marker date="1466707348000" expanded="true" signature="1518:1826" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="15" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31456044">
-          <caret line="265" column="54" selection-start-line="265" selection-start-column="54" selection-end-line="265" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.5572034">
+          <caret line="269" column="36" selection-start-line="269" selection-start-column="36" selection-end-line="269" selection-end-column="36" />
           <folding>
-            <element signature="e#2799#5320#0" expanded="false" />
+            <element signature="e#2853#5374#0" expanded="false" />
           </folding>
         </state>
       </provider>

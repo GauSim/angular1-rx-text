@@ -2,7 +2,7 @@ import * as _ from 'underscore';
 import { EventEmitter } from  '../helpers/EventEmitter';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
-
+import { StoreDispatchers } from './StoreDispatchers';
 
 export enum CABIN_AVAILABILITY { available, onRequest }
 
@@ -228,18 +228,21 @@ export class Store extends EventEmitter<IFormState> {
     isLoading = new EventEmitter<boolean>();
 
     private _providers = new StoreProviders();
+    private _dispatchers:StoreDispatchers;
     private _state:IFormState = initialState();
 
     constructor(private $timeout:ng.ITimeoutService,
                 private $q:ng.IQService) {
         super();
+        this._dispatchers = new StoreDispatchers($q);
     }
 
     public setIsLoading = () => this.isLoading.emit(this.runingActions.length > 0);
     public getLastState = ():IFormState => _.extend({}, this._state) as IFormState;
 
     runingActions = [];
-    public dispatchState = ({type, payload}:Action):void => {
+    public dispatchState = ({type, payload}:Action, debug:string = ''):void => {
+
 
         const hash = JSON.stringify({type, payload});
 
@@ -248,64 +251,49 @@ export class Store extends EventEmitter<IFormState> {
             return;
         }
 
-        console.log('dispatching ', hash);
+        console.log(`dispatching from ${debug}`, hash);
 
         let nextState = this.getLastState();
 
+
+        const afterDispatch = (state:IFormState) => {
+            this.runingActions = [...this.runingActions, hash];
+            this.setIsLoading();
+
+            // simulate delay in async dispatch
+            return this.$timeout(() => {
+
+                this._state = state;
+                this.emit(state);
+
+                this.runingActions = this.runingActions.filter(e => e != hash);
+                this.setIsLoading();
+
+            }, 299);
+        };
+
         switch (type) {
             case ACTIONS.SET_SAIL_ID:
-
-                nextState = _.extend({}, nextState, {selectedSailId: payload});
-                nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
-                });
-
-
-                // reset selectedCabintypeNid if sail is changed;
-                if (!nextState.cabintypeSelect.some(e => e.id === nextState.selectedCabintypeNid)) {
-                    // const cheapestAvailableCabin = this._providers.getCheapestAvailableCabin(nextState.cabintypeSelect);
-                    // nextState = _.extend({}, {selectedCabintypeNid: cheapestAvailableCabin.id});
-                }
-
+                this._dispatchers.setSailId(nextState, payload)
+                    .then(afterDispatch);
                 break;
             case ACTIONS.SET_CABIN_ID:
-                nextState = _.extend({}, nextState, {selectedCabintypeNid: payload});
-                nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
-                });
+                this._dispatchers.setCabinId(nextState, payload)
+                    .then(afterDispatch);
                 break;
             case ACTIONS.SET_PAX_COUNT:
-                nextState = _.extend({}, nextState, payload);
-                nextState = _.extend(nextState, {
-                    cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-                    sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
-                });
+                this._dispatchers.setPaxCount(nextState, payload)
+                    .then(afterDispatch);
                 break;
             default:
                 nextState = nextState;
+                afterDispatch(nextState);
                 break;
         }
 
-
-        // put this in the switch case
-        this.runingActions = [...this.runingActions, hash];
-        this.setIsLoading();
-
-        // simulate async dispatch
-        this.$timeout(() => {
-
-            this._state = nextState;
-            this.emit(nextState);
-
-            this.runingActions = this.runingActions.filter(e => e != hash);
-            this.setIsLoading();
-
-        }, 299);
-
     }
 }
+
 
 export const ACTIONS = {
     SET_SAIL_ID: 'SET_SAIL_ID',
