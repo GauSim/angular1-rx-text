@@ -1,53 +1,44 @@
-import { store, dlFormState, ACTIONS } from './services/store';
+import { Store, ICabintypeSelectItem, ACTIONS } from './services/store';
 
 const template = `
+
+{{ ctrl.isLoading }}
  <select class="form-control"
         title=""
-        data-ng-if="state.sailSelect.length"
-        data-ng-change="dlCabinypeSelect.setCabinId(state.selectedCabintypeNid)"
-        data-ng-model="state.selectedCabintypeNid"
-        data-ng-selected="state.selectedCabintypeNid"
-        data-ng-options="cabintype.id as cabintype.title for cabintype in state.cabintypeSelect">
+        data-ng-disabled="ctrl.isLoading"
+        data-ng-if="ctrl.cabintypeSelect.length"
+        data-ng-model="ctrl.selectedCabintypeNid"
+        data-ng-options="cabintype.id as cabintype.title group by cabintype.type for cabintype in ctrl.cabintypeSelect">
 </select>
 `;
 
-
-
-
-
-
-interface IScope extends ng.IScope {
-    state: dlFormState;
-}
-
 class Controller {
 
-    constructor(private $scope: IScope,
-        private store: store) {
-        this.$scope.state = store.getLastState();
 
+    isLoading: boolean = false;
+    selectedCabintypeNid: number;
+    cabintypeSelect: ICabintypeSelectItem[];
 
-        this.store.stream.subscribe({
-            next(newState) {
-                console.log('dlCabinypeSelect', newState);
-                $scope.state = newState;
-            },
-            error(err) {
-                console.error(err)
-            },
-            complete() {
-                console.log("Stream complete")
-            },
+    constructor(store: Store, $scope: ng.IScope) {
+        const state = store.getLastState();
+
+        this.selectedCabintypeNid = state.selectedCabintypeNid;
+        this.cabintypeSelect = state.cabintypeSelect;
+
+        store.subscribe(({ selectedCabintypeNid, cabintypeSelect}) => {
+            this.selectedCabintypeNid = selectedCabintypeNid;
+            this.cabintypeSelect = cabintypeSelect;
         });
-    }
 
+        store.isLoading.subscribe(e => (this.isLoading = e));
 
-    setCabinId = (id: number) => {
-        console.log('hu');
-        this.store.dispatchState({
-            type: ACTIONS.SET_CABIN_ID,
-            payload: id
-        });
+        $scope.$watch('ctrl.selectedCabintypeNid', payload => {
+            store
+                .dispatchState({
+                    type: ACTIONS.SET_CABIN_ID,
+                    payload
+                })
+        })
     }
 }
 
@@ -57,8 +48,8 @@ export default function dlCabinypeSelect() {
         restrict: 'E',
         template: template,
         controller: Controller,
-        controllerAs: 'dlCabinypeSelect',
-        scope: null
+        controllerAs: 'ctrl',
+        scope: {}
 
     };
 

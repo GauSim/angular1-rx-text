@@ -1,49 +1,42 @@
-import { store, dlFormState, ACTIONS } from './services/store';
+import { Store, ISailSelectItem, ACTIONS } from './services/store';
 
 const template = `
+{{ ctrl.isLoading }}
  <select class="form-control"
         title=""
-        data-ng-if="state.sailSelect.length"
-        data-ng-change="dlSailSelect.setSailId(state.selectedSailId)"
-        data-ng-model="state.selectedSailId"
-        data-ng-selected="state.selectedSailId"
-        data-ng-options="sail.id as sail.title for sail in state.sailSelect">
+        data-ng-disabled="ctrl.isLoading"
+        data-ng-if="ctrl.sailSelect.length"
+        data-ng-model="ctrl.selectedSailId"
+        data-ng-options="sail.id as sail.title for sail in ctrl.sailSelect">
 </select>
 `;
 
 
-
-
-
-
-interface IScope extends ng.IScope {
-    state: dlFormState;
-}
-
 class Controller {
 
-    constructor(private $scope: IScope,
-        private store: store) {
-        this.$scope.state = store.getLastState();
-        this.store.stream.subscribe({
-            next(newState) {
-                console.log('dlSailSelect', newState);
-                $scope.state = newState;
-            },
-            error(err) {
-                console.error(err)
-            },
-            complete() {
-                console.log("Stream complete")
-            },
+    isLoading: boolean = false;
+    selectedSailId: number;
+    sailSelect: ISailSelectItem[];
+
+    constructor(store: Store, $scope: ng.IScope) {
+        const state = store.getLastState();
+
+        this.selectedSailId = state.selectedSailId;
+        this.sailSelect = state.sailSelect;
+
+        store.subscribe(({ selectedSailId, sailSelect}) => {
+            this.selectedSailId = selectedSailId;
+            this.sailSelect = sailSelect;
         });
-    }
 
+        store.isLoading.subscribe(e => (this.isLoading = e));
 
-    setSailId = (id: number) => {
-        this.store.dispatchState({
-            type: ACTIONS.SET_SAIL_ID,
-            payload: id
+        $scope.$watch('ctrl.selectedSailId', payload => {
+            store
+                .dispatchState({
+                    type: ACTIONS.SET_SAIL_ID,
+                    payload
+                });
         });
     }
 }
@@ -54,8 +47,8 @@ export default function dlSailSelect() {
         restrict: 'E',
         template: template,
         controller: Controller,
-        controllerAs: 'dlSailSelect',
-        scope: null
+        controllerAs: 'ctrl',
+        scope: {}
 
     };
 

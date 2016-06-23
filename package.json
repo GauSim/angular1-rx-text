@@ -9,7 +9,7 @@
     "postinstall": "typings install",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "watch": "tsc -p . -w",
+    "watch": "tsc -p . -w --pretty",
     "typings": "typings",
     "clean": "rimraf ./dist/"
   },

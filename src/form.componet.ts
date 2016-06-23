@@ -1,4 +1,4 @@
-import { store, dlFormState } from './services/store';
+import { Store, dlFormState } from './services/store';
 
 const template = `
 
@@ -7,6 +7,8 @@ const template = `
     <dl-cabinype-select></dl-cabinype-select>
 
     <dl-sail-select></dl-sail-select>
+
+    <dl-pax-select></dl-pax-select>
     
 huhu
     <pre>{{ state | json }}</pre>
@@ -26,25 +28,11 @@ interface IdlFormScope extends ng.IScope {
 class Controller {
 
     constructor(private $scope: IdlFormScope,
-        private store: store) {
+        private store: Store) {
         this.$scope.state = store.getLastState();
-        this.store.stream.subscribe({
-            next(newState) {
-                console.log('dlForm', newState);
-                $scope.state = newState;
-            },
-            error(err) {
-                console.error(err)
-            },
-            complete() {
-                console.log("Stream complete")
-            },
+        this.store.subscribe(newState => {
+            $scope.state = newState;
         });
-    }
-
-
-    dispatchState = () => {
-        this.store.dispatchState(this.$scope.state);
     }
 }
 

@@ -5,7 +5,8 @@ import template from './index.tmpl';
 import dlForm from './form.componet';
 import dlSailSelect from './dlSailSelect.componet';
 import dlCabinypeSelect from './dlCabinypeSelect.componet';
-import { store } from './services/store';
+import dlPaxSelect from './dlPaxSelect.componet';
+import { Store } from './services/store';
 
 const MAIN_MODULE_NAME = 'requestFrom';
 
@@ -15,7 +16,8 @@ function registerApp() {
         .directive('dlForm', dlForm)
         .directive('dlSailSelect', dlSailSelect)
         .directive('dlCabinypeSelect', dlCabinypeSelect)
-        .service('store', store)
+        .directive('dlPaxSelect', dlPaxSelect)
+        .service('store', Store)
         .run(() => {
             console.log('running');
         });
