@@ -1,8 +1,6 @@
 import { Store, ICabintypeSelectItem, ACTIONS } from './services/store';
 
 const template = `
-
-{{ ctrl.isLoading }}
  <select class="form-control"
         title=""
         data-ng-disabled="ctrl.isLoading"
@@ -12,14 +10,14 @@ const template = `
 </select>
 `;
 
-class Controller {
+class Controller implements ng.IComponentController {
 
 
-    isLoading: boolean = false;
-    selectedCabintypeNid: number;
-    cabintypeSelect: ICabintypeSelectItem[];
+    isLoading:boolean = false;
+    selectedCabintypeNid:number;
+    cabintypeSelect:ICabintypeSelectItem[];
 
-    constructor(store: Store, $scope: ng.IScope) {
+    constructor(store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
 
         this.selectedCabintypeNid = state.selectedCabintypeNid;
@@ -32,7 +30,10 @@ class Controller {
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
-        $scope.$watch('ctrl.selectedCabintypeNid', payload => {
+        $scope.$watch('ctrl.selectedCabintypeNid', (payload, last) => {
+            if (!payload || payload === last) {
+                return;
+            }
             store
                 .dispatchState({
                     type: ACTIONS.SET_CABIN_ID,
@@ -42,16 +43,11 @@ class Controller {
     }
 }
 
-export default function dlCabinypeSelect() {
+const dlCabinypeSelect:ng.IComponentOptions = {
+    template: template,
+    controller: Controller,
+    controllerAs: 'ctrl',
+    bindings: {}
 
-    const config: ng.IDirective = {
-        restrict: 'E',
-        template: template,
-        controller: Controller,
-        controllerAs: 'ctrl',
-        scope: {}
-
-    };
-
-    return config;
-}
+};
+export default dlCabinypeSelect;

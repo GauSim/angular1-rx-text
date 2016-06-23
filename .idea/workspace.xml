@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/services/StoreProviders.ts" line="40" mnemonic="9" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/index.tmpl.ts" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/form.componet.ts" afterPath="$PROJECT_DIR$/src/dlForm.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSailSelect.componet.ts" afterPath="$PROJECT_DIR$/src/dlSailSelect.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
+    </list>
+    <ignored path="angular1-rx-text.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="angular1-rx-text" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="StoreProviders.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.62637365">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Store.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="126" column="28" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/dlPaxDropdown.componet.ts" />
+        <option value="$PROJECT_DIR$/src/index.tmpl.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/dlForm.componet.ts" />
+        <option value="$PROJECT_DIR$/src/services/OperatorService.ts" />
+        <option value="$PROJECT_DIR$/src/dlPaxSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/dlSailSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" />
+        <option value="$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts" />
+        <option value="$PROJECT_DIR$/src/services/store.ts" />
+        <option value="$PROJECT_DIR$/src/services/Store.ts" />
+        <option value="$PROJECT_DIR$/src/services/StoreProviders.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1920" />
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular1-rx-text" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="" />
+      <created>1466671816936</created>
+      <option name="number" value="Default" />
+      <updated>1466671816936</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1920" y="23" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16719915" sideWeight="0.81349206" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16719915" sideWeight="0.18650794" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21658032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16719915" sideWeight="0.18650794" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21658032" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16719915" sideWeight="0.81349206" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typings/globals/angular/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3703704">
+          <caret line="1724" column="34" selection-start-line="1724" selection-start-column="14" selection-end-line="1724" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!block;n#Function#0" expanded="false" />
+            <element signature="n#&quot;angular&quot;#0" expanded="false" />
+            <element signature="e#428#507#0" expanded="false" />
+            <element signature="n#!!block;n#IServiceProviderClass#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IServiceProviderFactory#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IServiceProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IAngularBootstrapConfig#0;n#angular#0" expanded="false" />
+            <element signature="e#1136#1211#0" expanded="false" />
+            <element signature="e#1462#2175#0" expanded="false" />
+            <element signature="e#2339#3157#0" expanded="false" />
+            <element signature="n#!!doc;n#element#0;n#!!block;n#IAngularStatic#0;n#angular#0" expanded="false" />
+            <element signature="e#4491#5203#0" expanded="false" />
+            <element signature="e#5324#6036#0" expanded="false" />
+            <element signature="e#6678#7227#0" expanded="false" />
+            <element signature="e#7282#8072#0" expanded="false" />
+            <element signature="n#!!block;n#version#0;n#!!block;n#IAngularStatic#0;n#angular#0" expanded="false" />
+            <element signature="e#8540#8892#0" expanded="false" />
+            <element signature="e#8981#9056#0" expanded="false" />
+            <element signature="n#!!block;n#IModule#0;n#angular#0" expanded="false" />
+            <element signature="e#9239#9440#0" expanded="false" />
+            <element signature="e#9519#9735#0" expanded="false" />
+            <element signature="e#9789#10020#0" expanded="false" />
+            <element signature="e#10127#10504#0" expanded="false" />
+            <element signature="e#10610#11079#0" expanded="false" />
+            <element signature="e#11164#11633#0" expanded="false" />
+            <element signature="e#11765#12024#0" expanded="false" />
+            <element signature="e#12112#12371#0" expanded="false" />
+            <element signature="e#12498#13042#0" expanded="false" />
+            <element signature="e#13109#13670#0" expanded="false" />
+            <element signature="e#14353#14781#0" expanded="false" />
+            <element signature="e#14846#15274#0" expanded="false" />
+            <element signature="e#15337#15815#0" expanded="false" />
+            <element signature="e#15894#16380#0" expanded="false" />
+            <element signature="e#16506#17086#0" expanded="false" />
+            <element signature="e#17187#17975#0" expanded="false" />
+            <element signature="e#18209#18284#0" expanded="false" />
+            <element signature="n#!!block;n#IAttributes#0;n#angular#0" expanded="false" />
+            <element signature="e#18493#18835#0" expanded="false" />
+            <element signature="e#18874#19280#0" expanded="false" />
+            <element signature="e#19332#19543#0" expanded="false" />
+            <element signature="e#19596#19811#0" expanded="false" />
+            <element signature="e#19867#20076#0" expanded="false" />
+            <element signature="e#20154#20213#0" expanded="false" />
+            <element signature="e#20268#20523#0" expanded="false" />
+            <element signature="n#!!doc;n#$attr#0;n#!!block;n#IAttributes#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IFormController#0;n#angular#0" expanded="false" />
+            <element signature="e#20983#21234#0" expanded="false" />
+            <element signature="e#21915#21990#0" expanded="false" />
+            <element signature="n#!!block;n#INgModelController#0;n#angular#0" expanded="false" />
+            <element signature="e#22318#22391#0" expanded="false" />
+            <element signature="e#23274#23317#0" expanded="false" />
+            <element signature="n#!!block;n#INgModelOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IModelValidators#0;n#angular#0" expanded="false" />
+            <element signature="e#23605#23743#0" expanded="false" />
+            <element signature="n#!!block;n#IAsyncModelValidators#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IModelParser#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IModelFormatter#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IModelViewChangeListener#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IRootScopeService#0;n#angular#0" expanded="false" />
+            <element signature="e#24645#25404#0" expanded="false" />
+            <element signature="e#25529#26275#0" expanded="false" />
+            <element signature="e#26763#27087#0" expanded="false" />
+            <element signature="n#!!doc;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$index#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$first#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$middle#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$last#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$even#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#$odd#0;n#!!block;n#IRepeatScope#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#targetScope#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#currentScope#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#name#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#stopPropagation#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#preventDefault#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#defaultPrevented#0;n#!!block;n#IAngularEvent#0;n#angular#0" expanded="false" />
+            <element signature="e#30212#30287#0" expanded="false" />
+            <element signature="n#!!block;n#IWindowService#0;n#angular#0" expanded="false" />
+            <element signature="e#30526#30601#0" expanded="false" />
+            <element signature="n#!!block;n#ITimeoutService#0;n#angular#0" expanded="false" />
+            <element signature="e#31023#31098#0" expanded="false" />
+            <element signature="n#!!block;n#IIntervalService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IFilterService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterService#0;n#angular#0" expanded="false" />
+            <element signature="e#32090#32223#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterFilter#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterFilterPatternObject#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterFilterPredicateFunc#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterFilterComparatorFunc#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterCurrency#0;n#angular#0" expanded="false" />
+            <element signature="e#32787#33227#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterNumber#0;n#angular#0" expanded="false" />
+            <element signature="e#33347#33775#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterDate#0;n#angular#0" expanded="false" />
+            <element signature="e#33889#34837#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterJson#0;n#angular#0" expanded="false" />
+            <element signature="e#34965#35266#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterLowercase#0;n#angular#0" expanded="false" />
+            <element signature="e#35364#35420#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterUppercase#0;n#angular#0" expanded="false" />
+            <element signature="e#35502#35558#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterLimitTo#0;n#angular#0" expanded="false" />
+            <element signature="e#35638#36580#0" expanded="false" />
+            <element signature="e#36664#37660#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterOrderBy#0;n#angular#0" expanded="false" />
+            <element signature="e#37792#38330#0" expanded="false" />
+            <element signature="n#!!doc;n#IFilterProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IFilterProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#38953#39472#0" expanded="false" />
+            <element signature="e#39539#39614#0" expanded="false" />
+            <element signature="n#!!block;n#ILocaleService#0;n#angular#0" expanded="false" />
+            <element signature="e#39828#39855#0" expanded="false" />
+            <element signature="n#!!block;n#ILocaleNumberFormatDescriptor#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ILocaleNumberPatternDescriptor#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ILocaleDateTimeFormatDescriptor#0;n#angular#0" expanded="false" />
+            <element signature="e#40930#41005#0" expanded="false" />
+            <element signature="n#!!block;n#ILogService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ILogProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#41518#41587#0" expanded="false" />
+            <element signature="n#!!block;n#ILogCall#0;n#angular#0" expanded="false" />
+            <element signature="e#41682#41757#0" expanded="false" />
+            <element signature="n#!!block;n#IParseService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IParseProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#42287#42641#0" expanded="false" />
+            <element signature="e#42717#43981#0" expanded="false" />
+            <element signature="n#!!block;n#ICompiledExpression#0;n#angular#0" expanded="false" />
+            <element signature="e#44316#44396#0" expanded="false" />
+            <element signature="n#!!doc;n#ILocationService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ILocationService#0;n#angular#0" expanded="false" />
+            <element signature="e#44916#44969#0" expanded="false" />
+            <element signature="e#45003#45256#0" expanded="false" />
+            <element signature="e#45402#45474#0" expanded="false" />
+            <element signature="e#45507#45925#0" expanded="false" />
+            <element signature="e#45982#46591#0" expanded="false" />
+            <element signature="n#!!block;n#ILocationProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#47011#47064#0" expanded="false" />
+            <element signature="e#47351#47426#0" expanded="false" />
+            <element signature="e#47638#47713#0" expanded="false" />
+            <element signature="n#!!block;n#IExceptionHandlerService#0;n#angular#0" expanded="false" />
+            <element signature="e#47989#48064#0" expanded="false" />
+            <element signature="n#!!block;n#IQResolveReject#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IQService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IQService#0;n#angular#0" expanded="false" />
+            <element signature="e#48938#49434#0" expanded="false" />
+            <element signature="e#51292#51781#0" expanded="false" />
+            <element signature="e#51965#52074#0" expanded="false" />
+            <element signature="e#52117#52885#0" expanded="false" />
+            <element signature="e#52939#53261#0" expanded="false" />
+            <element signature="e#53325#53593#0" expanded="false" />
+            <element signature="e#53637#53959#0" expanded="false" />
+            <element signature="e#54020#54288#0" expanded="false" />
+            <element signature="n#!!block;n#IPromise#0;n#angular#0" expanded="false" />
+            <element signature="e#54364#55164#0" expanded="false" />
+            <element signature="e#55357#55431#0" expanded="false" />
+            <element signature="e#55540#56113#0" expanded="false" />
+            <element signature="n#!!block;n#IDeferred#0;n#angular#0" expanded="false" />
+            <element signature="e#56366#56441#0" expanded="false" />
+            <element signature="n#!!block;n#IAnchorScrollService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IAnchorScrollProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#ICacheFactoryService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ICacheFactoryService#0;n#angular#0" expanded="false" />
+            <element signature="e#57086#57408#0" expanded="false" />
+            <element signature="e#57496#57664#0" expanded="false" />
+            <element signature="e#57695#57861#0" expanded="false" />
+            <element signature="n#!!doc;n#ICacheObject#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ICacheObject#0;n#angular#0" expanded="false" />
+            <element signature="e#58236#58313#0" expanded="false" />
+            <element signature="n#!!block;n#info#0;n#!!block;n#ICacheObject#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#id#0;n#!!block;n#info#0;n#!!block;n#ICacheObject#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#size#0;n#!!block;n#info#0;n#!!block;n#ICacheObject#0;n#angular#0" expanded="false" />
+            <element signature="e#58670#59194#0" expanded="false" />
+            <element signature="e#59247#59391#0" expanded="false" />
+            <element signature="e#59433#59567#0" expanded="false" />
+            <element signature="e#59612#59678#0" expanded="false" />
+            <element signature="e#59715#59817#0" expanded="false" />
+            <element signature="e#59854#59929#0" expanded="false" />
+            <element signature="n#!!block;n#ICompileService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ICompileProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ICloneAttachFunction#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ITemplateLinkingFunction#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ITranscludeFunction#0;n#angular#0" expanded="false" />
+            <element signature="e#62160#62235#0" expanded="false" />
+            <element signature="n#!!block;n#IControllerService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IControllerProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IXhrFactory#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IXhrFactory#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IHttpService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpService#0;n#angular#0" expanded="false" />
+            <element signature="e#63522#63621#0" expanded="false" />
+            <element signature="e#63685#63906#0" expanded="false" />
+            <element signature="e#63995#64219#0" expanded="false" />
+            <element signature="e#64311#64533#0" expanded="false" />
+            <element signature="e#64623#64846#0" expanded="false" />
+            <element signature="e#64937#65198#0" expanded="false" />
+            <element signature="e#65299#65559#0" expanded="false" />
+            <element signature="e#65659#65921#0" expanded="false" />
+            <element signature="n#!!doc;n#defaults#0;n#!!block;n#IHttpService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#pendingRequests#0;n#!!block;n#IHttpService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#params#0;n#!!block;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#data#0;n#!!block;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#timeout#0;n#!!block;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#responseType#0;n#!!block;n#IRequestShortcutConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IRequestConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IRequestConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#method#0;n#!!block;n#IRequestConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#url#0;n#!!block;n#IRequestConfig#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpHeadersGetter#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpPromiseCallback#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpPromiseCallbackArg#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpPromise#0;n#angular#0" expanded="false" />
+            <element signature="e#68393#68674#0" expanded="false" />
+            <element signature="e#68753#69034#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpRequestTransformer#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpResponseTransformer#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpRequestConfigHeaders#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#cache#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#transformRequest#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#transformResponse#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#headers#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#xsrfHeaderName#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#xsrfCookieName#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#withCredentials#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#paramSerializer#0;n#!!block;n#IHttpProviderDefaults#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpInterceptor#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpInterceptorFactory#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#interceptors#0;n#!!block;n#IHttpProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#73405#73720#0" expanded="false" />
+            <element signature="e#73809#73884#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpBackendService#0;n#angular#0" expanded="false" />
+            <element signature="e#74355#74430#0" expanded="false" />
+            <element signature="n#!!block;n#IInterpolateService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IInterpolationFunction#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IInterpolateProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#75214#75289#0" expanded="false" />
+            <element signature="e#75522#75597#0" expanded="false" />
+            <element signature="n#!!block;n#ISCEService#0;n#angular#0" expanded="false" />
+            <element signature="e#76757#76832#0" expanded="false" />
+            <element signature="n#!!block;n#ISCEProvider#0;n#angular#0" expanded="false" />
+            <element signature="e#77093#77168#0" expanded="false" />
+            <element signature="n#!!block;n#ISCEDelegateService#0;n#angular#0" expanded="false" />
+            <element signature="e#77520#77595#0" expanded="false" />
+            <element signature="n#!!block;n#ISCEDelegateProvider#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#ITemplateRequestService#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#ITemplateRequestService#0;n#angular#0" expanded="false" />
+            <element signature="e#78188#78878#0" expanded="false" />
+            <element signature="n#!!doc;n#totalPendingRequests#0;n#!!block;n#ITemplateRequestService#0;n#angular#0" expanded="false" />
+            <element signature="e#79120#79195#0" expanded="false" />
+            <element signature="n#!!doc;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#controller#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#controllerAs#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#template#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#templateUrl#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#bindings#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#transclude#0;n#!!block;n#IComponentOptions#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IComponentTemplateFn#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IComponentController#0;n#angular#0" expanded="false" />
+            <element signature="e#82300#82622#0" expanded="false" />
+            <element signature="e#82657#83105#0" expanded="false" />
+            <element signature="e#83190#83366#0" expanded="false" />
+            <element signature="e#83404#84152#0" expanded="false" />
+            <element signature="n#!!block;n#IChangesObject#0;n#angular#0" expanded="false" />
+            <element signature="e#84319#84394#0" expanded="false" />
+            <element signature="n#!!block;n#IDirectiveFactory#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IDirectiveLinkFn#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IDirectivePrePost#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IDirectiveCompileFn#0;n#angular#0" expanded="false" />
+            <element signature="e#85190#85499#0" expanded="false" />
+            <element signature="n#!!block;n#IDirective#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#bindToController#0;n#!!block;n#IDirective#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#replace#0;n#!!block;n#IDirective#0;n#angular#0" expanded="false" />
+            <element signature="n#!!doc;n#IAugmentedJQueryStatic#0;n#angular#0" expanded="false" />
+            <element signature="e#87210#87285#0" expanded="false" />
+            <element signature="n#auto#0;n#angular#0" expanded="false" />
+            <element signature="e#87432#87503#0" expanded="false" />
+            <element signature="n#!!block;n#IInjectorService#0;n#auto#0;n#angular#0" expanded="false" />
+            <element signature="e#89673#89744#0" expanded="false" />
+            <element signature="n#!!block;n#IProvideService#0;n#auto#0;n#angular#0" expanded="false" />
+            <element signature="e#89958#90026#0" expanded="false" />
+            <element signature="e#90151#90548#0" expanded="false" />
+            <element signature="e#90616#91466#0" expanded="false" />
+            <element signature="e#91543#92407#0" expanded="false" />
+            <element signature="n#!!doc;n#IHttpParamSerializer#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#IHttpParamSerializer#0;n#angular#0" expanded="false" />
+            <element signature="n#!!block;n#JQuery#0" expanded="false" />
+            <element signature="e#93325#93356#0" expanded="false" />
+            <element signature="e#93518#93574#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/EventEmitter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16346154">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/OperatorService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlForm.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlSailSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="44" />
+          <folding>
+            <marker date="1466686467000" expanded="true" signature="117:350" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlPaxSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
+          <folding>
+            <marker date="1466686355000" expanded="true" signature="172:492" placeholder="..." />
+            <marker date="1466686355000" expanded="true" signature="236:492" placeholder="..." />
+            <marker date="1466686355000" expanded="true" signature="512:827" placeholder="..." />
+            <marker date="1466686355000" expanded="true" signature="847:1165" placeholder="..." />
+            <marker date="1466686355000" expanded="true" signature="1185:1498" placeholder="..." />
+            <marker date="1466686355000" expanded="true" signature="1518:1826" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+          <folding>
+            <marker date="1466686490000" expanded="true" signature="136:570" placeholder="..." />
+            <marker date="1466686490000" expanded="true" signature="382:563" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlCabinypeSelect.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+          <folding>
+            <marker date="1466686508000" expanded="true" signature="122:410" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="28" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62637365">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

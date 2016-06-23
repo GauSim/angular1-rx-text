@@ -1,33 +1,76 @@
 import { Store, IPaxSelectItem, ACTIONS } from './services/store';
+import { IOperatorPaxAgeConfig } from './services/OperatorService';
 
 const template = `
-{{ ctrl.isLoading }}
-<select class="form-control"
-        data-ng-disabled="ctrl.isLoading"
-        data-ng-model="ctrl.num_seniors"
-        data-ng-options="p.id as p.title for p in ctrl.paxSeniorSelect">
-</select>
-{{ ctrl.num_seniors | json }}asd
+<dl-pax-age-input
+    data-ng-show="ctrl.operatorPaxAgeConfig.senior.isSupported"
+    data-field-name="num_seniors"
+    data-on-select="ctrl.onSelect(fieldName, value)"
+    data-select-options="ctrl.paxSeniorSelect"
+    data-selected-Value="ctrl.num_seniors"
+    data-pax-age-config="ctrl.operatorPaxAgeConfig.senior">
+</dl-pax-age-input>
+
+<dl-pax-age-input
+    data-ng-show="ctrl.operatorPaxAgeConfig.adult.isSupported"
+    data-field-name="num_adults"
+    data-on-select="ctrl.onSelect(fieldName, value)"
+    data-select-options="ctrl.paxAdultSelect"
+    data-selected-Value="ctrl.num_adults"
+    data-pax-age-config="ctrl.operatorPaxAgeConfig.adult">
+</dl-pax-age-input>
+
+<dl-pax-age-input
+    data-ng-show="ctrl.operatorPaxAgeConfig.junior.isSupported"
+    data-field-name="num_junior"
+    data-on-select="ctrl.onSelect(fieldName, value)"
+    data-select-options="ctrl.paxJuniorSelect"
+    data-selected-Value="ctrl.num_junior"
+    data-pax-age-config="ctrl.operatorPaxAgeConfig.junior">
+</dl-pax-age-input>
+
+<dl-pax-age-input
+    data-ng-show="ctrl.operatorPaxAgeConfig.child.isSupported"
+    data-field-name="num_child"
+    data-on-select="ctrl.onSelect(fieldName, value)"
+    data-select-options="ctrl.paxChildSelect"
+    data-selected-Value="ctrl.num_child"
+    data-pax-age-config="ctrl.operatorPaxAgeConfig.child">
+</dl-pax-age-input>
+
+<dl-pax-age-input
+    data-ng-show="ctrl.operatorPaxAgeConfig.baby.isSupported"
+    data-field-name="num_baby"
+    data-on-select="ctrl.onSelect(fieldName, value)"
+    data-select-options="ctrl.paxBabySelect"
+    data-selected-Value="ctrl.num_baby"
+    data-pax-age-config="ctrl.operatorPaxAgeConfig.baby">
+</dl-pax-age-input>
 `;
 
 
-class Controller {
+class Controller implements ng.IComponentController {
 
-    isLoading: boolean = false;
-    num_seniors: number;
-    num_adults: number;
-    num_junior: number;
-    num_child: number;
-    num_baby: number;
+    isLoading:boolean = false;
 
-    paxSeniorSelect: IPaxSelectItem[];
-    paxAdultSelect: IPaxSelectItem[];
-    paxJuniorSelect: IPaxSelectItem[];
-    paxChildSelect: IPaxSelectItem[];
-    paxBabySelect: IPaxSelectItem[];
+    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 
-    constructor(store: Store, $scope: ng.IScope) {
+    num_seniors:number;
+    num_adults:number;
+    num_junior:number;
+    num_child:number;
+    num_baby:number;
+
+    paxSeniorSelect:IPaxSelectItem[];
+    paxAdultSelect:IPaxSelectItem[];
+    paxJuniorSelect:IPaxSelectItem[];
+    paxChildSelect:IPaxSelectItem[];
+    paxBabySelect:IPaxSelectItem[];
+
+    constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
+
+        this.operatorPaxAgeConfig = state.operatorPaxAgeConfig;
 
         this.num_seniors = state.num_seniors;
         this.paxSeniorSelect = state.paxSeniorSelect;
@@ -45,9 +88,11 @@ class Controller {
         this.paxBabySelect = state.paxBabySelect;
 
 
-        store.subscribe(({
-            paxSeniorSelect, paxAdultSelect, paxJuniorSelect, paxChildSelect, paxBabySelect,
+        store.subscribe(({ paxSeniorSelect, paxAdultSelect, paxJuniorSelect, paxChildSelect, paxBabySelect,
+            operatorPaxAgeConfig,
             num_adults, num_seniors, num_junior, num_child, num_baby }) => {
+
+            this.operatorPaxAgeConfig = operatorPaxAgeConfig;
 
             this.num_seniors = num_seniors;
             this.paxSeniorSelect = paxSeniorSelect;
@@ -63,33 +108,43 @@ class Controller {
 
             this.num_baby = num_baby;
             this.paxBabySelect = paxBabySelect;
-            debugger;
+
         });
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
-        $scope.$watchGroup(['ctrl.num_adults', 'ctrl.num_seniors', 'ctrl.num_junior', 'ctrl.num_child', 'ctrl.num_baby'], ([num_adults, num_seniors, num_junior, num_child, num_baby]) => {
-            console.log();
-            store
-                .dispatchState({
-                    type: ACTIONS.SET_PAX_COUNT,
-                    payload: { num_adults, num_seniors, num_junior, num_child, num_baby }
-                });
-
-        });
     }
-}
 
-export default function dlPaxSelect() {
+    onSelect = (fieldName:string, value:number) => {
 
-    const config: ng.IDirective = {
-        restrict: 'E',
-        template: template,
-        controller: Controller,
-        controllerAs: 'ctrl',
-        scope: {}
+        if (!value) {
+            return;
+        }
 
+        const payload = {
+            num_seniors: this.num_seniors,
+            num_adults: this.num_adults,
+            num_junior: this.num_junior,
+            num_child: this.num_child,
+            num_baby: this.num_baby
+        };
+
+        // set value on payload
+        payload[fieldName] = value;
+
+        this.store
+            .dispatchState({
+                type: ACTIONS.SET_PAX_COUNT,
+                payload
+            });
     };
 
-    return config;
 }
+const dlPaxSelect:ng.IComponentOptions = {
+    template: template,
+    controller: Controller,
+    controllerAs: 'ctrl',
+    bindings: {}
+
+};
+export default dlPaxSelect;

@@ -1,7 +1,6 @@
 import { Store, ISailSelectItem, ACTIONS } from './services/store';
 
 const template = `
-{{ ctrl.isLoading }}
  <select class="form-control"
         title=""
         data-ng-disabled="ctrl.isLoading"
@@ -12,13 +11,13 @@ const template = `
 `;
 
 
-class Controller {
+class Controller implements ng.IComponentController {
 
-    isLoading: boolean = false;
-    selectedSailId: number;
-    sailSelect: ISailSelectItem[];
+    isLoading:boolean = false;
+    selectedSailId:number;
+    sailSelect:ISailSelectItem[];
 
-    constructor(store: Store, $scope: ng.IScope) {
+    constructor(store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
 
         this.selectedSailId = state.selectedSailId;
@@ -31,7 +30,12 @@ class Controller {
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
-        $scope.$watch('ctrl.selectedSailId', payload => {
+        $scope.$watch('ctrl.selectedSailId', (payload, last) => {
+
+            if (!payload || payload === last) {
+                return;
+            }
+
             store
                 .dispatchState({
                     type: ACTIONS.SET_SAIL_ID,
@@ -40,17 +44,11 @@ class Controller {
         });
     }
 }
+const dlSailSelect:ng.IComponentOptions = {
+    template: template,
+    controller: Controller,
+    controllerAs: 'ctrl',
+    bindings: {}
 
-export default function dlSailSelect() {
-
-    const config: ng.IDirective = {
-        restrict: 'E',
-        template: template,
-        controller: Controller,
-        controllerAs: 'ctrl',
-        scope: {}
-
-    };
-
-    return config;
-}
+};
+export default dlSailSelect;

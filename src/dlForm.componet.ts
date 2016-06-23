@@ -1,34 +1,26 @@
-import { Store, dlFormState } from './services/store';
+import { Store, IFormState } from './services/store';
 
 const template = `
-
     <dl-sail-select></dl-sail-select>
+
+    <dl-pax-select></dl-pax-select>
 
     <dl-cabinype-select></dl-cabinype-select>
 
     <dl-sail-select></dl-sail-select>
 
-    <dl-pax-select></dl-pax-select>
-    
-huhu
     <pre>{{ state | json }}</pre>
-    <pre>{{ sailSelect | json }}</pre>
-
 `;
 
 
-
-
-
-
 interface IdlFormScope extends ng.IScope {
-    state: dlFormState;
+    state: IFormState;
 }
 
-class Controller {
+class Controller implements ng.IComponentController {
 
-    constructor(private $scope: IdlFormScope,
-        private store: Store) {
+    constructor(private $scope:IdlFormScope,
+                private store:Store) {
         this.$scope.state = store.getLastState();
         this.store.subscribe(newState => {
             $scope.state = newState;
@@ -36,16 +28,12 @@ class Controller {
     }
 }
 
-export default function dlForm() {
 
-    const config: ng.IDirective = {
-        restrict: 'E',
-        template: template,
-        controller: Controller,
-        controllerAs: 'dlForm',
-        scope: null
+const dlForm:ng.IComponentOptions = {
+    template: template,
+    controller: Controller,
+    controllerAs: 'ctrl',
+    bindings: {}
 
-    };
-
-    return config;
-}
+};
+export default dlForm;
