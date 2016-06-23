@@ -18,7 +18,8 @@ export class StoreDispatchers {
 
         nextState = _.extend(nextState, {
             cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
+            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
         });
 
 
@@ -41,7 +42,8 @@ export class StoreDispatchers {
 
         nextState = _.extend(nextState, {
             cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
+            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
         });
 
         d.resolve(nextState);
@@ -54,10 +56,10 @@ export class StoreDispatchers {
 
         let nextState = _.extend({}, currentState, paxConfig);
 
-
         nextState = _.extend(nextState, {
             cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid)
+            sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
         });
 
         d.resolve(nextState);

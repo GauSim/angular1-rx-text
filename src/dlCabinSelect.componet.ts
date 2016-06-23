@@ -1,4 +1,4 @@
-import { Store, ICabintypeSelectItem, ACTIONS } from './services/store';
+import { Store, ICabinSelectModel, ACTIONS } from './services/store';
 
 const template = `
  <select class="form-control"
@@ -7,7 +7,7 @@ const template = `
         data-ng-if="ctrl.cabintypeSelect.length"
         data-ng-model="ctrl.selectedCabintypeNid"
         data-ng-change="ctrl.onChange(ctrl.selectedCabintypeNid)"
-        data-ng-options="cabintype.id as cabintype.title group by cabintype.type for cabintype in ctrl.cabintypeSelect">
+        data-ng-options="cabintype.id as cabintype.title group by cabintype.kindName for cabintype in ctrl.cabintypeSelect">
 </select>
 `;
 
@@ -16,7 +16,7 @@ class Controller implements ng.IComponentController {
 
     isLoading:boolean = false;
     selectedCabintypeNid:number;
-    cabintypeSelect:ICabintypeSelectItem[];
+    cabintypeSelect:ICabinSelectModel[];
 
 
     onChange = (payload:number) => {
@@ -27,7 +27,7 @@ class Controller implements ng.IComponentController {
             }, 'cabinDD');
     };
 
-    constructor(private store:Store, $scope:ng.IScope) {
+    constructor(private store:Store) {
         const state = store.getLastState();
 
         this.selectedCabintypeNid = state.selectedCabintypeNid;
@@ -43,11 +43,11 @@ class Controller implements ng.IComponentController {
     }
 }
 
-const dlCabinypeSelect:ng.IComponentOptions = {
+const dlCabinSelect:ng.IComponentOptions = {
     template: template,
     controller: Controller,
     controllerAs: 'ctrl',
     bindings: {}
 
 };
-export default dlCabinypeSelect;
+export default dlCabinSelect;

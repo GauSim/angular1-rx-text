@@ -4,10 +4,16 @@ import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
 import { StoreDispatchers } from './StoreDispatchers';
 
-export enum CABIN_AVAILABILITY { available, onRequest }
+import { mock } from './StateMockHelper';
 
+export enum CABIN_AVAILABILITY { available = 1, onRequest = 2 }
 
-export interface ISailSelectItem {
+export type CABIN_KIND = 'inside'
+    | 'outside'
+    | 'balcony'
+    | 'suite';
+
+export interface ISailSelectModel {
     id: number;
     cruiseId:number;
     title: string;
@@ -15,10 +21,11 @@ export interface ISailSelectItem {
     endDate:string;
 }
 
-export interface ICabintypeSelectItem {
+export interface ICabinSelectModel {
     id: number;
     sailId:number;
-    type: string;
+    kind: CABIN_KIND;
+    kindName:string;
     title: string;
     price:number;
     cabinName:string;
@@ -26,8 +33,14 @@ export interface ICabintypeSelectItem {
     availability:CABIN_AVAILABILITY;
 }
 
+export interface ICabinGridSelectModel {
+    inside:ICabinSelectModel;
+    outside:ICabinSelectModel;
+    balcony:ICabinSelectModel;
+    suite:ICabinSelectModel;
+}
 
-export interface IPaxSelectItem {
+export interface IPaxSelectModel {
     id: number;
     title: string;
 }
@@ -54,18 +67,19 @@ export interface IFormState {
     selectedSailId:number;
     selectedCabintypeNid:number;
 
-    sailSelect:ISailSelectItem[];
+    sailSelect:ISailSelectModel[];
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
-    cabintypeSelect:ICabintypeSelectItem[];
+    cabintypeSelect:ICabinSelectModel[];
+    cabinGridSelect:ICabinGridSelectModel;
 
-    allCabintypes:ICabintypeSelectItem[];
-    allSails:ISailSelectItem[];
+    allCabintypes:ICabinSelectModel[];
+    allSails:ISailSelectModel[];
 
-    paxSeniorSelect:IPaxSelectItem[];
-    paxAdultSelect:IPaxSelectItem[];
-    paxJuniorSelect:IPaxSelectItem[];
-    paxChildSelect:IPaxSelectItem[];
-    paxBabySelect:IPaxSelectItem[];
+    paxSeniorSelect:IPaxSelectModel[];
+    paxAdultSelect:IPaxSelectModel[];
+    paxJuniorSelect:IPaxSelectModel[];
+    paxChildSelect:IPaxSelectModel[];
+    paxBabySelect:IPaxSelectModel[];
 }
 
 
@@ -96,7 +110,7 @@ function initialState() {
     });
 
 
-    const allSails:ISailSelectItem[] = [
+    const allSails:ISailSelectModel[] = [
         {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016', cruiseId: 1},
         {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016', cruiseId: 1},
         {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
@@ -104,118 +118,44 @@ function initialState() {
 
     const sailSelect = allSails.filter(item => item.cruiseId === 1);
 
-    const allCabintypes:ICabintypeSelectItem[] = [
-        {
-            id: 1,
-            sailId: 1,
-            title: 'Bella Prima1 (50 EUR)',
-            type: 'innen',
-            price: 50,
-            cabinName: 'Bella Prima1',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.onRequest
-        },
-        {
-            id: 2,
-            sailId: 2,
-            title: 'Bella Prima2 (100 EUR)',
-            type: 'innen',
-            price: 100,
-            cabinName: 'Bella Prima2',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.onRequest
-        },
-        {
-            id: 3,
-            sailId: 3,
-            title: 'Bella Prima3 (200 EUR)',
-            type: 'innen',
-            price: 200,
-            cabinName: 'Bella Prima3',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.onRequest
-        },
-        {
-            id: 4,
-            sailId: 1,
-            title: 'Bums bla Prima1 (500 EUR)',
-            type: 'aussen',
-            price: 500,
-            cabinName: 'Bums bla Prima1',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        },
-        {
-            id: 5,
-            sailId: 2,
-            title: 'Bums bla Prima2 (600 EUR)',
-            type: 'aussen',
-            price: 600,
-            cabinName: 'Bums bla Prima2',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        },
-        {
-            id: 6,
-            sailId: 3,
-            title: 'Bums bla Prima3 (700 EUR)',
-            type: 'aussen',
-            price: 700,
-            cabinName: 'Bums bla Prima3',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        },
-        {
-            id: 7,
-            sailId: 1,
-            title: 'Kat1 (1000 EUR)',
-            type: 'suite',
-            price: 1000,
-            cabinName: 'Kat1',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        },
-        {
-            id: 8,
-            sailId: 2,
-            title: 'Kat2 (2000 EUR)',
-            type: 'suite',
-            price: 2000,
-            cabinName: 'Kat2',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        },
-        {
-            id: 9,
-            sailId: 3,
-            title: 'Kat3 (3000 EUR)',
-            type: 'suite',
-            price: 3000,
-            cabinName: 'Kat3',
-            currency: 'EUR',
-            availability: CABIN_AVAILABILITY.available
-        }
-    ];
+
+    const p = new StoreProviders();
+
+
+    const allCabintypes:ICabinSelectModel[] = mock(p, allSails);
 
     const cabintypeSelect = allCabintypes.filter(item => item.sailId === sailSelect[0].id);
 
+    const cabinGridSelect:ICabinGridSelectModel = {
+        inside: null,
+        outside: null,
+        balcony: null,
+        suite: null,
+    };
+
     const state:IFormState = {
-        sailSelect,
+
         allCabintypes,
         allSails,
+
+        cabinGridSelect,
         cabintypeSelect,
+        sailSelect,
         paxSeniorSelect,
         paxAdultSelect,
         paxJuniorSelect,
         paxChildSelect,
         paxBabySelect,
+
         operatorPaxAgeConfig,
+
         num_adults: 2,
         num_seniors: 0,
         num_junior: 0,
         num_child: 0,
         num_baby: 0,
         selectedCruiseNid: 1,
+
         selectedSailId: sailSelect[0].id,
         selectedCabintypeNid: cabintypeSelect[0].id
     };
@@ -227,7 +167,6 @@ export class Store extends EventEmitter<IFormState> {
 
     isLoading = new EventEmitter<boolean>();
 
-    private _providers = new StoreProviders();
     private _dispatchers:StoreDispatchers;
     private _state:IFormState = initialState();
 
@@ -300,3 +239,5 @@ export const ACTIONS = {
     SET_CABIN_ID: 'SET_CABIN_ID',
     SET_PAX_COUNT: 'SET_PAX_COUNT'
 };
+
+export { StoreProviders }

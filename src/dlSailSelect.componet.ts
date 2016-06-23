@@ -1,4 +1,4 @@
-import { Store, ISailSelectItem, ACTIONS } from './services/store';
+import { Store, ISailSelectModel, ACTIONS } from './services/store';
 
 const template = `
  <select class="form-control"
@@ -16,7 +16,7 @@ class Controller implements ng.IComponentController {
 
     isLoading:boolean = false;
     selectedSailId:number;
-    sailSelect:ISailSelectItem[];
+    sailSelect:ISailSelectModel[];
 
     onChange = (payload:number) => {
         this.store
@@ -26,7 +26,7 @@ class Controller implements ng.IComponentController {
             }, 'saildd');
     };
 
-    constructor(private store:Store, $scope:ng.IScope) {
+    constructor(private store:Store) {
         const state = store.getLastState();
 
         this.selectedSailId = state.selectedSailId;

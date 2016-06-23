@@ -4,9 +4,11 @@ import 'angular-translate';
 
 import dlForm from './dlForm.componet';
 import dlSailSelect from './dlSailSelect.componet';
-import dlCabinypeSelect from './dlCabinypeSelect.componet';
+import dlCabinSelect from './dlCabinSelect.componet';
 import dlPaxSelect from './dlPaxSelect.componet';
 import dlPaxAgeInput from './dlPaxAgeInput.componet';
+import dlCabinGridSelect from './dlCabinGridSelect.componet'
+
 import { Store } from './services/store';
 
 const MAIN_MODULE_NAME = 'requestFrom';
@@ -16,9 +18,10 @@ function registerApp() {
     const app = angular.module(MAIN_MODULE_NAME, ['pascalprecht.translate'])
         .component('dlForm', dlForm)
         .component('dlSailSelect', dlSailSelect)
-        .component('dlCabinypeSelect', dlCabinypeSelect)
+        .component('dlCabinSelect', dlCabinSelect)
         .component('dlPaxSelect', dlPaxSelect)
         .component('dlPaxAgeInput', dlPaxAgeInput)
+        .component('dlCabinGridSelect', dlCabinGridSelect)
         .service('store', Store)
         .run(() => {
             console.log('running');

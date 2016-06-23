@@ -3,9 +3,11 @@ import { Store, IFormState } from './services/store';
 const template = `
     <dl-sail-select></dl-sail-select>
 
+    <dl-cabin-grid-select></dl-cabin-grid-select>
+
     <dl-pax-select></dl-pax-select>
 
-    <dl-cabinype-select></dl-cabinype-select>
+    <dl-cabin-select></dl-cabin-select>
 
     <dl-sail-select></dl-sail-select>
 

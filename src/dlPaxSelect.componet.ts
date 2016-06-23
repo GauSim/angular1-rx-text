@@ -1,4 +1,4 @@
-import { Store, IPaxSelectItem, ACTIONS } from './services/store';
+import { Store, IPaxSelectModel, ACTIONS } from './services/store';
 import { IOperatorPaxAgeConfig } from './services/OperatorService';
 
 const template = `
@@ -68,13 +68,13 @@ class Controller implements ng.IComponentController {
     num_child:number;
     num_baby:number;
 
-    paxSeniorSelect:IPaxSelectItem[];
-    paxAdultSelect:IPaxSelectItem[];
-    paxJuniorSelect:IPaxSelectItem[];
-    paxChildSelect:IPaxSelectItem[];
-    paxBabySelect:IPaxSelectItem[];
+    paxSeniorSelect:IPaxSelectModel[];
+    paxAdultSelect:IPaxSelectModel[];
+    paxJuniorSelect:IPaxSelectModel[];
+    paxChildSelect:IPaxSelectModel[];
+    paxBabySelect:IPaxSelectModel[];
 
-    constructor(private store:Store, $scope:ng.IScope) {
+    constructor(private store:Store) {
         const state = store.getLastState();
 
         this.operatorPaxAgeConfig = state.operatorPaxAgeConfig;

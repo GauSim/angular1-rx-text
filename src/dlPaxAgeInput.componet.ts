@@ -1,4 +1,4 @@
-import { Store, IPaxSelectItem } from './services/store';
+import { Store, IPaxSelectModel } from './services/store';
 import { AGE_MAX } from './services/OperatorService';
 
 const template = `
@@ -16,7 +16,7 @@ class Controller implements ng.IComponentController {
     AGE_MAX:number = AGE_MAX;
     isLoading:boolean;
     fieldName:string;
-    selectOptions:IPaxSelectItem[];
+    selectOptions:IPaxSelectModel[];
     selectedValue:number;
     onSelect:(s:{fieldName:string, value:number})=>void;
 
