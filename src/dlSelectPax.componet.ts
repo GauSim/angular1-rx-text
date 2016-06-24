@@ -48,7 +48,7 @@ const template = `
 </dl-pax-age-input>
 `;
 
-export interface paxConfig {
+export interface ISelectPaxModel {
     num_seniors:number;
     num_adults:number;
     num_junior:number;
@@ -128,7 +128,7 @@ class Controller implements ng.IComponentController {
             return;
         }
 
-        const payload:paxConfig = {
+        const payload:ISelectPaxModel = {
             num_seniors: this.num_seniors,
             num_adults: this.num_adults,
             num_junior: this.num_junior,
@@ -147,11 +147,11 @@ class Controller implements ng.IComponentController {
     };
 
 }
-const dlPaxSelect:ng.IComponentOptions = {
+const dlSelectPax:ng.IComponentOptions = {
     template: template,
     controller: Controller,
     controllerAs: 'ctrl',
     bindings: {}
 
 };
-export default dlPaxSelect;
+export default dlSelectPax;

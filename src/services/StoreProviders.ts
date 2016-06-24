@@ -1,6 +1,14 @@
 import * as _ from 'underscore';
 
-import { ICabinSelectModel, ISailSelectModel, ICabinGridSelectModel,  IFormState, CABIN_AVAILABILITY, CABIN_KIND } from './Store';
+import {
+    ICabinSelectModel,
+    ISailSelectModel,
+    ICabinGridSelectModel,
+    IFormState,
+    ITranslationCache,
+    CABIN_AVAILABILITY,
+    CABIN_KIND
+} from './Store';
 
 
 function compose<F1Result,F2Result,F2Input>(f1:(e:F2Result)=>F1Result, f2:(e:F2Input)=>F2Result) {
@@ -23,73 +31,107 @@ export class StoreProviders {
     getSailsByCruiseId = (sails:ISailSelectModel[], cruiseId:number):ISailSelectModel[] => sails.filter(item => item.cruiseId === cruiseId);
 
 
-    getFormatedCabintypeSelect = (allCabins:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:number):ICabinSelectModel[] => {
-        const cabinsForSelectedSail = this.getCabinsBySailId(allCabins, selectedSailId);
-        return this.formatCabintype(cabinsForSelectedSail, selectedCabintypeNid);
+    getTranslation = (translationCache:ITranslationCache, key:string) => translationCache[key] ? translationCache[key] : key;
+
+    getFormatedCabintypeSelect = (allCabins:ICabinSelectModel[], translationCache:ITranslationCache, selectedSailId:number, selectedCabintypeNid:number):ICabinSelectModel[] => {
+        const forSail = this.getCabinsBySailId(allCabins, selectedSailId);
+        return this.formatCabins(forSail, translationCache, selectedCabintypeNid);
     };
 
 
-    getSailSelect = (allCabins:ICabinSelectModel[], allSails:ISailSelectModel[], selectedCruiseNid:number):ISailSelectModel[] => {
+    getSailSelect = (allCabins:ICabinSelectModel[], allSails:ISailSelectModel[], translationCache:ITranslationCache, selectedCruiseNid:number):ISailSelectModel[] => {
         const sailsForCruise = this.getSailsByCruiseId(allSails, selectedCruiseNid);
-        return this.formatSail(allCabins, sailsForCruise);
+        return this.formatSail(allCabins, sailsForCruise, translationCache);
     };
 
-    getCabinGridSelect = (allCabins:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:number):ICabinGridSelectModel => {
 
-        const selectableCabins = this.getFormatedCabintypeSelect(allCabins, selectedSailId, selectedCabintypeNid);
-// test this!
-        const getCheapestAvailableOrNotAvailableCabinByKind = (list:ICabinSelectModel[], kind:CABIN_KIND):ICabinSelectModel => {
-            const byKind = list.filter(e => e.kind === kind);
-            const cheapestAvailableCabinForKind = this.getCheapestAvailableCabin(byKind); // will return Infinity if no cabin is available
+    getCheapestAvailableOrNotAvailableCabinByKind = (list:ICabinSelectModel[], kind:CABIN_KIND):ICabinSelectModel => {
+        const byKind = list.filter(e => e.kind === kind);
+        const cheapestAvailableCabinForKind = this.getCheapestAvailableCabin(byKind); // will return Infinity if no cabin is available
 
 
-            if ((cheapestAvailableCabinForKind as any) !== Infinity) {
-                return cheapestAvailableCabinForKind;
-            } else {
+        if ((cheapestAvailableCabinForKind as any) !== Infinity) {
+            return cheapestAvailableCabinForKind;
+        } else {
 
-                const cheapestNotAvailableCabinForKind = this.getCheapestCabin(byKind); // will return Infinity if no cabin is available
-                return cheapestNotAvailableCabinForKind ? cheapestNotAvailableCabinForKind : null;
-            }
-        };
+            const cheapestNotAvailableCabinForKind = this.getCheapestCabin(byKind); // will return Infinity if no cabin is available
+            return cheapestNotAvailableCabinForKind ? cheapestNotAvailableCabinForKind : null;
+        }
+    };
+
+    getCabinGridSelect = (allCabins:ICabinSelectModel[], translationCache:ITranslationCache, selectedSailId:number, selectedCabintypeNid:number):ICabinGridSelectModel => {
+
+        const selectableCabins = this.getFormatedCabintypeSelect(allCabins, translationCache, selectedSailId, selectedCabintypeNid);
 
         const cabinGridSelect:ICabinGridSelectModel = {
-            inside: getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'inside'),
-            outside: getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'outside'),
-            balcony: getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'balcony'),
-            suite: getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'suite'),
+            inside: this.getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'inside'),
+            outside: this.getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'outside'),
+            balcony: this.getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'balcony'),
+            suite: this.getCheapestAvailableOrNotAvailableCabinByKind(selectableCabins, 'suite'),
         };
 
         return cabinGridSelect;
     };
 
-    formatSailTitle = (allCabins:ICabinSelectModel[], item:ISailSelectModel):string => {
+    formatSailTitle = (allCabins:ICabinSelectModel[], translationCache:ITranslationCache, item:ISailSelectModel):string => {
         const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
         const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
-        const displayPrice = (cheapestAvailable) ? `ab ${cheapestAvailable.price} ${cheapestAvailable.currency}` : 'N/A';
+
+        const text_from = this.getTranslation(translationCache, 'from');
+        const test_onRequest = this.getTranslation(translationCache, 'on request');
+
+        const displayPrice = (cheapestAvailable) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
         return `${item.startDate} - ${item.endDate} (${displayPrice})`;
     };
 
-    formatSail = (allCabins:ICabinSelectModel[], sails:ISailSelectModel[]):ISailSelectModel[] => {
+    formatSail = (allCabins:ICabinSelectModel[], sails:ISailSelectModel[], translationCache:ITranslationCache):ISailSelectModel[] => {
         return sails.reduce((list, item:ISailSelectModel)=> {
-
-            const title = this.formatSailTitle(allCabins, item);
-
+            const title = this.formatSailTitle(allCabins, translationCache, item);
             return [...list, _.extend({}, item, {title})];
         }, []);
     };
 
-    formatCabinTitle = (item:ICabinSelectModel):string => {
-        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : 'N/A';
+    formatCabinTitle = (translationCache:ITranslationCache, item:ICabinSelectModel):string => {
+        const test_onRequest = this.getTranslation(translationCache, 'on request');
+        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : test_onRequest;
         return `${item.cabinName} (${displayPrice})`;
     };
 
-    formatCabintype = (cabins:ICabinSelectModel[], selectedCabintypeNid:number):ICabinSelectModel[] => {
-        return cabins.reduce((list, item:ICabinSelectModel)=> {
-            const title = this.formatCabinTitle(item);
+
+    orderByAvailabilityThenPrice = (cabins:ICabinSelectModel[]):ICabinSelectModel[] => {
+        const grpd:{ available:ICabinSelectModel[]; onRequest:ICabinSelectModel[]; } = <any> _.groupBy(cabins, (c:ICabinSelectModel) => c.isAvailable ? 'available' : 'onRequest');
+        return [
+            ..._.sortBy(grpd.available, (c:ICabinSelectModel) => c.price),
+            ...grpd.onRequest,
+        ]
+    };
+
+    formatCabins = (cabins:ICabinSelectModel[], translationCache:ITranslationCache, selectedCabintypeNid:number):ICabinSelectModel[] => {
+
+        const formatedCabins = cabins.reduce((list, item:ICabinSelectModel)=> {
+
+            const title = this.formatCabinTitle(translationCache, item);
             const isSelected = item.id === selectedCabintypeNid;
 
             return [...list, _.extend({}, item, {title, isSelected})];
         }, []);
+
+        const groupedByCabinKind:{
+            inside:ICabinSelectModel[],
+            outside:ICabinSelectModel[],
+            balcony:ICabinSelectModel[],
+            suite:ICabinSelectModel[]
+        } = <any> _.groupBy<ICabinSelectModel>(formatedCabins, ((e:ICabinSelectModel)=> e.kindName));
+
+        // sort by cabin kind, then by availability, then by price
+        const sorted = [
+            ...this.orderByAvailabilityThenPrice(groupedByCabinKind.inside),
+            ...this.orderByAvailabilityThenPrice(groupedByCabinKind.outside),
+            ...this.orderByAvailabilityThenPrice(groupedByCabinKind.balcony),
+            ...this.orderByAvailabilityThenPrice(groupedByCabinKind.suite),
+        ];
+
+        return sorted;
     };
 
 

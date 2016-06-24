@@ -42,11 +42,11 @@ class Controller implements ng.IComponentController {
 
     }
 }
-const dlSailSelect:ng.IComponentOptions = {
+const dlSelectSail:ng.IComponentOptions = {
     template: template,
     controller: Controller,
     controllerAs: 'ctrl',
     bindings: {}
 
 };
-export default dlSailSelect;
+export default dlSelectSail;

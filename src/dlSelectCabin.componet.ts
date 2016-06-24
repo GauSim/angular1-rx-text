@@ -44,11 +44,11 @@ class Controller implements ng.IComponentController {
     }
 }
 
-const dlCabinSelect:ng.IComponentOptions = {
+const dlSelectCabin:ng.IComponentOptions = {
     template: template,
     controller: Controller,
     controllerAs: 'ctrl',
     bindings: {}
 
 };
-export default dlCabinSelect;
+export default dlSelectCabin;

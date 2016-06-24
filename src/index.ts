@@ -3,12 +3,13 @@ import 'angular-translate';
 
 
 import dlForm from './dlForm.componet';
-import dlSailSelect from './dlSailSelect.componet';
-import dlCabinSelect from './dlCabinSelect.componet';
-import dlPaxSelect from './dlPaxSelect.componet';
+import dlSelectSail from './dlSelectSail.componet';
+import dlSelectCabin from './dlSelectCabin.componet';
+import dlSelectPax from './dlSelectPax.componet';
 import dlPaxAgeInput from './dlPaxAgeInput.componet';
-import dlCabinGridSelect from './dlCabinGridSelect.componet'
-import dlCabinGridItem from './dlCabinGridItem.componet'
+import dlSelectCabinGrid from './dlSelectCabinGrid.componet';
+import dlCabinGridItem from './dlCabinGridItem.componet';
+import dlDisplaySelectedCabin from './dlDisplaySelectedCabin.componet'
 
 import { Store } from './services/store';
 
@@ -18,12 +19,13 @@ function registerApp() {
 
     const app = angular.module(MAIN_MODULE_NAME, ['pascalprecht.translate'])
         .component('dlForm', dlForm)
-        .component('dlSailSelect', dlSailSelect)
-        .component('dlCabinSelect', dlCabinSelect)
-        .component('dlPaxSelect', dlPaxSelect)
+        .component('dlSelectSail', dlSelectSail)
+        .component('dlSelectCabin', dlSelectCabin)
+        .component('dlSelectPax', dlSelectPax)
         .component('dlPaxAgeInput', dlPaxAgeInput)
-        .component('dlCabinGridSelect', dlCabinGridSelect)
+        .component('dlSelectCabinGrid', dlSelectCabinGrid)
         .component('dlCabinGridItem', dlCabinGridItem)
+        .component('dlDisplaySelectedCabin', dlDisplaySelectedCabin)
         .service('store', Store)
         .run(() => {
             console.log('running');

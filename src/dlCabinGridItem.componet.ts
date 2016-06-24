@@ -11,16 +11,15 @@ const template = `
         {{ ctrl.cabin.kindName }}
     </h3>
 
-    <div data-ng-show="ctrl.isLoading" class="text-center">
-        <span class="loadingIndicator"></span>
-    </div>
-
-    <div data-ng-show="!ctrl.isLoading">
+    <div>
         <div class="text-center">
             <img data-ng-src="{{ ctrl.cabin.imageUrl }}">
         </div>
-        <div class="text-center">
+        <div data-ng-show="!ctrl.isLoading" class="text-center">
             {{ ctrl.cabin.title }}
+        </div>
+        <div data-ng-show="ctrl.isLoading" class="text-center">
+            <span class="loadingIndicator"></span>
         </div>
     </div>
 
@@ -35,11 +34,8 @@ const template = `
 class Controller implements ng.IComponentController {
 
     isLoading:boolean = false;
+
     cabin:ICabinSelectModel;
-
-    onChange = (payload:number) => {
-
-    };
 
     constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();

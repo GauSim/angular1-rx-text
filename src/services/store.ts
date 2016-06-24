@@ -60,6 +60,10 @@ export interface IFareSelector {
     flight_included:boolean;
 }
 
+export interface ITranslationCache {
+    [key:string]:string;
+}
+
 export interface IFormState {
     num_adults:number;
     num_seniors:number;
@@ -83,6 +87,8 @@ export interface IFormState {
     paxJuniorSelect:IPaxSelectModel[];
     paxChildSelect:IPaxSelectModel[];
     paxBabySelect:IPaxSelectModel[];
+
+    translationCache:ITranslationCache;
 }
 
 
@@ -93,7 +99,7 @@ interface Action {
 
 
 function initialState() {
-
+    const translationCache:ITranslationCache = {};
     const operatorPaxAgeConfig = OperatorService.ALLFieldsPaxAgeConfig; // OperatorService.defaultPaxAgeConfig;
 
     const paxSeniorSelect = _.range(0, 10).map(id => {
@@ -124,13 +130,14 @@ function initialState() {
     const providers = new StoreProviders();
 
 
-    const allCabintypes:ICabinSelectModel[] = mockAllCabintypes(providers, allSails);
+    const allCabintypes:ICabinSelectModel[] = mockAllCabintypes(providers, translationCache, allSails);
 
     const selectedCabintypeNid = allCabintypes[0].id;
 
-    const sailSelect = providers.getSailSelect(allCabintypes, allSails, selectedCruiseNid);
-    const cabintypeSelect = providers.getFormatedCabintypeSelect(allCabintypes, selectedSailId, selectedCabintypeNid);
-    const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId, selectedCabintypeNid);
+    const sailSelect = providers.getSailSelect(allCabintypes, allSails, translationCache, selectedCruiseNid);
+    const cabintypeSelect = providers.getFormatedCabintypeSelect(allCabintypes, translationCache, selectedSailId, selectedCabintypeNid);
+    const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, translationCache, selectedSailId, selectedCabintypeNid);
+
 
     const state:IFormState = {
         selectedSailId,
@@ -157,7 +164,7 @@ function initialState() {
         num_child: 0,
         num_baby: 0,
 
-
+        translationCache
     };
 
     return state;
@@ -192,7 +199,7 @@ export class Store extends EventEmitter<IFormState> {
 
         console.log(`dispatching from ${debug}`, hash);
 
-        let nextState = this.getLastState();
+        let currentState = this.getLastState();
 
 
         const afterDispatch = (state:IFormState) => {
@@ -213,20 +220,20 @@ export class Store extends EventEmitter<IFormState> {
 
         switch (type) {
             case ACTIONS.SET_SAIL_ID:
-                this._dispatchers.setSailId(nextState, payload)
+                this._dispatchers.setSailId(currentState, payload)
                     .then(afterDispatch);
                 break;
             case ACTIONS.SET_CABIN_ID:
-                this._dispatchers.setCabinId(nextState, payload)
+                this._dispatchers.setCabinId(currentState, payload)
                     .then(afterDispatch);
                 break;
             case ACTIONS.SET_PAX_COUNT:
-                this._dispatchers.setPaxCount(nextState, payload)
+                this._dispatchers.setPaxCount(currentState, payload)
                     .then(afterDispatch);
                 break;
             default:
-                nextState = nextState;
-                afterDispatch(nextState);
+                currentState = currentState;
+                afterDispatch(currentState);
                 break;
         }
 
