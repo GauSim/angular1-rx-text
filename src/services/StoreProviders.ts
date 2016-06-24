@@ -22,30 +22,10 @@ export class StoreProviders {
     getCabinsBySailId = (cabins:ICabinSelectModel[], sailId:number):ICabinSelectModel[] => cabins.filter(item => item.sailId === sailId);
     getSailsByCruiseId = (sails:ISailSelectModel[], cruiseId:number):ISailSelectModel[] => sails.filter(item => item.cruiseId === cruiseId);
 
-    formatCabinTitle = (item:ICabinSelectModel):string => {
-        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : 'N/A';
-        return `${item.cabinName} (${displayPrice})`;
-    };
-    formatCabintype = (cabins:ICabinSelectModel[]):ICabinSelectModel[] => {
-        return cabins.reduce((list, item:ICabinSelectModel)=> {
-            const title = this.formatCabinTitle(item);
-            return [...list, _.extend({}, item, {title})];
-        }, []);
-    };
 
-
-    getFormatedCabintypeSelect = (allCabins:ICabinSelectModel[], selectedSailId:number):ICabinSelectModel[] => {
+    getFormatedCabintypeSelect = (allCabins:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:number):ICabinSelectModel[] => {
         const cabinsForSelectedSail = this.getCabinsBySailId(allCabins, selectedSailId);
-        return this.formatCabintype(cabinsForSelectedSail);
-    };
-
-    formatSailTitle = (allCabins:ICabinSelectModel[], item:ISailSelectModel):string => {
-
-        const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
-        const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
-        const displayPrice = (cheapestAvailable) ? `ab ${cheapestAvailable.price} ${cheapestAvailable.currency}` : 'N/A';
-
-        return `${item.startDate} ${item.endDate} (${displayPrice})`;
+        return this.formatCabintype(cabinsForSelectedSail, selectedCabintypeNid);
     };
 
 
@@ -54,27 +34,20 @@ export class StoreProviders {
         return this.formatSail(allCabins, sailsForCruise);
     };
 
+    getCabinGridSelect = (allCabins:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:number):ICabinGridSelectModel => {
 
-    formatSail = (allCabins:ICabinSelectModel[], sails:ISailSelectModel[]):ISailSelectModel[] => {
-        return sails.reduce((list, item:ISailSelectModel)=> {
-
-            const title = this.formatSailTitle(allCabins, item);
-
-            return [...list, _.extend({}, item, {title})];
-        }, []);
-    };
-
-    getCabinGridSelect = (allCabins:ICabinSelectModel[], selectedSailId:number):ICabinGridSelectModel => {
-
-        const selectableCabins = this.getFormatedCabintypeSelect(allCabins, selectedSailId);
+        const selectableCabins = this.getFormatedCabintypeSelect(allCabins, selectedSailId, selectedCabintypeNid);
 // test this!
         const getCheapestAvailableOrNotAvailableCabinByKind = (list:ICabinSelectModel[], kind:CABIN_KIND):ICabinSelectModel => {
             const byKind = list.filter(e => e.kind === kind);
-            const cheapestAvailableCabinForKind = this.getCheapestAvailableCabin(byKind);
-            if (cheapestAvailableCabinForKind) {
+            const cheapestAvailableCabinForKind = this.getCheapestAvailableCabin(byKind); // will return Infinity if no cabin is available
+
+
+            if ((cheapestAvailableCabinForKind as any) !== Infinity) {
                 return cheapestAvailableCabinForKind;
             } else {
-                const cheapestNotAvailableCabinForKind = this.getCheapestCabin(byKind);
+
+                const cheapestNotAvailableCabinForKind = this.getCheapestCabin(byKind); // will return Infinity if no cabin is available
                 return cheapestNotAvailableCabinForKind ? cheapestNotAvailableCabinForKind : null;
             }
         };
@@ -88,4 +61,36 @@ export class StoreProviders {
 
         return cabinGridSelect;
     };
+
+    formatSailTitle = (allCabins:ICabinSelectModel[], item:ISailSelectModel):string => {
+        const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
+        const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
+        const displayPrice = (cheapestAvailable) ? `ab ${cheapestAvailable.price} ${cheapestAvailable.currency}` : 'N/A';
+        return `${item.startDate} - ${item.endDate} (${displayPrice})`;
+    };
+
+    formatSail = (allCabins:ICabinSelectModel[], sails:ISailSelectModel[]):ISailSelectModel[] => {
+        return sails.reduce((list, item:ISailSelectModel)=> {
+
+            const title = this.formatSailTitle(allCabins, item);
+
+            return [...list, _.extend({}, item, {title})];
+        }, []);
+    };
+
+    formatCabinTitle = (item:ICabinSelectModel):string => {
+        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : 'N/A';
+        return `${item.cabinName} (${displayPrice})`;
+    };
+
+    formatCabintype = (cabins:ICabinSelectModel[], selectedCabintypeNid:number):ICabinSelectModel[] => {
+        return cabins.reduce((list, item:ICabinSelectModel)=> {
+            const title = this.formatCabinTitle(item);
+            const isSelected = item.id === selectedCabintypeNid;
+
+            return [...list, _.extend({}, item, {title, isSelected})];
+        }, []);
+    };
+
+
 }

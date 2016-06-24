@@ -14,13 +14,24 @@
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
     </script>
 </head>
 <!-- 3. Display the application -->
 
+<style>
+    .loadingIndicator {
+        background-image: url('https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif');
+        background-size: cover;
+        height: 20px;
+        width: 20px;
+        float: left;
+    }
+</style>
 <body>
-    <app-root>Loading...</app-root>
+<app-root>Loading...</app-root>
 </body>
 
 </html>

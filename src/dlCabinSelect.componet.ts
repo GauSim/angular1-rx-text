@@ -1,6 +1,7 @@
 import { Store, ICabinSelectModel, ACTIONS } from './services/store';
 
 const template = `
+<span data-ng-show="ctrl.isLoading" class="loadingIndicator"></span>
  <select class="form-control"
         title=""
         data-ng-disabled="ctrl.isLoading"

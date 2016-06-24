@@ -11,9 +11,9 @@ const template = `
 
     <dl-sail-select></dl-sail-select>
 
-    <pre>{{ state | json }}</pre>
-`;
 
+`;
+// <pre>{{ state | json }}</pre>
 
 interface IdlFormScope extends ng.IScope {
     state: IFormState;

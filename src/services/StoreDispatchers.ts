@@ -17,9 +17,9 @@ export class StoreDispatchers {
         let nextState = _.extend({}, currentState, {selectedSailId});
 
         nextState = _.extend(nextState, {
-            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid),
             sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid)
         });
 
 
@@ -41,9 +41,9 @@ export class StoreDispatchers {
         let nextState = _.extend({}, currentState, {selectedCabintypeNid});
 
         nextState = _.extend(nextState, {
-            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid),
             sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid)
         });
 
         d.resolve(nextState);
@@ -57,9 +57,9 @@ export class StoreDispatchers {
         let nextState = _.extend({}, currentState, paxConfig);
 
         nextState = _.extend(nextState, {
-            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId),
+            cabintypeSelect: this._providers.getFormatedCabintypeSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid),
             sailSelect: this._providers.getSailSelect(nextState.allCabintypes, nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
+            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid)
         });
 
         d.resolve(nextState);

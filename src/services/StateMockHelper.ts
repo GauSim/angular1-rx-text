@@ -1,7 +1,7 @@
 import * as _ from 'underscore';
 import { ISailSelectModel,ICabinSelectModel, CABIN_KIND, CABIN_AVAILABILITY, StoreProviders } from './Store';
 
-export function mock(provider:StoreProviders, _allSails:ISailSelectModel[]):ICabinSelectModel[] {
+export function mockAllCabintypes(provider:StoreProviders, _allSails:ISailSelectModel[]):ICabinSelectModel[] {
 
     const allSails = [... _allSails];
 
@@ -18,7 +18,10 @@ export function mock(provider:StoreProviders, _allSails:ISailSelectModel[]):ICab
             price: price,
             cabinName: cabinName,
             title: 'Kat balcony (1000 EUR)',
-            currency: 'EUR'
+            currency: 'EUR',
+            imageUrl: `https://placeholdit.imgix.net/~text?txtsize=33&txt=${cabinName}&w=230&h=120`,
+            isAvailable: (availability === CABIN_AVAILABILITY.available),
+            isSelected: false
         };
 
         cabin.title = provider.formatCabinTitle(cabin);
@@ -28,7 +31,9 @@ export function mock(provider:StoreProviders, _allSails:ISailSelectModel[]):ICab
 
     const allCabintypes:ICabinSelectModel[] = [];
     allSails.forEach(sail => {
+        // add cabins for each kind
         ['inside', 'outside', 'balcony', 'suite'].forEach((kind:CABIN_KIND) => {
+            // add available and not available cabins
             [1, 2].forEach(availability => {
                 const id = allCabintypes.length + 1;
                 const cabin = creatCabin(id, sail.id, kind, availability);
