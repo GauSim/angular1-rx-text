@@ -156,7 +156,7 @@ function initialState() {
 
     const id = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
 
-    const { allCabintypes, allSails, selectedCabintypeNid } = providers.formatCabinsAndSails(translationCache, mockedSails, mockedCabins, selectedSailId, id);
+    const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedSailId, id);
 
     const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
     const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);

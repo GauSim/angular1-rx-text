@@ -13,8 +13,8 @@ export class StoreDispatchers {
         const d = this.$q.defer<IFormState>();
 
 
-        // this will be async
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(currentState.translationCache, currentState.allSails, currentState.allCabintypes, _selectedSailId, currentState.selectedCabintypeNid);
+        // todo in async, get data to update allCabins from remote service
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, _selectedSailId, currentState.selectedCabintypeNid);
 
         const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
@@ -26,8 +26,8 @@ export class StoreDispatchers {
     setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
         const d = this.$q.defer<IFormState>();
 
-        // this will be async
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedSailId, _selectedCabintypeNid);
+        // todo in async, get data to update allCabins from remote service
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedSailId, _selectedCabintypeNid);
 
         const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
@@ -42,8 +42,8 @@ export class StoreDispatchers {
 
         let nextState:IFormState = _.extend({}, currentState, {selectedPax});
 
-        // this will be async
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
+        // todo in async, get data to update allCabins from remote service
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
 
         nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 

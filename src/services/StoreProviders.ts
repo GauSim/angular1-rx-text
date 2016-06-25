@@ -139,13 +139,15 @@ export class StoreProviders {
         return sorted;
     };
 
-    formatCabinsAndSails = (translationCache:ITranslationCache, _allSails:ISailSelectModel[], _allCabintypes:ICabinSelectModel[], selectedSailId:number, _selectedCabintypeNid:number):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:number} => {
+    // TODO take selectedPax in here !!!
+    recalculateState = (translationCache:ITranslationCache, _allSails:ISailSelectModel[], _allCabintypes:ICabinSelectModel[], selectedSailId:number, _selectedCabintypeNid:number):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:number} => {
 
         const bySail = this.getCabinsBySailId(_allCabintypes, selectedSailId);
 
         let selectedCabintypeNid = _selectedCabintypeNid;
 
 
+        // todo more collisions detection like pax fit in cabin
         if (!bySail.some(e => e.id === _selectedCabintypeNid)) {
             const alternative = this.getCheapestAvailableOrAlternativeCabin(bySail);
             selectedCabintypeNid = alternative.id;
