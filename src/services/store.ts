@@ -133,15 +133,17 @@ function initialState() {
 
 
     const mockedCabins = mockAllCabintypes(providers, translationCache, mockedSails);
-    const selectedCabintypeNid = mockedCabins[0].id;
 
-    const { allCabintypes, allSails } = providers.formatCabinsAndSails(translationCache, mockedSails, mockedCabins, selectedCabintypeNid);
+    const selectedSailId = mockedSails[0].id;
 
+    const id = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
 
-    const selectedSailId = allSails[0].id;
+    const { allCabintypes, allSails, selectedCabintypeNid } = providers.formatCabinsAndSails(translationCache, mockedSails, mockedCabins, selectedSailId, id);
+
     const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
     const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
     const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId);
+
     const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
 
     const state:IFormState = {

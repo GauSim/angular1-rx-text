@@ -32,11 +32,12 @@ export function mockAllCabintypes(provider:StoreProviders, translationCache:ITra
     const allCabintypes:ICabinSelectModel[] = [];
     allSails.forEach(sail => {
         // add cabins for each kind
+        // 'inside', 'outside', 'balcony', 'suite'
         ['inside', 'outside', 'balcony', 'suite'].forEach((kind:CABIN_KIND) => {
             // add available and not available cabins
             [1, 2].forEach(availability => {
 
-                _.range(5).forEach(x=> {
+                _.range(1).forEach(x=> {
 
                     const id = allCabintypes.length + 1;
                     const cabin = creatCabin(id, sail.id, kind, availability);

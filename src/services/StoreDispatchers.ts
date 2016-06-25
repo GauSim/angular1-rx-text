@@ -10,65 +10,32 @@ export class StoreDispatchers {
 
     }
 
-    setSailId = (currentState:IFormState, selectedSailId:number):ng.IPromise<IFormState> => {
+    setSailId = (currentState:IFormState, _selectedSailId:number):ng.IPromise<IFormState> => {
         const d = this.$q.defer<IFormState>();
 
 
-        let nextState:IFormState = _.extend({}, currentState, {selectedSailId});
+        let nextState:IFormState = _.extend({}, currentState, {selectedSailId: _selectedSailId});
 
         // this will be async
-        const { allCabintypes, allSails } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedCabintypeNid);
-        nextState = _.extend({}, nextState, {allCabintypes, allSails});
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
 
-
-        nextState = _.extend(nextState, {
-            selectedCabin: this._providers.getSelectedCabin(nextState.allCabintypes, nextState.selectedCabintypeNid),
-            cabintypeSelect: this._providers.getCabinsBySailId(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailsByCruiseId(nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
-        });
-
-
-        // reset selectedCabintypeNid to the cheapestAvailableCabin;
-        if (!nextState.cabintypeSelect.some(e => e.id === nextState.selectedCabintypeNid)) {
-            const cheapestAvailableCabin = this._providers.getCheapestAvailableCabin(nextState.cabintypeSelect);
-            nextState = _.extend({}, nextState, {selectedCabintypeNid: cheapestAvailableCabin.id});
-
-            // this will be async
-            const { allCabintypes, allSails } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedCabintypeNid);
-            nextState = _.extend({}, nextState, {allCabintypes, allSails});
-
-
-            nextState = _.extend(nextState, {
-                selectedCabin: this._providers.getSelectedCabin(nextState.allCabintypes, nextState.selectedCabintypeNid),
-                cabintypeSelect: this._providers.getCabinsBySailId(nextState.allCabintypes, nextState.selectedSailId),
-                sailSelect: this._providers.getSailsByCruiseId(nextState.allSails, nextState.selectedCruiseNid),
-                cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
-            });
-        }
-
+        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
         d.resolve(nextState);
         return d.promise;
     };
 
 
-    setCabinId = (currentState:IFormState, selectedCabintypeNid:number):ng.IPromise<IFormState> => {
+    setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
         const d = this.$q.defer<IFormState>();
 
-        let nextState:IFormState = _.extend({}, currentState, {selectedCabintypeNid});
+        let nextState:IFormState = _.extend({}, currentState, {selectedCabintypeNid: _selectedCabintypeNid});
 
         // this will be async
-        const { allCabintypes, allSails } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedCabintypeNid);
-        nextState = _.extend({}, nextState, {allCabintypes, allSails});
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
 
+        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
-        nextState = _.extend(nextState, {
-            selectedCabin: this._providers.getSelectedCabin(nextState.allCabintypes, nextState.selectedCabintypeNid),
-            cabintypeSelect: this._providers.getCabinsBySailId(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailsByCruiseId(nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
-        });
 
         d.resolve(nextState);
         return d.promise;
@@ -81,16 +48,9 @@ export class StoreDispatchers {
         let nextState:IFormState = _.extend({}, currentState, paxConfig);
 
         // this will be async
-        const { allCabintypes, allSails } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedCabintypeNid);
-        nextState = _.extend({}, nextState, {allCabintypes, allSails});
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
 
-
-        nextState = _.extend(nextState, {
-            selectedCabin: this._providers.getSelectedCabin(nextState.allCabintypes, nextState.selectedCabintypeNid),
-            cabintypeSelect: this._providers.getCabinsBySailId(nextState.allCabintypes, nextState.selectedSailId),
-            sailSelect: this._providers.getSailsByCruiseId(nextState.allSails, nextState.selectedCruiseNid),
-            cabinGridSelect: this._providers.getCabinGridSelect(nextState.allCabintypes, nextState.selectedSailId)
-        });
+        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
         d.resolve(nextState);
         return d.promise;
