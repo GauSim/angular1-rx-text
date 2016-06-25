@@ -74,6 +74,8 @@ export interface IFormState {
     selectedSailId:number;
     selectedCabintypeNid:number;
 
+    selectedCabin:ICabinSelectModel;
+
     sailSelect:ISailSelectModel[];
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     cabintypeSelect:ICabinSelectModel[];
@@ -119,31 +121,34 @@ function initialState() {
     });
 
     const selectedCruiseNid = 1;
-    const allSails:ISailSelectModel[] = [
+    const mockedSails:ISailSelectModel[] = [
         {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016', cruiseId: 1},
         {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016', cruiseId: 1},
-        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
+        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
+        {id: 4, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
+        {id: 5, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
     ];
-
-    const selectedSailId = allSails[0].id;
 
     const providers = new StoreProviders();
 
 
-    const allCabintypes:ICabinSelectModel[] = mockAllCabintypes(providers, translationCache, allSails);
+    const mockedCabins = mockAllCabintypes(providers, translationCache, mockedSails);
+    const selectedCabintypeNid = mockedCabins[0].id;
 
-    const selectedCabintypeNid = allCabintypes[0].id;
+    const { allCabintypes, allSails } = providers.formatCabinsAndSails(translationCache, mockedSails, mockedCabins, selectedCabintypeNid);
 
-    const sailSelect = providers.getSailSelect(allCabintypes, allSails, translationCache, selectedCruiseNid);
-    const cabintypeSelect = providers.getFormatedCabintypeSelect(allCabintypes, translationCache, selectedSailId, selectedCabintypeNid);
-    const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, translationCache, selectedSailId, selectedCabintypeNid);
 
+    const selectedSailId = allSails[0].id;
+    const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
+    const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
+    const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId);
+    const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
 
     const state:IFormState = {
         selectedSailId,
         selectedCruiseNid,
         selectedCabintypeNid,
-
+        selectedCabin,
         allCabintypes,
         allSails,
 

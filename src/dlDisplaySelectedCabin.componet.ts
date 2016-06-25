@@ -3,7 +3,7 @@ import { Store, ICabinSelectModel, ACTIONS } from './services/store';
 
 const template = `
 
-
+<pre>{{ ctrl.selectedCabin | json }}</pre>
 <h1> huhu </h1>
 
 
@@ -13,12 +13,16 @@ class Controller implements ng.IComponentController {
 
     isLoading:boolean = false;
 
-    cabin:ICabinSelectModel;
+    selectedCabin:ICabinSelectModel;
 
     constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
+        this.selectedCabin = state.selectedCabin;
 
         store.isLoading.subscribe(e => (this.isLoading = e));
+        store.subscribe(({ selectedCabin }) => {
+            this.selectedCabin = selectedCabin;
+        })
 
     }
 }
