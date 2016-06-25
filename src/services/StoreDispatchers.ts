@@ -1,6 +1,5 @@
-import { IFormState } from './Store';
+import { IFormState, IPaxSelection } from './Store';
 import { StoreProviders } from './StoreProviders';
-import { ISelectPaxModel } from '../dlSelectPax.componet';
 
 export class StoreDispatchers {
 
@@ -14,12 +13,10 @@ export class StoreDispatchers {
         const d = this.$q.defer<IFormState>();
 
 
-        let nextState:IFormState = _.extend({}, currentState, {selectedSailId: _selectedSailId});
-
         // this will be async
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(currentState.translationCache, currentState.allSails, currentState.allCabintypes, _selectedSailId, currentState.selectedCabintypeNid);
 
-        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
+        const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
         d.resolve(nextState);
         return d.promise;
@@ -29,12 +26,10 @@ export class StoreDispatchers {
     setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
         const d = this.$q.defer<IFormState>();
 
-        let nextState:IFormState = _.extend({}, currentState, {selectedCabintypeNid: _selectedCabintypeNid});
-
         // this will be async
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);
+        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedSailId, _selectedCabintypeNid);
 
-        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
+        const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
 
         d.resolve(nextState);
@@ -42,10 +37,10 @@ export class StoreDispatchers {
     };
 
 
-    setPaxCount = (currentState:IFormState, paxConfig:ISelectPaxModel):ng.IPromise<IFormState> => {
+    setPaxCount = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<IFormState> => {
         const d = this.$q.defer<IFormState>();
 
-        let nextState:IFormState = _.extend({}, currentState, paxConfig);
+        let nextState:IFormState = _.extend({}, currentState, {selectedPax});
 
         // this will be async
         const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.formatCabinsAndSails(nextState.translationCache, nextState.allSails, nextState.allCabintypes, nextState.selectedSailId, nextState.selectedCabintypeNid);

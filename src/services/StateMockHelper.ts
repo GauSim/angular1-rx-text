@@ -5,13 +5,14 @@ export function mockAllCabintypes(provider:StoreProviders, translationCache:ITra
 
     const allSails = [... _allSails];
 
-    function creatCabin(id:number, sailId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY):ICabinSelectModel {
+    function creatCabin(id:number, sailId:number, cruiseId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY):ICabinSelectModel {
         const kindName = kind;
         const price = (availability === CABIN_AVAILABILITY.available) ? _.sample<number>([50, 100, 200, 500, 1000, 1200, 1300, 1500, 2000, 2500]) : 0;
         const cabinName = `${kindName} id:${id}`;
         const cabin:ICabinSelectModel = {
             id: id,
             sailId: sailId,
+            cruiseId: cruiseId,
             kind: kind,
             availability: availability,
             kindName: kindName,
@@ -19,6 +20,7 @@ export function mockAllCabintypes(provider:StoreProviders, translationCache:ITra
             cabinName: cabinName,
             title: 'Kat balcony (1000 EUR)',
             currency: 'EUR',
+            ratecode: (availability === CABIN_AVAILABILITY.available) ? 'RANDOMRATECODE' : 'NO_RATECODE_AVAILABEBLE',
             imageUrl: `https://placeholdit.imgix.net/~text?txtsize=33&txt=${cabinName}&w=230&h=120`,
             isAvailable: (availability === CABIN_AVAILABILITY.available),
             isSelected: false
@@ -40,7 +42,7 @@ export function mockAllCabintypes(provider:StoreProviders, translationCache:ITra
                 _.range(1).forEach(x=> {
 
                     const id = allCabintypes.length + 1;
-                    const cabin = creatCabin(id, sail.id, kind, availability);
+                    const cabin = creatCabin(id, sail.id, sail.cruiseId, kind, availability);
                     allCabintypes.push(cabin);
 
                 });

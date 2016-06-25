@@ -28,7 +28,7 @@ class Controller implements ng.IComponentController {
 
         store.subscribe(state => {
             // map updates from the store back to this Component
-            this.selectedValue = state[this.fieldName]
+            this.selectedValue = state.selectedPax[this.fieldName];
         });
 
         $scope.$watch('ctrl.selectedValue', (value:number, last) => {

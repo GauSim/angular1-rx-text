@@ -145,12 +145,11 @@ export class StoreProviders {
 
         let selectedCabintypeNid = _selectedCabintypeNid;
 
-        /*
-         if (!bySail.some(e => e.id === _selectedCabintypeNid)) {
-         const alternative = this.getCheapestAvailableOrAlternativeCabin(bySail);
-         selectedCabintypeNid = alternative.id;
-         }
-         */
+
+        if (!bySail.some(e => e.id === _selectedCabintypeNid)) {
+            const alternative = this.getCheapestAvailableOrAlternativeCabin(bySail);
+            selectedCabintypeNid = alternative.id;
+        }
 
 
         const allCabintypes = this._formatCabins(translationCache, _allCabintypes, selectedCabintypeNid);

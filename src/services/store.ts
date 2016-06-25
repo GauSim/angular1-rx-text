@@ -24,6 +24,7 @@ export interface ISailSelectModel {
 export interface ICabinSelectModel {
     id: number;
     sailId:number;
+    cruiseId:number;
     kind: CABIN_KIND;
     kindName:string;
     title: string;
@@ -31,6 +32,7 @@ export interface ICabinSelectModel {
     cabinName:string;
     currency:string;
     availability:CABIN_AVAILABILITY;
+    ratecode:string;
     imageUrl:string;
     isAvailable:boolean;
     isSelected:boolean;
@@ -64,20 +66,33 @@ export interface ITranslationCache {
     [key:string]:string;
 }
 
-export interface IFormState {
+export interface IConfiguration {
+    hasDualCurrency:boolean;
+    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
+}
+
+export interface IPaxSelection {
     num_adults:number;
     num_seniors:number;
     num_junior:number;
     num_child:number;
     num_baby:number;
+}
+
+export interface IFormState {
+    configuration:IConfiguration;
+
+
+
+
     selectedCruiseNid:number;
     selectedSailId:number;
     selectedCabintypeNid:number;
 
+    selectedPax:IPaxSelection;
     selectedCabin:ICabinSelectModel;
 
     sailSelect:ISailSelectModel[];
-    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     cabintypeSelect:ICabinSelectModel[];
     cabinGridSelect:ICabinGridSelectModel;
 
@@ -102,7 +117,10 @@ interface Action {
 
 function initialState() {
     const translationCache:ITranslationCache = {};
-    const operatorPaxAgeConfig = OperatorService.ALLFieldsPaxAgeConfig; // OperatorService.defaultPaxAgeConfig;
+    const configuration:IConfiguration = {
+        hasDualCurrency: false,
+        operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig // OperatorService.defaultPaxAgeConfig;
+    };
 
     const paxSeniorSelect = _.range(0, 10).map(id => {
         return {id, title: `${id} senior`}
@@ -146,11 +164,22 @@ function initialState() {
 
     const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
 
+    const selectedPax:IPaxSelection = {
+        num_adults: 2,
+        num_seniors: 0,
+        num_junior: 0,
+        num_child: 0,
+        num_baby: 0,
+    };
+
     const state:IFormState = {
         selectedSailId,
         selectedCruiseNid,
         selectedCabintypeNid,
+
         selectedCabin,
+        selectedPax,
+
         allCabintypes,
         allSails,
 
@@ -163,14 +192,7 @@ function initialState() {
         paxChildSelect,
         paxBabySelect,
 
-        operatorPaxAgeConfig,
-
-        num_adults: 2,
-        num_seniors: 0,
-        num_junior: 0,
-        num_child: 0,
-        num_baby: 0,
-
+        configuration,
         translationCache
     };
 
