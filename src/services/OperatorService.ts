@@ -44,7 +44,7 @@ export class OperatorService {
 
     }
 
-    _fetchOperatorConfig = (bookingServiceCode:string):ng.IPromise<IOperatorPaxAgeConfig> => {
+    getOperatorConfig = (bookingServiceCode:string):ng.IPromise<IOperatorPaxAgeConfig> => {
         // todo fetch from booking api the config for given OP
         // see https://netvacation.atlassian.net/browse/DBF-1352
         return this.$q.resolve(OperatorService.defaultPaxAgeConfig);
@@ -59,7 +59,7 @@ export class OperatorService {
 
         const { num_senior, num_adult, num_junior, num_child, num_baby } = selector;
 
-        return this._fetchOperatorConfig(selector.bookingServiceCode)
+        return this.getOperatorConfig(selector.bookingServiceCode)
             .then(PaxAgeConfig => {
 
                 const paxList:IOperatorPaxMetadata[] = [

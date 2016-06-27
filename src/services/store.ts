@@ -107,7 +107,8 @@ export class Store extends EventEmitter<IFormState> {
     private _state:IFormState;
 
     constructor(private $q:ng.IQService,
-                private fareService:FareService) {
+                private fareService:FareService,
+                private operatorService:OperatorService) {
         super();
         this._dispatchers = new StoreDispatchers($q, fareService);
     }
@@ -151,16 +152,23 @@ export class Store extends EventEmitter<IFormState> {
             'from': 'ab',
             'on request': 'auf Anfrage'
         };
-        const cruise = {
+        const cruise:ICruiseModel = {
             id: 367247,
-            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
+            title: 'einmal um die welt',
+            operatorPaxAgeConfig: null,
             operatorBookingServiceCode: 'msc',
             hasFlightIncluded: false
         };
-        return this._dispatchers.createInitialState(translationCache, configuration, cruise)
-            .then(init => {
 
-                return init;
+        return this.operatorService.getOperatorConfig('msc')
+            .then(operatorPaxAgeConfig => {
+                return _.extend({}, cruise, {operatorPaxAgeConfig});
+            })
+            .then(cruise => {
+                return this._dispatchers.createInitialState(translationCache, configuration, cruise)
+            })
+            .then(initialState => {
+                return initialState;
             })
             .finally(()=> {
                 this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
