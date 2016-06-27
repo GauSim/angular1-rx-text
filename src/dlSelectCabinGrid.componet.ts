@@ -39,7 +39,7 @@ const template = `
 // <pre>{{ ctrl.cabinGridSelect.inside | json }}</pre>
 class Controller implements ng.IComponentController {
 
-    isLoading:boolean = false;
+    isLoading:boolean;
     cabinGridSelect:ICabinGridSelectModel;
 
     onChange = (payload:number) => {
@@ -52,6 +52,7 @@ class Controller implements ng.IComponentController {
 
     constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
+        this.isLoading = store.getIsLoading();
 
         this.cabinGridSelect = state.cabinGridSelect;
 

@@ -68,7 +68,7 @@ export class HttpServiceWrapper {
 
 
         const hash = options.url + JSON.stringify(options.data);
-
+        console.log('request', hash);
 
         const doRequest = () => {
             if (this._responseCache.some(e => e.hash === hash)) {

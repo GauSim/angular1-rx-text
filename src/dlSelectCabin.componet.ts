@@ -15,7 +15,7 @@ const template = `
 class Controller implements ng.IComponentController {
 
 
-    isLoading:boolean = false;
+    isLoading:boolean;
     selectedCabintypeNid:number;
     cabintypeSelect:ICabinSelectModel[];
 
@@ -30,6 +30,7 @@ class Controller implements ng.IComponentController {
 
     constructor(private store:Store) {
         const state = store.getLastState();
+        this.isLoading = store.getIsLoading();
 
         this.selectedCabintypeNid = state.selectedCabintypeNid;
         this.cabintypeSelect = state.cabintypeSelect;

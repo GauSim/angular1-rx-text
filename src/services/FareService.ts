@@ -52,19 +52,11 @@ export class FareService {
     private _convertSelectorToFareServiceRequest = (selector:IFareSelector):ng.IPromise<IFareServiceRequest> => {
 
         return this.operatorService.createFakePassengerList(selector)
-            .then(passengerList => {
-
-                if (passengerList.length !== (selector.num_senior + selector.num_adult + selector.num_junior + selector.num_child + selector.num_baby)) {
-                    throw new Error('Mismatch in passengerList, does not fit the selectors pax count');
-                }
-
-                return {
-                    market: selector.marketId,
-                    cruiseId: selector.cruise_id,
-                    passengers: passengerList
-                };
-
-            });
+            .then(passengerList => ({
+                market: selector.marketId,
+                cruiseId: selector.cruise_id,
+                passengers: passengerList
+            }));
 
     };
 

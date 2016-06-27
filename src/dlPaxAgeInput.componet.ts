@@ -24,6 +24,7 @@ class Controller implements ng.IComponentController {
 
     constructor(private $scope:ng.IScope, private store:Store) {
 
+        this.isLoading = store.getIsLoading();
         store.isLoading.subscribe(e => (this.isLoading = e));
 
         store.subscribe(state => {

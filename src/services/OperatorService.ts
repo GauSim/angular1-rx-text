@@ -1,3 +1,4 @@
+import * as _ from 'underscore';
 import { IFareSelector }from './FareService';
 
 export interface IOperatorPaxAgeRange {
@@ -61,7 +62,7 @@ export class OperatorService {
         return this._fetchOperatorConfig(selector.bookingServiceCode)
             .then(PaxAgeConfig => {
 
-                return [
+                const paxList:IOperatorPaxMetadata[] = [
                     ...(!PaxAgeConfig.senior.isSupported ? [] : _.range(num_senior).map(_ => toMetadata(PaxAgeConfig.senior.min))),
                     ...(!PaxAgeConfig.adult.isSupported ? [] : _.range(num_adult).map(_ => toMetadata(PaxAgeConfig.adult.min))),
                     ...(!PaxAgeConfig.junior.isSupported ? [] : _.range(num_junior).map(_ => toMetadata(PaxAgeConfig.junior.min))),
@@ -69,6 +70,7 @@ export class OperatorService {
                     ...(!PaxAgeConfig.baby.isSupported ? [] : _.range(num_baby).map(_ => toMetadata(PaxAgeConfig.baby.min)))
                 ];
 
+                return paxList;
             });
     }
 

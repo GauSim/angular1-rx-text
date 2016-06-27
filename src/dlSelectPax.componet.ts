@@ -50,7 +50,7 @@ const template = `
 
 class Controller implements ng.IComponentController {
 
-    isLoading:boolean = false;
+    isLoading:boolean;
 
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 
@@ -68,6 +68,7 @@ class Controller implements ng.IComponentController {
 
     constructor(private store:Store) {
         const state = store.getLastState();
+        this.isLoading = store.getIsLoading();
 
         const { num_adults, num_seniors, num_junior, num_child, num_baby } = state.selectedPax;
         this.operatorPaxAgeConfig = state.selectedCruise.operatorPaxAgeConfig;

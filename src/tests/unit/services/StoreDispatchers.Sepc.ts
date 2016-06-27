@@ -1,14 +1,14 @@
 import { FareService } from '../../../services/FareService';
 import { OperatorService } from '../../../services/OperatorService';
 import { HttpServiceWrapper } from '../../../services/HttpServiceWrapper';
-import { StoreDispatchers, initialState } from '../../../services/StoreDispatchers';
+import { StoreDispatchers } from '../../../services/StoreDispatchers';
 
 import * as should from 'should';
 import * as Q from 'q';
 
 const create$httpMock = (ok:boolean, data:any) => {
-    return () => {
-        ok ? Q.resolve({data}) : Q.reject(new Error(data));
+    return (option:any) => {
+        return ok ? Q.resolve({data}) : Q.reject(new Error(data));
     }
 };
 
@@ -30,41 +30,42 @@ describe('StoreDispatchers', () => {
 
         it('should set sailId', (done) => {
 
-            const initState = initialState();
+            instance.createInitialState().then(initState => {
 
-            const asyncWork = initState.allSails.map(sail => {
+                const asyncTests = initState.allSails.map(sail => {
 
-                const newSailNid = sail.id;
+                    const newSailNid = sail.id;
 
-                return instance.setSailId(initState, newSailNid)
-                    .then(resultState => {
-
-
-                        should(resultState.selectedSailId).be.exactly(newSailNid);
-
-                        should(resultState.selectedCabin.sailId).be.exactly(newSailNid);
+                    return instance.setSailId(initState, newSailNid)
+                        .then(resultState => {
 
 
-                        should(resultState.cabinGridSelect.inside.sailId).be.exactly(newSailNid);
-                        should(resultState.cabinGridSelect.outside.sailId).be.exactly(newSailNid);
-                        should(resultState.cabinGridSelect.balcony.sailId).be.exactly(newSailNid);
-                        should(resultState.cabinGridSelect.suite.sailId).be.exactly(newSailNid);
+                            should(resultState.selectedSailId).be.exactly(newSailNid);
 
-                        resultState.cabintypeSelect.forEach(item => {
-                            should(item.sailId).be.exactly(newSailNid);
+                            should(resultState.selectedCabin.sailId).be.exactly(newSailNid);
+
+
+                            should(resultState.cabinGridSelect.inside.sailId).be.exactly(newSailNid);
+                            should(resultState.cabinGridSelect.outside.sailId).be.exactly(newSailNid);
+                            should(resultState.cabinGridSelect.balcony.sailId).be.exactly(newSailNid);
+                            should(resultState.cabinGridSelect.suite.sailId).be.exactly(newSailNid);
+
+                            resultState.cabintypeSelect.forEach(item => {
+                                should(item.sailId).be.exactly(newSailNid);
+                            });
+
+                            should(resultState.sailSelect.some(e => e.id === newSailNid)).be.ok();
+
                         });
+                });
 
-                        should(resultState.sailSelect.some(e => e.id === newSailNid)).be.ok();
-
-                    });
+                Q.all(asyncTests)
+                    .then(r => {
+                        done();
+                    })
+                    .catch(done);
             });
 
-
-            Q.all(asyncWork)
-                .then(r => {
-                    done();
-                })
-                .catch(done);
 
         });
 

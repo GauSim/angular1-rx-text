@@ -11,12 +11,13 @@ const template = `
 
 class Controller implements ng.IComponentController {
 
-    isLoading:boolean = false;
+    isLoading:boolean;
 
     selectedCabin:ICabinSelectModel;
 
     constructor(private store:Store, $scope:ng.IScope) {
         const state = store.getLastState();
+        this.isLoading = store.getIsLoading();
         this.selectedCabin = state.selectedCabin;
 
         store.isLoading.subscribe(e => (this.isLoading = e));

@@ -15,7 +15,7 @@ const template = `
 
 class Controller implements ng.IComponentController {
 
-    isLoading:boolean = false;
+    isLoading:boolean;
     selectedSailId:number;
     sailSelect:ISailSelectModel[];
 
@@ -29,6 +29,7 @@ class Controller implements ng.IComponentController {
 
     constructor(private store:Store) {
         const state = store.getLastState();
+        this.isLoading = store.getIsLoading();
 
         this.selectedSailId = state.selectedSailId;
         this.sailSelect = state.sailSelect;

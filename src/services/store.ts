@@ -3,7 +3,7 @@ import { EventEmitter } from  '../helpers/EventEmitter';
 import { FareService } from './FareService';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
-import { StoreDispatchers, initialState } from './StoreDispatchers';
+import { StoreDispatchers } from './StoreDispatchers';
 import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY } from '../helpers/Enums';
 
 export interface ISailSelectModel {
@@ -103,17 +103,26 @@ export class Store extends EventEmitter<IFormState> {
     isLoading = new EventEmitter<boolean>();
 
     private _dispatchers:StoreDispatchers;
-    private _state:IFormState = initialState();
+    private _state:IFormState;
 
-    constructor(private $timeout:ng.ITimeoutService,
-                private $q:ng.IQService,
+    constructor(private $q:ng.IQService,
                 private fareService:FareService) {
         super();
         this._dispatchers = new StoreDispatchers($q, fareService);
+        this.getInitialState();
     }
 
-    public setIsLoading = () => this.isLoading.emit(this.runingActions.length > 0);
+    public emitIsLoading = (force:boolean = false) => this.isLoading.emit(this.getIsLoading());
+    public getIsLoading = () => this.runingActions.length > 0;
+
     public getLastState = ():IFormState => _.extend({}, this._state) as IFormState;
+    public getInitialState = () => {
+        const INITIALIZING = 'INITIALIZING';
+        this.runingActions = [...this.runingActions, INITIALIZING];
+        this.emitIsLoading();
+        this._state = this._dispatchers.createInitialState();
+        this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
+    };
 
     runingActions = [];
     public dispatchState = ({type, payload}:Action, debug:string = ''):void => {
@@ -135,11 +144,11 @@ export class Store extends EventEmitter<IFormState> {
             this.emit(state);
 
             this.runingActions = this.runingActions.filter(e => e != hash);
-            this.setIsLoading();
+            this.emitIsLoading();
         };
 
         this.runingActions = [...this.runingActions, hash];
-        this.setIsLoading();
+        this.emitIsLoading();
 
         switch (type) {
             case ACTIONS.SET_SAIL_ID:
