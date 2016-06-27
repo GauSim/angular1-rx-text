@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlForm.componet.ts" afterPath="$PROJECT_DIR$/src/dlForm.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" afterPath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSelectPax.componet.ts" afterPath="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/FareService.ts" afterPath="$PROJECT_DIR$/src/services/FareService.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StateMockHelper.ts" afterPath="$PROJECT_DIR$/src/services/StateMockHelper.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" afterPath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreProviders.ts" afterPath="$PROJECT_DIR$/src/services/StoreProviders.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/unit/index.ts" afterPath="$PROJECT_DIR$/src/tests/unit/index.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" afterPath="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typings.json" afterPath="$PROJECT_DIR$/typings.json" />
     </list>
     <ignored path="angular1-rx-text.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,50 +32,40 @@
       <file leaf-file-name="StoreDispatchers.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.740741">
-              <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="143" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StoreProviders.Spec.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6438356">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StateMockHelper.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/StateMockHelper.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tests/unit/index.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dlSelectSail.componet.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dlSelectSail.componet.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="54" />
+            <state vertical-scroll-proportion="40.666668">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
-                <marker date="1466773966000" expanded="true" signature="188:481" placeholder="..." />
+                <marker date="1467035818000" expanded="true" signature="491:2692" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlSelectPax.componet.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dlSelectPax.componet.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="95" />
+              <folding>
+                <marker date="1467035424000" expanded="true" signature="188:508" placeholder="..." />
+                <marker date="1467035424000" expanded="true" signature="252:508" placeholder="..." />
+                <marker date="1467035424000" expanded="true" signature="528:843" placeholder="..." />
+                <marker date="1467035424000" expanded="true" signature="863:1181" placeholder="..." />
+                <marker date="1467035424000" expanded="true" signature="1201:1514" placeholder="..." />
+                <marker date="1467035424000" expanded="true" signature="1534:1842" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Store.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.44264942">
+              <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
+              <folding>
+                <element signature="e#3020#3120#0" expanded="false" />
+                <element signature="e#4276#4380#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -89,20 +75,10 @@
         <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
               <folding>
-                <element signature="e#948#1032#0" expanded="false" />
+                <element signature="e#903#987#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.301887">
-              <caret line="33" column="15" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="15" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -138,26 +114,26 @@
         <option value="$PROJECT_DIR$/src/dlDisplaySelectedCabin.componet.ts" />
         <option value="$PROJECT_DIR$/src/tests/services/StoreProviders.Spec.ts" />
         <option value="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" />
-        <option value="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
         <option value="$PROJECT_DIR$/src/tests/index.ts" />
         <option value="$PROJECT_DIR$/src/mockData/windowDataMock.ts" />
         <option value="$PROJECT_DIR$/proxy.js" />
         <option value="$PROJECT_DIR$/src/services/OperatorService.ts" />
         <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/src/helpers/Enums.ts" />
-        <option value="$PROJECT_DIR$/src/services/FareService.ts" />
         <option value="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
         <option value="$PROJECT_DIR$/src/dlForm.componet.ts" />
         <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectSail.componet.ts" />
-        <option value="$PROJECT_DIR$/src/services/Store.ts" />
         <option value="$PROJECT_DIR$/src/tests/unit/index.ts" />
-        <option value="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
-        <option value="$PROJECT_DIR$/src/services/StateMockHelper.ts" />
         <option value="$PROJECT_DIR$/src/services/StoreProviders.ts" />
+        <option value="$PROJECT_DIR$/src/services/StateMockHelper.ts" />
         <option value="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" />
+        <option value="$PROJECT_DIR$/src/services/FareService.ts" />
+        <option value="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
+        <option value="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
+        <option value="$PROJECT_DIR$/src/services/Store.ts" />
       </list>
     </option>
   </component>
@@ -393,17 +369,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="23" width="1920" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18849841" sideWeight="0.79575163" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18849841" sideWeight="0.7967359" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18849841" sideWeight="0.20424837" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18849841" sideWeight="0.2032641" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3015544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3015544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36580312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36580312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -482,7 +458,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="e#948#1032#0" expanded="false" />
+            <element signature="e#903#987#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -522,9 +498,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="17" selection-start-line="64" selection-start-column="15" selection-end-line="64" selection-end-column="17" />
           <folding>
-            <element signature="e#2867#2967#0" expanded="false" />
-            <element signature="e#3315#3521#0" expanded="false" />
-            <element signature="e#4259#4363#0" expanded="false" />
+            <element signature="e#3020#3120#0" expanded="false" />
+            <element signature="e#4276#4380#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -615,21 +590,6 @@
           <folding>
             <marker date="1466936035000" expanded="true" signature="137:663" placeholder="..." />
             <marker date="1466936035000" expanded="true" signature="475:656" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dlSelectPax.componet.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6726027">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <marker date="1467013884000" expanded="true" signature="188:508" placeholder="..." />
-            <marker date="1467013884000" expanded="true" signature="252:508" placeholder="..." />
-            <marker date="1467013884000" expanded="true" signature="528:843" placeholder="..." />
-            <marker date="1467013884000" expanded="true" signature="863:1181" placeholder="..." />
-            <marker date="1467013884000" expanded="true" signature="1201:1514" placeholder="..." />
-            <marker date="1467013884000" expanded="true" signature="1534:1842" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -883,19 +843,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-          <folding>
-            <element signature="e#948#1032#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.301887">
+        <state vertical-scroll-proportion="0.7419899">
           <caret line="33" column="15" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="15" />
           <folding />
         </state>
@@ -911,7 +861,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dlSelectSail.componet.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.42105263">
           <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="54" />
           <folding>
             <marker date="1466773966000" expanded="true" signature="188:481" placeholder="..." />
@@ -923,26 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.078947365">
           <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0789474">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-          <folding>
-            <element signature="e#2867#2967#0" expanded="false" />
-            <element signature="e#3315#3521#0" expanded="false" />
-            <element signature="e#4259#4363#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.740741">
-          <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="143" />
           <folding />
         </state>
       </provider>
@@ -965,16 +895,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/StateMockHelper.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.9117647">
+          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21362229">
+          <caret line="12" column="5" selection-start-line="9" selection-start-column="47" selection-end-line="12" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4701131">
-          <caret line="93" column="69" selection-start-line="93" selection-start-column="69" selection-end-line="93" selection-end-column="81" />
+        <state vertical-scroll-proportion="0.33281735">
+          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
           <folding>
             <element signature="n#!!block;n#compose#0" expanded="false" />
             <element signature="e#391#424#0" expanded="false" />
@@ -984,11 +922,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts">
+    <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6438356">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding>
+            <element signature="e#903#987#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="40.666668">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <marker date="1467035818000" expanded="true" signature="491:2692" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dlSelectPax.componet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="95" />
+          <folding>
+            <marker date="1467035424000" expanded="true" signature="188:508" placeholder="..." />
+            <marker date="1467035424000" expanded="true" signature="252:508" placeholder="..." />
+            <marker date="1467035424000" expanded="true" signature="528:843" placeholder="..." />
+            <marker date="1467035424000" expanded="true" signature="863:1181" placeholder="..." />
+            <marker date="1467035424000" expanded="true" signature="1201:1514" placeholder="..." />
+            <marker date="1467035424000" expanded="true" signature="1534:1842" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44264942">
+          <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
+          <folding>
+            <element signature="e#3020#3120#0" expanded="false" />
+            <element signature="e#4276#4380#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

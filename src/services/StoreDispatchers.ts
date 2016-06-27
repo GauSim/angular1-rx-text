@@ -1,6 +1,6 @@
 import * as _ from 'underscore';
 import { OperatorService } from './OperatorService';
-import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailSelectModel, ICabinGridSelectModel, ICabinSelectModel } from './Store';
+import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailSelectModel, ICabinGridSelectModel, ICabinSelectModel, ICruiseModel } from './Store';
 import { StoreProviders } from './StoreProviders';
 import { FareService, IFareSelector } from './FareService';
 import { MARKET_ID } from '../helpers/Enums';
@@ -8,11 +8,15 @@ import { MARKET_ID } from '../helpers/Enums';
 import { StateMockHelper } from './StateMockHelper';
 
 export function initialState() {
-    const translationCache:ITranslationCache = {};
+
+    const translationCache:ITranslationCache = {
+        'from': 'ab',
+        'on request': 'auf Anfrage'
+    };
+
     const configuration:IConfiguration = {
-        marketId: 'de',
-        hasDualCurrency: false,
-        operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig // OperatorService.defaultPaxAgeConfig;
+        marketId: 'de' as MARKET_ID,
+        hasDualCurrency: false
     };
 
     const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
@@ -25,8 +29,13 @@ export function initialState() {
         num_baby: 0,
     };
 
-    const selectedCruiseNid = 1;
-
+    const selectedCruiseNid = 367247;
+    const selectedCruise:ICruiseModel = {
+        id: selectedCruiseNid,
+        operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig, // OperatorService.defaultPaxAgeConfig;
+        operatorBookingServiceCode: 'msc',
+        hasFlightIncluded: false
+    };
 
     const providers = new StoreProviders();
     const mockHelper = new StateMockHelper(providers, translationCache);
@@ -52,6 +61,7 @@ export function initialState() {
         selectedCruiseNid,
         selectedCabintypeNid,
 
+        selectedCruise,
         selectedCabin,
         selectedPax,
 
@@ -81,36 +91,33 @@ export class StoreDispatchers {
 
     }
 
-    getFares = ():ng.IPromise<any> => {
+    getFares = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<any> => {
+
+        const { num_adults, num_seniors, num_junior, num_child, num_baby } = selectedPax;
+
         const selector:IFareSelector = {
-            marketId: 'de' as MARKET_ID,
-            bookingServiceCode: 'msc',
-            cruise_id: 367247,
-            sail_id: 0,
-            cabintype_id: 0,
-            num_adult: 0,
-            num_child: 0,
-            num_junior: 0,
-            num_baby: 0,
-            num_senior: 0,
-            flight_included: false
+            marketId: currentState.configuration.marketId as MARKET_ID,
+            bookingServiceCode: currentState.selectedCruise.operatorBookingServiceCode,
+            cruise_id: currentState.selectedCruise.id,
+            flight_included: currentState.selectedCruise.hasFlightIncluded,
+            num_adult: num_adults,
+            num_child: num_child,
+            num_junior: num_junior,
+            num_baby: num_baby,
+            num_senior: num_seniors
         };
 
-        return this.$q.resolve(null);
-        // todo:
-        // return this.fareService.getFares(selector).then(e => (console.log(e), e));
+        return this.fareService.getFares(selector).then(e => (console.log(e), e));
     };
 
 
     setSailId = (currentState:IFormState, _selectedSailId:number):ng.IPromise<IFormState> => {
-        return this.getFares()
+        return this.getFares(currentState, currentState.selectedPax)
             .then(response => {
 
                 // todo in async, get data to update allCabins from remote service
                 const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedPax, _selectedSailId, currentState.selectedCabintypeNid);
-
                 const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
-
 
                 return nextState;
 
@@ -119,7 +126,7 @@ export class StoreDispatchers {
 
 
     setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
-        return this.getFares()
+        return this.getFares(currentState, currentState.selectedPax)
             .then(response => {
 
                 // todo in async, get data to update allCabins from remote service
@@ -133,7 +140,7 @@ export class StoreDispatchers {
 
 
     setPaxCount = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<IFormState> => {
-        return this.getFares()
+        return this.getFares(currentState, selectedPax)
             .then(response => {
                 let nextState:IFormState = _.extend({}, currentState, {selectedPax});
                 // todo in async, get data to update allCabins from remote service

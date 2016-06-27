@@ -57,9 +57,9 @@ export class StateMockHelper {
             // 'inside', 'outside', 'balcony', 'suite'
             ['inside', 'outside', 'balcony', 'suite'].forEach((kind:CABIN_KIND) => {
                 // add available and not available cabins
-                [2].forEach(availability => {
+                [1, 2].forEach(availability => {
 
-                    _.range(1).forEach(x=> {
+                    _.range(5).forEach(x=> {
 
                         const id = allCabintypes.length + 1;
                         const price = (availability === CABIN_AVAILABILITY.available) ? _.sample<number>([50, 100, 200, 500, 1000, 1200, 1300, 1500, 2000, 2500]) : 0;

@@ -6,8 +6,6 @@ export interface IFareSelector {
     marketId:MARKET_ID;
     bookingServiceCode:string;
     cruise_id:number;
-    sail_id:number;
-    cabintype_id:number;
     num_adult: number;
     num_child: number;
     num_junior: number;

@@ -7,16 +7,17 @@ import * as should from 'should';
 import * as Q from 'q';
 
 describe('StoreProviders', () => {
+    const translationCache:ITranslationCache = {
+        'from': 'ab',
+        'on request': 'auf Anfrage'
+    };
     const providers = new StoreProviders();
-    const m = new StateMockHelper(providers, {});
+    const m = new StateMockHelper(providers, translationCache);
 
     describe('formatSailTitle', ()=> {
         it('format for show the price of the cheapest cabin', () => {
 
-            const translationCache:ITranslationCache = {
-                'from': 'ab'
-            };
-
+          
             const sail = m.mockSail(1, 1, `01.01.2012`, `01.01.2016`);
             const cabin1 = m.mockCabin(1, sail.id, sail.cruiseId, 'inside', CABIN_AVAILABILITY.available, 1);
             const cabin2 = m.mockCabin(2, sail.id, sail.cruiseId, 'inside', CABIN_AVAILABILITY.available, 500);
@@ -32,9 +33,6 @@ describe('StoreProviders', () => {
 
         it('should show on request if all cabins for the sail are onRequest', () => {
 
-            const translationCache:ITranslationCache = {
-                'on request': 'auf Anfrage'
-            };
 
             const sail = m.mockSail(1, 1, `01.01.2012`, `01.01.2016`);
             const cabin = m.mockCabin(1, sail.id, sail.cruiseId, 'inside', CABIN_AVAILABILITY.onRequest, 0);

@@ -70,7 +70,7 @@ class Controller implements ng.IComponentController {
         const state = store.getLastState();
 
         const { num_adults, num_seniors, num_junior, num_child, num_baby } = state.selectedPax;
-        this.operatorPaxAgeConfig = state.configuration.operatorPaxAgeConfig;
+        this.operatorPaxAgeConfig = state.selectedCruise.operatorPaxAgeConfig;
 
         this.num_seniors = num_seniors;
         this.num_adults = num_adults;
@@ -86,9 +86,9 @@ class Controller implements ng.IComponentController {
         this.paxBabySelect = [... state.paxSelectRange];
 
 
-        store.subscribe(({ paxSelectRange, configuration, selectedPax  }) => {
+        store.subscribe(({ paxSelectRange, selectedCruise, selectedPax  }) => {
 
-            this.operatorPaxAgeConfig = configuration.operatorPaxAgeConfig;
+            this.operatorPaxAgeConfig = selectedCruise.operatorPaxAgeConfig;
 
             const { num_adults, num_seniors, num_junior, num_child, num_baby } = selectedPax;
             this.num_baby = num_baby;

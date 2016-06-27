@@ -93,7 +93,7 @@ export class StoreProviders {
         const text_from = this.getTranslation(translationCache, 'from');
         const test_onRequest = this.getTranslation(translationCache, 'on request');
 
-        const displayPrice = (cheapestAvailable as number != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
+        const displayPrice = ((cheapestAvailable as any) != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
         return `${item.startDate} - ${item.endDate} (${displayPrice})`;
     };
 

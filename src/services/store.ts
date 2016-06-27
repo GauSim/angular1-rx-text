@@ -51,7 +51,6 @@ export interface ITranslationCache {
 export interface IConfiguration {
     marketId:MARKET_ID;
     hasDualCurrency:boolean;
-    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 }
 
 export interface IPaxSelection {
@@ -62,6 +61,13 @@ export interface IPaxSelection {
     num_baby:number;
 }
 
+export interface ICruiseModel {
+    id:number;
+    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
+    operatorBookingServiceCode:string;
+    hasFlightIncluded:boolean;
+}
+
 export interface IFormState {
     configuration:IConfiguration;
 
@@ -69,6 +75,7 @@ export interface IFormState {
     selectedSailId:number;
     selectedCabintypeNid:number;
 
+    selectedCruise:ICruiseModel;
     selectedPax:IPaxSelection;
     selectedCabin:ICabinSelectModel;
 
@@ -124,20 +131,15 @@ export class Store extends EventEmitter<IFormState> {
 
 
         const afterDispatch = (state:IFormState) => {
-            this.runingActions = [...this.runingActions, hash];
+            this._state = state;
+            this.emit(state);
+
+            this.runingActions = this.runingActions.filter(e => e != hash);
             this.setIsLoading();
-
-            // simulate delay in async dispatch
-            return this.$timeout(() => {
-
-                this._state = state;
-                this.emit(state);
-
-                this.runingActions = this.runingActions.filter(e => e != hash);
-                this.setIsLoading();
-
-            }, 500);
         };
+
+        this.runingActions = [...this.runingActions, hash];
+        this.setIsLoading();
 
         switch (type) {
             case ACTIONS.SET_SAIL_ID:
