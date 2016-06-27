@@ -2,6 +2,10 @@ import { FareService } from '../../../services/FareService';
 import { OperatorService } from '../../../services/OperatorService';
 import { HttpServiceWrapper } from '../../../services/HttpServiceWrapper';
 import { StoreDispatchers } from '../../../services/StoreDispatchers';
+import { StoreProviders } from '../../../services/StoreProviders';
+import { StateMockHelper } from '../../../services/StateMockHelper';
+import { ITranslationCache, IConfiguration } from '../../../services/Store';
+
 
 import * as should from 'should';
 import * as Q from 'q';
@@ -14,12 +18,15 @@ const create$httpMock = (ok:boolean, data:any) => {
 
 describe('StoreDispatchers', () => {
 
+
     let instance:StoreDispatchers;
+    const translationCache:ITranslationCache = {};
+    const m = new StateMockHelper(new StoreProviders(), translationCache);
+
 
     beforeEach(()=> {
         const $http:ng.IHttpService = create$httpMock(true, []) as any;
         const $q:ng.IQService = Q as any;
-
         const operatorService = new OperatorService($q);
         const httpServiceWrapper = new HttpServiceWrapper($q, $http);
         const fareService = new FareService(operatorService, httpServiceWrapper);
@@ -30,7 +37,10 @@ describe('StoreDispatchers', () => {
 
         it('should set sailId', (done) => {
 
-            instance.createInitialState()
+            const conf = m.mockConfig();
+            const cruise = m.mockCruise();
+
+            instance.createInitialState(translationCache, conf, cruise)
                 .then(initState => {
                     const asyncTests = initState.allSails.map(sail => {
 

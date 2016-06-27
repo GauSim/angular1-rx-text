@@ -1,6 +1,7 @@
 import * as _ from 'underscore';
-import { CABIN_KIND, CABIN_AVAILABILITY } from '../helpers/Enums';
-import { ISailSelectModel, ITranslationCache, ICabinSelectModel, StoreProviders } from './Store';
+import { CABIN_KIND, CABIN_AVAILABILITY, MARKET_ID } from '../helpers/Enums';
+import { ICruiseModel, ISailSelectModel, ITranslationCache, ICabinSelectModel, IConfiguration, StoreProviders } from './Store';
+import { OperatorService } from './OperatorService';
 
 
 export class StateMockHelper {
@@ -9,6 +10,23 @@ export class StateMockHelper {
                 private translationCache:ITranslationCache) {
 
     }
+
+    mockConfig = ():IConfiguration => {
+        return {
+            marketId: 'de' as MARKET_ID,
+            hasDualCurrency: false
+        };
+    };
+
+    mockCruise = ():ICruiseModel => {
+        return {
+            id: 367247,
+            title: 'einmal um die welt',
+            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
+            operatorBookingServiceCode: 'msc',
+            hasFlightIncluded: false
+        }
+    };
 
     mockSail = (id:number, cruiseId:number, startDate:string, endDate:string):ISailSelectModel => {
         return {

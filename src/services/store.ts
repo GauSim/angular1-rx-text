@@ -63,6 +63,7 @@ export interface IPaxSelection {
 
 export interface ICruiseModel {
     id:number;
+    title:string;
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     operatorBookingServiceCode:string;
     hasFlightIncluded:boolean;
@@ -118,10 +119,12 @@ export class Store extends EventEmitter<IFormState> {
         const d = this.$q.defer<IFormState>();
 
         if (this._state) {
+            // if there is state resolve with that
             const last = _.extend({}, this._state) as IFormState;
             d.resolve(last);
         } else {
 
+            // if not - initializeState
             this._initializeState()
                 .then(init=> {
                     this._state = init;
@@ -140,15 +143,29 @@ export class Store extends EventEmitter<IFormState> {
         this.runingActions = [...this.runingActions, INITIALIZING];
         this.emitIsLoading();
 
-        return this._dispatchers.createInitialState()
+        const configuration:IConfiguration = {
+            marketId: 'de' as MARKET_ID,
+            hasDualCurrency: false
+        };
+        const translationCache:ITranslationCache = {
+            'from': 'ab',
+            'on request': 'auf Anfrage'
+        };
+        const cruise = {
+            id: 367247,
+            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
+            operatorBookingServiceCode: 'msc',
+            hasFlightIncluded: false
+        };
+        return this._dispatchers.createInitialState(translationCache, configuration, cruise)
             .then(init => {
 
                 return init;
-            }).finally(()=> {
+            })
+            .finally(()=> {
                 this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
                 this.emitIsLoading();
             });
-
     };
 
     runingActions = [];

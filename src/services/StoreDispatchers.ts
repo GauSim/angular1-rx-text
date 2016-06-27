@@ -17,49 +17,31 @@ export class StoreDispatchers {
 
     }
 
-    createInitialState = ():ng.IPromise<IFormState> => {
+    createInitialState = (translationCache:ITranslationCache, configuration:IConfiguration, cruise:ICruiseModel):ng.IPromise<IFormState> => {
 
         const d = this.$q.defer<IFormState>();
 
-
-        const translationCache:ITranslationCache = {
-            'from': 'ab',
-            'on request': 'auf Anfrage'
-        };
-
-        const configuration:IConfiguration = {
-            marketId: 'de' as MARKET_ID,
-            hasDualCurrency: false
-        };
-
         const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
 
+        const selectedCruiseNid = cruise.id;
+        const selectedCruise:ICruiseModel = cruise;
+
         const selectedPax:IPaxSelection = {
-            num_adults: 2,
+            num_adults: (selectedCruise.operatorPaxAgeConfig.adult.isSupported ? 2 : 0),
             num_seniors: 0,
             num_junior: 0,
             num_child: 0,
             num_baby: 0,
         };
 
-        const selectedCruiseNid = 367247;
-        const selectedCruise:ICruiseModel = {
-            id: selectedCruiseNid,
-            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
-            operatorBookingServiceCode: 'msc',
-            hasFlightIncluded: false
-        };
-
         const providers = new StoreProviders();
         const mockHelper = new StateMockHelper(providers, translationCache);
 
         const mockedSails:ISailSelectModel[] = _.range(10).map(id => mockHelper.mockSail(id, selectedCruiseNid, `${id}.01.2012`, `${id}.01.2016`));
-
         const mockedCabins = mockHelper.mockAllCabintypes(mockedSails);
 
         const selectedSailId = mockedSails[0].id;
-
-        const cabinId = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
+        const cabinId = mockedCabins.filter(e => e.sailId === selectedSailId)[0].id;
 
         const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedPax, selectedSailId, cabinId);
 
