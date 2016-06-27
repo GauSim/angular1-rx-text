@@ -109,19 +109,46 @@ export class Store extends EventEmitter<IFormState> {
                 private fareService:FareService) {
         super();
         this._dispatchers = new StoreDispatchers($q, fareService);
-        this.getInitialState();
     }
 
     public emitIsLoading = (force:boolean = false) => this.isLoading.emit(this.getIsLoading());
     public getIsLoading = () => this.runingActions.length > 0;
 
-    public getLastState = ():IFormState => _.extend({}, this._state) as IFormState;
-    public getInitialState = () => {
+    public getLastState = ():ng.IPromise<IFormState> => {
+        const d = this.$q.defer<IFormState>();
+
+        if (this._state) {
+            const last = _.extend({}, this._state) as IFormState;
+            d.resolve(last);
+        } else {
+
+            this._initializeState()
+                .then(init=> {
+                    this._state = init;
+                    return this._state;
+                })
+                .then(d.resolve);
+
+        }
+
+        return d.promise;
+    };
+
+    private _initializeState = ():ng.IPromise<IFormState> => {
         const INITIALIZING = 'INITIALIZING';
+
         this.runingActions = [...this.runingActions, INITIALIZING];
         this.emitIsLoading();
-        this._state = this._dispatchers.createInitialState();
-        this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
+
+        return this._dispatchers.createInitialState()
+            .then(init => {
+
+                return init;
+            }).finally(()=> {
+                this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
+                this.emitIsLoading();
+            });
+
     };
 
     runingActions = [];
@@ -136,9 +163,6 @@ export class Store extends EventEmitter<IFormState> {
 
         console.log(`dispatching from ${debug}`, hash);
 
-        let currentState = this.getLastState();
-
-
         const afterDispatch = (state:IFormState) => {
             this._state = state;
             this.emit(state);
@@ -147,28 +171,32 @@ export class Store extends EventEmitter<IFormState> {
             this.emitIsLoading();
         };
 
-        this.runingActions = [...this.runingActions, hash];
-        this.emitIsLoading();
+        this.getLastState()
+            .then(currentState => {
 
-        switch (type) {
-            case ACTIONS.SET_SAIL_ID:
-                this._dispatchers.setSailId(currentState, payload)
-                    .then(afterDispatch);
-                break;
-            case ACTIONS.SET_CABIN_ID:
-                this._dispatchers.setCabinId(currentState, payload)
-                    .then(afterDispatch);
-                break;
-            case ACTIONS.SET_PAX_COUNT:
-                this._dispatchers.setPaxCount(currentState, payload)
-                    .then(afterDispatch);
-                break;
-            default:
-                currentState = currentState;
-                afterDispatch(currentState);
-                break;
-        }
 
+                this.runingActions = [...this.runingActions, hash];
+                this.emitIsLoading();
+
+                switch (type) {
+                    case ACTIONS.SET_SAIL_ID:
+                        this._dispatchers.setSailId(currentState, payload)
+                            .then(afterDispatch);
+                        break;
+                    case ACTIONS.SET_CABIN_ID:
+                        this._dispatchers.setCabinId(currentState, payload)
+                            .then(afterDispatch);
+                        break;
+                    case ACTIONS.SET_PAX_COUNT:
+                        this._dispatchers.setPaxCount(currentState, payload)
+                            .then(afterDispatch);
+                        break;
+                    default:
+                        currentState = currentState;
+                        afterDispatch(currentState);
+                        break;
+                }
+            });
     }
 }
 

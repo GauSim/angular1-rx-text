@@ -16,11 +16,14 @@ class Controller implements ng.IComponentController {
     selectedCabin:ICabinSelectModel;
 
     constructor(private store:Store, $scope:ng.IScope) {
-        const state = store.getLastState();
-        this.isLoading = store.getIsLoading();
-        this.selectedCabin = state.selectedCabin;
 
+        this.isLoading = store.getIsLoading();
         store.isLoading.subscribe(e => (this.isLoading = e));
+
+
+        store.getLastState().then(({selectedCabin}) => {
+            this.selectedCabin = selectedCabin;
+        });
         store.subscribe(({ selectedCabin }) => {
             this.selectedCabin = selectedCabin;
         })

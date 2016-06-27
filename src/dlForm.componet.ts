@@ -23,7 +23,9 @@ class Controller implements ng.IComponentController {
     state:IFormState;
 
     constructor(private store:Store) {
-        this.state = store.getLastState();
+        store.getLastState().then(state => {
+            this.state = state;
+        });
         this.store.subscribe(newState => {
             this.state = newState;
         });

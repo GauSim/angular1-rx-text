@@ -17,7 +17,7 @@ export class StoreDispatchers {
 
     }
 
-    createInitialState = ():IFormState => { // ng.IPromise<IFormState>
+    createInitialState = ():ng.IPromise<IFormState> => {
 
         const d = this.$q.defer<IFormState>();
 
@@ -91,9 +91,9 @@ export class StoreDispatchers {
             translationCache
         };
 
-        // d.resolve(state);
-        // d.promise;
-        return state;
+        d.resolve(state);
+
+        return d.promise;
     };
 
     getAllCabins = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<ICabinSelectModel[]> => {

@@ -67,25 +67,25 @@ class Controller implements ng.IComponentController {
     paxBabySelect:IPaxSelectModel[];
 
     constructor(private store:Store) {
-        const state = store.getLastState();
         this.isLoading = store.getIsLoading();
 
-        const { num_adults, num_seniors, num_junior, num_child, num_baby } = state.selectedPax;
-        this.operatorPaxAgeConfig = state.selectedCruise.operatorPaxAgeConfig;
+        store.getLastState().then(state => {
+            const { num_adults, num_seniors, num_junior, num_child, num_baby } = state.selectedPax;
+            this.operatorPaxAgeConfig = state.selectedCruise.operatorPaxAgeConfig;
 
-        this.num_seniors = num_seniors;
-        this.num_adults = num_adults;
-        this.num_junior = num_junior;
-        this.num_child = num_child;
-        this.num_baby = num_baby;
+            this.num_seniors = num_seniors;
+            this.num_adults = num_adults;
+            this.num_junior = num_junior;
+            this.num_child = num_child;
+            this.num_baby = num_baby;
 
 
-        this.paxJuniorSelect = [... state.paxSelectRange];
-        this.paxSeniorSelect = [... state.paxSelectRange];
-        this.paxAdultSelect = [... state.paxSelectRange];
-        this.paxChildSelect = [... state.paxSelectRange];
-        this.paxBabySelect = [... state.paxSelectRange];
-
+            this.paxJuniorSelect = [... state.paxSelectRange];
+            this.paxSeniorSelect = [... state.paxSelectRange];
+            this.paxAdultSelect = [... state.paxSelectRange];
+            this.paxChildSelect = [... state.paxSelectRange];
+            this.paxBabySelect = [... state.paxSelectRange];
+        });
 
         store.subscribe(({ paxSelectRange, selectedCruise, selectedPax  }) => {
 
