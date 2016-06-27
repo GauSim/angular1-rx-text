@@ -4,7 +4,7 @@ import { AGE_MAX } from './services/OperatorService';
 const template = `
 <div>
     <div data-ng-show="ctrl.isLoading" class="loadingIndicator"></div>
-    <div>  (<span data-ng-if="(ctrl.paxAgeConfig.max === ctrl.AGE_MAX)">+</span>{{ ctrl.paxAgeConfig.min }}<span data-ng-if="(ctrl.paxAgeConfig.max !== ctrl.AGE_MAX)"> - {{ ctrl.paxAgeConfig.max }}</span>)</div>
+    <div>  {{ ctrl.fieldName }} (<span data-ng-if="(ctrl.paxAgeConfig.max === ctrl.AGE_MAX)">+</span>{{ ctrl.paxAgeConfig.min }}<span data-ng-if="(ctrl.paxAgeConfig.max !== ctrl.AGE_MAX)"> - {{ ctrl.paxAgeConfig.max }}</span>)</div>
     <select class="form-control"
             data-ng-disabled="ctrl.isLoading"
             data-ng-model="ctrl.selectedValue"

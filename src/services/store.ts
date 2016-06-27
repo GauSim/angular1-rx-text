@@ -99,11 +99,7 @@ export interface IFormState {
     allCabintypes:ICabinSelectModel[];
     allSails:ISailSelectModel[];
 
-    paxSeniorSelect:IPaxSelectModel[];
-    paxAdultSelect:IPaxSelectModel[];
-    paxJuniorSelect:IPaxSelectModel[];
-    paxChildSelect:IPaxSelectModel[];
-    paxBabySelect:IPaxSelectModel[];
+    paxSelectRange:IPaxSelectModel[];
 
     translationCache:ITranslationCache;
 }
@@ -122,21 +118,15 @@ function initialState() {
         operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig // OperatorService.defaultPaxAgeConfig;
     };
 
-    const paxSeniorSelect = _.range(0, 10).map(id => {
-        return {id, title: `${id} senior`}
-    });
-    const paxAdultSelect = _.range(0, 10).map(id => {
-        return {id, title: `${id} adult`}
-    });
-    const paxJuniorSelect = _.range(0, 10).map(id => {
-        return {id, title: `${id} junior`}
-    });
-    const paxChildSelect = _.range(0, 10).map(id => {
-        return {id, title: `${id} child`}
-    });
-    const paxBabySelect = _.range(0, 10).map(id => {
-        return {id, title: `${id} baby`}
-    });
+    const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
+
+    const selectedPax:IPaxSelection = {
+        num_adults: 2,
+        num_seniors: 0,
+        num_junior: 0,
+        num_child: 0,
+        num_baby: 0,
+    };
 
     const selectedCruiseNid = 1;
     const mockedSails:ISailSelectModel[] = [
@@ -154,9 +144,9 @@ function initialState() {
 
     const selectedSailId = mockedSails[0].id;
 
-    const id = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
+    const cabinId = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
 
-    const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedSailId, id);
+    const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedPax, selectedSailId, cabinId);
 
     const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
     const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
@@ -164,13 +154,6 @@ function initialState() {
 
     const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
 
-    const selectedPax:IPaxSelection = {
-        num_adults: 2,
-        num_seniors: 0,
-        num_junior: 0,
-        num_child: 0,
-        num_baby: 0,
-    };
 
     const state:IFormState = {
         selectedSailId,
@@ -186,11 +169,8 @@ function initialState() {
         cabinGridSelect,
         cabintypeSelect,
         sailSelect,
-        paxSeniorSelect,
-        paxAdultSelect,
-        paxJuniorSelect,
-        paxChildSelect,
-        paxBabySelect,
+
+        paxSelectRange,
 
         configuration,
         translationCache
@@ -244,7 +224,7 @@ export class Store extends EventEmitter<IFormState> {
                 this.runingActions = this.runingActions.filter(e => e != hash);
                 this.setIsLoading();
 
-            }, 1000);
+            }, 500);
         };
 
         switch (type) {

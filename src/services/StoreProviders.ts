@@ -5,6 +5,7 @@ import {
     ICabinSelectModel,
     ISailSelectModel,
     ICabinGridSelectModel,
+    IPaxSelection,
     ITranslationCache,
     CABIN_AVAILABILITY,
     CABIN_KIND
@@ -107,7 +108,7 @@ export class StoreProviders {
         }, []);
     };
 
-    private _formatCabins = (translationCache:ITranslationCache, cabins:ICabinSelectModel[], selectedCabintypeNid:number):ICabinSelectModel[] => {
+    private _formatCabins = (translationCache:ITranslationCache, cabins:ICabinSelectModel[], selectedPax:IPaxSelection, selectedCabintypeNid:number):ICabinSelectModel[] => {
 
         if (!cabins.length) {
             return [];
@@ -115,8 +116,11 @@ export class StoreProviders {
 
         const formatedCabins = cabins.reduce((list, item:ICabinSelectModel)=> {
 
-            const title = this.formatCabinTitle(translationCache, item);
+            // todo does selectedPax fit in cabin ?
+            item.availability = item.availability // = CABIN_AVAILABILITY.onRequest;
+
             const isSelected = item.id === selectedCabintypeNid;
+            const title = this.formatCabinTitle(translationCache, item);
 
             return [...list, _.extend({}, item, {title, isSelected})];
         }, []);
@@ -139,10 +143,15 @@ export class StoreProviders {
         return sorted;
     };
 
-    // TODO take selectedPax in here !!!
-    recalculateState = (translationCache:ITranslationCache, _allSails:ISailSelectModel[], _allCabintypes:ICabinSelectModel[], selectedSailId:number, _selectedCabintypeNid:number):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:number} => {
 
-        const bySail = this.getCabinsBySailId(_allCabintypes, selectedSailId);
+    recalculateState = (translationCache:ITranslationCache,
+                        _allSails:ISailSelectModel[],
+                        _allCabintypes:ICabinSelectModel[],
+                        _selectedPax:IPaxSelection,
+                        _selectedSailId:number,
+                        _selectedCabintypeNid:number):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:number} => {
+
+        const bySail = this.getCabinsBySailId(_allCabintypes, _selectedSailId);
 
         let selectedCabintypeNid = _selectedCabintypeNid;
 
@@ -154,13 +163,13 @@ export class StoreProviders {
         }
 
 
-        const allCabintypes = this._formatCabins(translationCache, _allCabintypes, selectedCabintypeNid);
+        const allCabintypes = this._formatCabins(translationCache, _allCabintypes, _selectedPax, selectedCabintypeNid);
 
         const allSails = this._formatSails(translationCache, allCabintypes, _allSails);
 
         return {
             selectedCabintypeNid: selectedCabintypeNid,
-            selectedSailId: selectedSailId,
+            selectedSailId: _selectedSailId,
             allCabintypes: allCabintypes,
             allSails: allSails
         };

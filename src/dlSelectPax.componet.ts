@@ -73,42 +73,35 @@ class Controller implements ng.IComponentController {
         this.operatorPaxAgeConfig = state.configuration.operatorPaxAgeConfig;
 
         this.num_seniors = num_seniors;
-        this.paxSeniorSelect = state.paxSeniorSelect;
-
         this.num_adults = num_adults;
-        this.paxAdultSelect = state.paxAdultSelect;
-
         this.num_junior = num_junior;
-        this.paxJuniorSelect = state.paxJuniorSelect;
-
         this.num_child = num_child;
-        this.paxChildSelect = state.paxChildSelect;
-
         this.num_baby = num_baby;
-        this.paxBabySelect = state.paxBabySelect;
 
 
-        store.subscribe(({ paxSeniorSelect, paxAdultSelect, paxJuniorSelect, paxChildSelect, paxBabySelect,
-            configuration, selectedPax  }) => {
+        this.paxJuniorSelect = [... state.paxSelectRange];
+        this.paxSeniorSelect = [... state.paxSelectRange];
+        this.paxAdultSelect = [... state.paxSelectRange];
+        this.paxChildSelect = [... state.paxSelectRange];
+        this.paxBabySelect = [... state.paxSelectRange];
 
-            const { num_adults, num_seniors, num_junior, num_child, num_baby } = selectedPax;
+
+        store.subscribe(({ paxSelectRange, configuration, selectedPax  }) => {
+
             this.operatorPaxAgeConfig = configuration.operatorPaxAgeConfig;
 
-            this.num_seniors = num_seniors;
-            this.paxSeniorSelect = paxSeniorSelect;
-
-            this.num_adults = num_adults;
-            this.paxAdultSelect = paxAdultSelect;
-
-            this.num_junior = num_junior;
-            this.paxJuniorSelect = paxJuniorSelect;
-
-            this.num_child = num_child;
-            this.paxChildSelect = paxChildSelect;
-
+            const { num_adults, num_seniors, num_junior, num_child, num_baby } = selectedPax;
             this.num_baby = num_baby;
-            this.paxBabySelect = paxBabySelect;
+            this.num_child = num_child;
+            this.num_junior = num_junior;
+            this.num_adults = num_adults;
+            this.num_seniors = num_seniors;
 
+            this.paxJuniorSelect = [... paxSelectRange];
+            this.paxSeniorSelect = [... paxSelectRange];
+            this.paxAdultSelect = [... paxSelectRange];
+            this.paxChildSelect = [... paxSelectRange];
+            this.paxBabySelect = [... paxSelectRange];
         });
 
         store.isLoading.subscribe(e => (this.isLoading = e));
