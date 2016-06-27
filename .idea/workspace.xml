@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlCabinGridItem.componet.ts" afterPath="$PROJECT_DIR$/src/dlCabinGridItem.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlDisplaySelectedCabin.componet.ts" afterPath="$PROJECT_DIR$/src/dlDisplaySelectedCabin.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" afterPath="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSelectCabin.componet.ts" afterPath="$PROJECT_DIR$/src/dlSelectCabin.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSelectCabinGrid.componet.ts" afterPath="$PROJECT_DIR$/src/dlSelectCabinGrid.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSelectPax.componet.ts" afterPath="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dlSelectSail.componet.ts" afterPath="$PROJECT_DIR$/src/dlSelectSail.componet.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/FareService.ts" afterPath="$PROJECT_DIR$/src/services/FareService.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" afterPath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/OperatorService.ts" afterPath="$PROJECT_DIR$/src/services/OperatorService.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" afterPath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" afterPath="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
     </list>
     <ignored path="angular1-rx-text.iws" />
@@ -35,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StoreDispatchers.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StoreDispatchers.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42105263">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -55,12 +44,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoreDispatchers.Sepc.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StoreDispatchers.Sepc.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="55" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="55" />
-              <folding />
+            <state vertical-scroll-proportion="0.5">
+              <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+              <folding>
+                <element signature="e#1197#2228#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -204,9 +195,9 @@
         <option value="$PROJECT_DIR$/src/dlSelectCabinGrid.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectSail.componet.ts" />
-        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
         <option value="$PROJECT_DIR$/src/services/Store.ts" />
         <option value="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
+        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
       </list>
     </option>
   </component>
@@ -1052,14 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="55" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1070,9 +1053,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42105263">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+          <folding>
+            <element signature="e#1197#2228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
