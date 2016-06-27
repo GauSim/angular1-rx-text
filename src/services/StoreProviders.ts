@@ -6,10 +6,12 @@ import {
     ISailSelectModel,
     ICabinGridSelectModel,
     IPaxSelection,
-    ITranslationCache,
+    ITranslationCache
+} from './Store';
+import {
     CABIN_AVAILABILITY,
     CABIN_KIND
-} from './Store';
+} from '../helpers/Enums'
 
 
 function compose<F1Result,F2Result,F2Input>(f1:(e:F2Result)=>F1Result, f2:(e:F2Input)=>F2Result) {

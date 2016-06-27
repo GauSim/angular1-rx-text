@@ -3,15 +3,9 @@ import { EventEmitter } from  '../helpers/EventEmitter';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
 import { StoreDispatchers } from './StoreDispatchers';
-
+import { CABIN_AVAILABILITY, CABIN_KIND, MARKETID, CURRENCY } from '../helpers/Enums';
 import { mockAllCabintypes } from './StateMockHelper';
 
-export enum CABIN_AVAILABILITY { available = 1, onRequest = 2 }
-
-export type CABIN_KIND = 'inside'
-    | 'outside'
-    | 'balcony'
-    | 'suite';
 
 export interface ISailSelectModel {
     id: number;
@@ -30,7 +24,7 @@ export interface ICabinSelectModel {
     title: string;
     price:number;
     cabinName:string;
-    currency:string;
+    currency:CURRENCY;
     availability:CABIN_AVAILABILITY;
     ratecode:string;
     imageUrl:string;
@@ -67,6 +61,7 @@ export interface ITranslationCache {
 }
 
 export interface IConfiguration {
+    marketId:MARKETID;
     hasDualCurrency:boolean;
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 }
@@ -81,9 +76,6 @@ export interface IPaxSelection {
 
 export interface IFormState {
     configuration:IConfiguration;
-
-
-
 
     selectedCruiseNid:number;
     selectedSailId:number;
@@ -114,6 +106,7 @@ interface Action {
 function initialState() {
     const translationCache:ITranslationCache = {};
     const configuration:IConfiguration = {
+        marketId: 'de',
         hasDualCurrency: false,
         operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig // OperatorService.defaultPaxAgeConfig;
     };

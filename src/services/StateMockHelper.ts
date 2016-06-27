@@ -1,5 +1,6 @@
 import * as _ from 'underscore';
-import { ISailSelectModel, ITranslationCache, ICabinSelectModel, CABIN_KIND, CABIN_AVAILABILITY, StoreProviders } from './Store';
+import { CABIN_KIND, CABIN_AVAILABILITY } from '../helpers/Enums';
+import { ISailSelectModel, ITranslationCache, ICabinSelectModel, StoreProviders } from './Store';
 
 export function mockAllCabintypes(provider:StoreProviders, translationCache:ITranslationCache, _allSails:ISailSelectModel[]):ICabinSelectModel[] {
 

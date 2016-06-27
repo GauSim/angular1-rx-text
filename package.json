@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV='test' _mocha './dist/tests/unit/index.js' -c --inline-diffs --reporter 'list' --ui 'bdd'",
     "dev": "npm run build && lite-server",
     "postinstall": "typings install",
     "prebuild": "npm run clean",
@@ -18,9 +18,11 @@
   "devDependencies": {
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
+    "mocha": "^2.5.3",
+    "rimraf": "^2.5.2",
+    "should": "^9.0.2",
     "typescript": "^1.8.10",
-    "typings": "^1.0.4",
-    "rimraf": "^2.5.2"
+    "typings": "^1.0.4"
   },
   "dependencies": {
     "angular": "^1.5.7",
