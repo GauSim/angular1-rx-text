@@ -54,10 +54,10 @@ export class StoreProviders {
         const bySail = this.getCabinsBySailId(allCabins, selectedSailId);
 
         const cabinGridSelect:ICabinGridSelectModel = {
-            inside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === 'inside')),
-            outside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === 'outside')),
-            balcony: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === 'balcony')),
-            suite: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === 'suite')),
+            inside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.inside)),
+            outside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.outside)),
+            balcony: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.balcony)),
+            suite: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.suite)),
         };
 
         return cabinGridSelect;
@@ -94,7 +94,7 @@ export class StoreProviders {
         const test_onRequest = this.getTranslation(translationCache, 'on request');
 
         const displayPrice = ((cheapestAvailable as any) != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
-        return `${item.startDate} - ${item.endDate} (${displayPrice})`;
+        return `${item.departureDate} - ${item.arrivalDate} (${displayPrice})`;
     };
 
     formatCabinTitle = (translationCache:ITranslationCache, item:ICabinSelectModel):string => {

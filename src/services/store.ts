@@ -1,17 +1,18 @@
 import * as _ from 'underscore';
 import { EventEmitter } from  '../helpers/EventEmitter';
 import { FareService } from './FareService';
+import { ProductApiService } from './ProductApiService';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
 import { StoreDispatchers } from './StoreDispatchers';
-import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY } from '../helpers/Enums';
+import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
 
 export interface ISailSelectModel {
     id: number;
     cruiseId:number;
     title: string;
-    startDate:string;
-    endDate:string;
+    departureDate:string;
+    arrivalDate:string;
 }
 
 export interface ICabinSelectModel {
@@ -25,8 +26,10 @@ export interface ICabinSelectModel {
     cabinName:string;
     currency:CURRENCY;
     availability:CABIN_AVAILABILITY;
+    maxPassengers:number;
     ratecode:string;
     imageUrl:string;
+    hasFlightIncluded:boolean;
     isAvailable:boolean;
     isSelected:boolean;
 }
@@ -50,6 +53,7 @@ export interface ITranslationCache {
 
 export interface IConfiguration {
     marketId:MARKET_ID;
+    defaultCurrency:CURRENCY;
     hasDualCurrency:boolean;
 }
 
@@ -66,7 +70,6 @@ export interface ICruiseModel {
     title:string;
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     operatorBookingServiceCode:string;
-    hasFlightIncluded:boolean;
 }
 
 export interface IFormState {
@@ -108,7 +111,8 @@ export class Store extends EventEmitter<IFormState> {
 
     constructor(private $q:ng.IQService,
                 private fareService:FareService,
-                private operatorService:OperatorService) {
+                private operatorService:OperatorService,
+                private productApiService:ProductApiService) {
         super();
         this._dispatchers = new StoreDispatchers($q, fareService);
     }
@@ -146,26 +150,69 @@ export class Store extends EventEmitter<IFormState> {
 
         const configuration:IConfiguration = {
             marketId: 'de' as MARKET_ID,
+            defaultCurrency: 'EUR' as CURRENCY,
             hasDualCurrency: false
         };
         const translationCache:ITranslationCache = {
             'from': 'ab',
             'on request': 'auf Anfrage'
         };
-        const cruise:ICruiseModel = {
-            id: 367247,
-            title: 'einmal um die welt',
-            operatorPaxAgeConfig: null,
-            operatorBookingServiceCode: 'msc',
-            hasFlightIncluded: false
-        };
 
-        return this.operatorService.getOperatorConfig('msc')
-            .then(operatorPaxAgeConfig => {
-                return _.extend({}, cruise, {operatorPaxAgeConfig});
+
+        return this.productApiService.getCruise()
+            .then((productApiResponse):{ cruise:ICruiseModel, allCabins:ICabinSelectModel[], allSails:ISailSelectModel[] } => {
+                const allSails = productApiResponse.sails.map((sail):ISailSelectModel => {
+                    return {
+                        id: sail.nid,
+                        cruiseId: productApiResponse.nid,
+                        title: '', // will be overwritten
+                        departureDate: sail.departureDate,
+                        arrivalDate: sail.arrivalDate,
+                    }
+                });
+                const allCabins:ICabinSelectModel[] = productApiResponse.sails.reduce((list, sail) => {
+                    return [...list, ...sail.cabins.map((cabin):ICabinSelectModel => {
+                        return {
+                            id: cabin.nid,
+                            cruiseId: productApiResponse.nid,
+                            sailId: sail.nid,
+                            kindName: CABIN_KIND[cabin.kindId], // will be overwritten
+                            price: 0, // will be overwritten
+                            maxPassengers: cabin.maxPassengers,
+                            currency: configuration.defaultCurrency as CURRENCY,
+                            kind: cabin.kindId as CABIN_KIND,
+                            title: cabin.title, // will be overwritten
+                            availability: CABIN_AVAILABILITY.onRequest,
+                            cabinName: cabin.title,
+                            ratecode: RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG,  // will be overwritten
+                            imageUrl: cabin.thumborImage,
+                            hasFlightIncluded: false, // todo flight field muss be fill,
+                            isAvailable: false,  // will be overwritten
+                            isSelected: false  // will be overwritten
+                        };
+                    })];
+                }, []);
+
+                console.log(allCabins);
+                const cruise = {
+                    id: productApiResponse.nid, //367247,
+                    title: productApiResponse.title,
+                    operatorPaxAgeConfig: null, // will be overwritten
+                    operatorBookingServiceCode: productApiResponse.operator.bookingServiceCode
+                };
+                return {cruise, allCabins, allSails};
             })
-            .then(cruise => {
-                return this._dispatchers.createInitialState(translationCache, configuration, cruise)
+            .then((data):ng.IPromise<{ cruise:ICruiseModel, allCabins:ICabinSelectModel[], allSails:ISailSelectModel[] }> => {
+
+                return this.operatorService.getOperatorConfig(data.cruise.operatorBookingServiceCode)
+                    .then(operatorPaxAgeConfig => {
+                        const cruise = _.extend({}, data.cruise, {operatorPaxAgeConfig}) as ICruiseModel;
+                        return {cruise: cruise, allCabins: data.allCabins, allSails: data.allSails};
+                    })
+            })
+            .then((data):ng.IPromise<IFormState> => {
+                console.log(data);
+                return this._dispatchers.createInitialState(translationCache, configuration, data.cruise, data.allSails, data.allCabins)
             })
             .then(initialState => {
                 return initialState;

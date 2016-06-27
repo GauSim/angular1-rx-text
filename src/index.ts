@@ -13,6 +13,7 @@ import dlDisplaySelectedCabin from './dlDisplaySelectedCabin.componet'
 
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';
 import { FareService } from './services/FareService';
+import { ProductApiService } from './services/ProductApiService';
 import { OperatorService } from './services/OperatorService';
 import { Store } from './services/store';
 
@@ -31,6 +32,7 @@ function registerApp() {
         .component('dlDisplaySelectedCabin', dlDisplaySelectedCabin)
         .service('httpServiceWrapper', HttpServiceWrapper)
         .service('fareService', FareService)
+        .service('productApiService', ProductApiService)
         .service('operatorService', OperatorService)
         .service('store', Store)
         .run(() => {

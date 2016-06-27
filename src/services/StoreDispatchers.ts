@@ -17,7 +17,11 @@ export class StoreDispatchers {
 
     }
 
-    createInitialState = (translationCache:ITranslationCache, configuration:IConfiguration, cruise:ICruiseModel):ng.IPromise<IFormState> => {
+    createInitialState = (translationCache:ITranslationCache,
+                          configuration:IConfiguration,
+                          cruise:ICruiseModel,
+                          _allSails:ISailSelectModel[],
+                          _allCabintypes:ICabinSelectModel[]):ng.IPromise<IFormState> => {
 
         const d = this.$q.defer<IFormState>();
 
@@ -34,16 +38,13 @@ export class StoreDispatchers {
             num_baby: 0,
         };
 
+;
+
+        const selectedSailId = _allSails[0].id; //mockedSails[0].id;
+        const cabinId = _allCabintypes.filter(e => e.sailId === selectedSailId)[0].id;
+
         const providers = new StoreProviders();
-        const mockHelper = new StateMockHelper(providers, translationCache);
-
-        const mockedSails:ISailSelectModel[] = _.range(10).map(id => mockHelper.mockSail(id, selectedCruiseNid, `${id}.01.2012`, `${id}.01.2016`));
-        const mockedCabins = mockHelper.mockAllCabintypes(mockedSails);
-
-        const selectedSailId = mockedSails[0].id;
-        const cabinId = mockedCabins.filter(e => e.sailId === selectedSailId)[0].id;
-
-        const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedPax, selectedSailId, cabinId);
+        const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, _allSails, _allCabintypes, selectedPax, selectedSailId, cabinId);
 
         const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
         const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
@@ -86,7 +87,7 @@ export class StoreDispatchers {
             marketId: currentState.configuration.marketId as MARKET_ID,
             bookingServiceCode: currentState.selectedCruise.operatorBookingServiceCode,
             cruise_id: currentState.selectedCruise.id,
-            flight_included: currentState.selectedCruise.hasFlightIncluded,
+            flight_included: currentState.selectedCabin.hasFlightIncluded,
             num_adult: num_adults,
             num_child: num_child,
             num_junior: num_junior,

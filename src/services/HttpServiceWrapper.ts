@@ -67,8 +67,8 @@ export class HttpServiceWrapper {
         const d = this.$q.defer<T>();
 
 
-        const hash = options.url + JSON.stringify(options.data);
-        console.log('request', hash);
+        const hash = options.url + (options.data ? JSON.stringify(options.data) : '');
+
 
         const doRequest = () => {
             if (this._responseCache.some(e => e.hash === hash)) {
@@ -78,7 +78,7 @@ export class HttpServiceWrapper {
             }
 
             // fetch from remote
-            console.log('doing fetch');
+            console.log('request remote', hash);
             this._runningRequests = [...this._runningRequests, hash];
             return this.$http<T>(options)
                 .then(r => r.data)

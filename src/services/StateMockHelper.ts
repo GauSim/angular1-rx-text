@@ -1,5 +1,5 @@
 import * as _ from 'underscore';
-import { CABIN_KIND, CABIN_AVAILABILITY, MARKET_ID } from '../helpers/Enums';
+import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID } from '../helpers/Enums';
 import { ICruiseModel, ISailSelectModel, ITranslationCache, ICabinSelectModel, IConfiguration, StoreProviders } from './Store';
 import { OperatorService } from './OperatorService';
 
@@ -14,7 +14,8 @@ export class StateMockHelper {
     mockConfig = ():IConfiguration => {
         return {
             marketId: 'de' as MARKET_ID,
-            hasDualCurrency: false
+            hasDualCurrency: false,
+            defaultCurrency: 'EUR' as CURRENCY
         };
     };
 
@@ -23,8 +24,7 @@ export class StateMockHelper {
             id: 367247,
             title: 'einmal um die welt',
             operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
-            operatorBookingServiceCode: 'msc',
-            hasFlightIncluded: false
+            operatorBookingServiceCode: 'msc'
         }
     };
 
@@ -32,14 +32,14 @@ export class StateMockHelper {
         return {
             id: id,
             title: `${startDate} - ${endDate}`,
-            startDate: startDate,
-            endDate: endDate,
+            departureDate: startDate,
+            arrivalDate: endDate,
             cruiseId: cruiseId
         }
     };
 
     mockCabin = (id:number, sailId:number, cruiseId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY, price:number):ICabinSelectModel => {
-        const kindName = kind;
+        const kindName = CABIN_KIND[kind];
         const cabinName = `${kindName} id:${id}`;
 
         const cabin:ICabinSelectModel = {
@@ -51,12 +51,14 @@ export class StateMockHelper {
             kindName: kindName,
             price: price,
             cabinName: cabinName,
+            maxPassengers: 2,
             title: 'Kat balcony (1000 EUR)',
-            currency: 'EUR',
+            currency: 'EUR' as CURRENCY,
             ratecode: (availability === CABIN_AVAILABILITY.available) ? 'RANDOMRATECODE' : 'NO_RATECODE_AVAILABEBLE',
             imageUrl: `https://placeholdit.imgix.net/~text?txtsize=33&txt=${cabinName}&w=230&h=120`,
             isAvailable: (availability === CABIN_AVAILABILITY.available),
-            isSelected: false
+            isSelected: false,
+            hasFlightIncluded: false
         };
 
         cabin.title = this.provider.formatCabinTitle(this.translationCache, cabin);
@@ -73,7 +75,12 @@ export class StateMockHelper {
         allSails.forEach(sail => {
             // add cabins for each kind
             // 'inside', 'outside', 'balcony', 'suite'
-            ['inside', 'outside', 'balcony', 'suite'].forEach((kind:CABIN_KIND) => {
+            [
+                CABIN_KIND.inside,
+                CABIN_KIND.outside,
+                CABIN_KIND.balcony,
+                CABIN_KIND.suite
+            ].forEach((kind:CABIN_KIND) => {
                 // add available and not available cabins
                 [1, 2].forEach(availability => {
 

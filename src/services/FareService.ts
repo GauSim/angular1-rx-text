@@ -42,7 +42,7 @@ export class FareService {
      * @type {string}
      * @private
      */
-    private _FareServiceEndpoint:string = 'http://localhost:9999'; //'http://rates-staging.stagev1internal.dreamlines.de';
+    private _endpoint:string = 'http://localhost:9999'; //'http://rates-staging.stagev1internal.dreamlines.de';
 
 
     constructor(private operatorService:OperatorService,
@@ -65,7 +65,7 @@ export class FareService {
         return this._convertSelectorToFareServiceRequest(selector)
             .then(payload => {
                 return this.httpServiceWrapper.request<IFareServiceResponse[]>({
-                    url: `${this._FareServiceEndpoint}/ratesByCruise`,
+                    url: `${this._endpoint}/ratesByCruise`,
                     method: 'POST',
                     data: payload
                 });

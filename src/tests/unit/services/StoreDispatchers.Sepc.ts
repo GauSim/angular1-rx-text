@@ -39,8 +39,10 @@ describe('StoreDispatchers', () => {
 
             const conf = m.mockConfig();
             const cruise = m.mockCruise();
+            const sails = _.range(10).map(id => m.mockSail(id, cruise.id, `${id}.01.2012`, `${id}.01.2016`));
+            const cabins = m.mockAllCabintypes(sails);
 
-            instance.createInitialState(translationCache, conf, cruise)
+            instance.createInitialState(translationCache, conf, cruise, sails, cabins)
                 .then(initState => {
                     const asyncTests = initState.allSails.map(sail => {
 

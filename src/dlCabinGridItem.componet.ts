@@ -13,7 +13,7 @@ const template = `
 
     <div>
         <div class="text-center">
-            <img data-ng-src="{{ ctrl.cabin.imageUrl }}">
+            <img class="img-responsive" data-ng-src="{{ ctrl.cabin.imageUrl }}">
         </div>
         <div data-ng-show="!ctrl.isLoading" class="text-center">
             {{ ctrl.cabin.title }}
