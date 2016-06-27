@@ -1,11 +1,10 @@
 import * as _ from 'underscore';
 import { EventEmitter } from  '../helpers/EventEmitter';
+import { FareService } from './FareService';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { StoreProviders } from './StoreProviders';
-import { StoreDispatchers } from './StoreDispatchers';
-import { CABIN_AVAILABILITY, CABIN_KIND, MARKETID, CURRENCY } from '../helpers/Enums';
-import { mockAllCabintypes } from './StateMockHelper';
-
+import { StoreDispatchers, initialState } from './StoreDispatchers';
+import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY } from '../helpers/Enums';
 
 export interface ISailSelectModel {
     id: number;
@@ -44,24 +43,13 @@ export interface IPaxSelectModel {
     title: string;
 }
 
-export interface IFareSelector {
-    cruise_id:number;
-    sail_id:number;
-    cabintype_id:number;
-    num_adult: number;
-    num_child: number;
-    num_junior: number;
-    num_baby: number;
-    num_senior: number;
-    flight_included:boolean;
-}
 
 export interface ITranslationCache {
     [key:string]:string;
 }
 
 export interface IConfiguration {
-    marketId:MARKETID;
+    marketId:MARKET_ID;
     hasDualCurrency:boolean;
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 }
@@ -103,75 +91,6 @@ interface Action {
 }
 
 
-function initialState() {
-    const translationCache:ITranslationCache = {};
-    const configuration:IConfiguration = {
-        marketId: 'de',
-        hasDualCurrency: false,
-        operatorPaxAgeConfig: OperatorService.ALLFieldsPaxAgeConfig // OperatorService.defaultPaxAgeConfig;
-    };
-
-    const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
-
-    const selectedPax:IPaxSelection = {
-        num_adults: 2,
-        num_seniors: 0,
-        num_junior: 0,
-        num_child: 0,
-        num_baby: 0,
-    };
-
-    const selectedCruiseNid = 1;
-    const mockedSails:ISailSelectModel[] = [
-        {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016', cruiseId: 1},
-        {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016', cruiseId: 1},
-        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
-        {id: 4, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
-        {id: 5, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
-    ];
-
-    const providers = new StoreProviders();
-
-
-    const mockedCabins = mockAllCabintypes(providers, translationCache, mockedSails);
-
-    const selectedSailId = mockedSails[0].id;
-
-    const cabinId = mockedCabins.filter(e=>e.sailId === selectedSailId)[0].id;
-
-    const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, mockedSails, mockedCabins, selectedPax, selectedSailId, cabinId);
-
-    const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
-    const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
-    const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId);
-
-    const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
-
-
-    const state:IFormState = {
-        selectedSailId,
-        selectedCruiseNid,
-        selectedCabintypeNid,
-
-        selectedCabin,
-        selectedPax,
-
-        allCabintypes,
-        allSails,
-
-        cabinGridSelect,
-        cabintypeSelect,
-        sailSelect,
-
-        paxSelectRange,
-
-        configuration,
-        translationCache
-    };
-
-    return state;
-}
-
 export class Store extends EventEmitter<IFormState> {
 
     isLoading = new EventEmitter<boolean>();
@@ -180,9 +99,10 @@ export class Store extends EventEmitter<IFormState> {
     private _state:IFormState = initialState();
 
     constructor(private $timeout:ng.ITimeoutService,
-                private $q:ng.IQService) {
+                private $q:ng.IQService,
+                private fareService:FareService) {
         super();
-        this._dispatchers = new StoreDispatchers($q);
+        this._dispatchers = new StoreDispatchers($q, fareService);
     }
 
     public setIsLoading = () => this.isLoading.emit(this.runingActions.length > 0);
@@ -190,7 +110,6 @@ export class Store extends EventEmitter<IFormState> {
 
     runingActions = [];
     public dispatchState = ({type, payload}:Action, debug:string = ''):void => {
-
 
         const hash = JSON.stringify({type, payload});
 

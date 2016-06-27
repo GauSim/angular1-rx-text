@@ -11,6 +11,9 @@ import dlSelectCabinGrid from './dlSelectCabinGrid.componet';
 import dlCabinGridItem from './dlCabinGridItem.componet';
 import dlDisplaySelectedCabin from './dlDisplaySelectedCabin.componet'
 
+import { HttpServiceWrapper } from './services/HttpServiceWrapper';
+import { FareService } from './services/FareService';
+import { OperatorService } from './services/OperatorService';
 import { Store } from './services/store';
 
 const MAIN_MODULE_NAME = 'requestFrom';
@@ -26,6 +29,9 @@ function registerApp() {
         .component('dlSelectCabinGrid', dlSelectCabinGrid)
         .component('dlCabinGridItem', dlCabinGridItem)
         .component('dlDisplaySelectedCabin', dlDisplaySelectedCabin)
+        .service('httpServiceWrapper', HttpServiceWrapper)
+        .service('fareService', FareService)
+        .service('operatorService', OperatorService)
         .service('store', Store)
         .run(() => {
             console.log('running');

@@ -1,4 +1,4 @@
-import { IFareSelector }from './store';
+import { IFareSelector }from './FareService';
 
 export interface IOperatorPaxAgeRange {
     max:number;
@@ -50,7 +50,7 @@ export class OperatorService {
     };
 
 
-    createFakePassengerList = (bookingServiceCode:string, market:string, selector:IFareSelector):ng.IPromise<IOperatorPaxMetadata[]> => {
+    createFakePassengerList = (selector:IFareSelector):ng.IPromise<IOperatorPaxMetadata[]> => {
 
         const toMetadata = (age:number):IOperatorPaxMetadata => {
             return {age};
@@ -58,7 +58,7 @@ export class OperatorService {
 
         const { num_senior, num_adult, num_junior, num_child, num_baby } = selector;
 
-        return this._fetchOperatorConfig(bookingServiceCode)
+        return this._fetchOperatorConfig(selector.bookingServiceCode)
             .then(PaxAgeConfig => {
 
                 return [
