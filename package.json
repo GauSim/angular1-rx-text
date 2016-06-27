@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV='test' _mocha './dist/tests/unit/index.js' -c --inline-diffs --reporter 'list' --ui 'bdd'",
+    "test:watch": "npm run test -- --watch",
     "dev": "npm run build && lite-server",
     "postinstall": "typings install",
     "prebuild": "npm run clean",
@@ -16,9 +17,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "angular-mocks": "^1.5.7",
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
     "mocha": "^2.5.3",
+    "q": "^1.4.1",
     "rimraf": "^2.5.2",
     "should": "^9.0.2",
     "typescript": "^1.8.10",

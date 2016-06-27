@@ -14,20 +14,18 @@ const template = `
     <dl-select-sail></dl-select-sail>
 
 
+    <pre>{{ ctrl.state | json }}</pre>
 `;
-// <pre>{{ state | json }}</pre>
 
-interface IdlFormScope extends ng.IScope {
-    state: IFormState;
-}
 
 class Controller implements ng.IComponentController {
 
-    constructor(private $scope:IdlFormScope,
-                private store:Store) {
-        this.$scope.state = store.getLastState();
+    state:IFormState;
+
+    constructor(private store:Store) {
+        this.state = store.getLastState();
         this.store.subscribe(newState => {
-            $scope.state = newState;
+            this.state = newState;
         });
     }
 }

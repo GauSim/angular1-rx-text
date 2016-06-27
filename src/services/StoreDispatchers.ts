@@ -1,10 +1,11 @@
+import * as _ from 'underscore';
 import { OperatorService } from './OperatorService';
 import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailSelectModel, ICabinGridSelectModel, ICabinSelectModel } from './Store';
 import { StoreProviders } from './StoreProviders';
 import { FareService, IFareSelector } from './FareService';
 import { MARKET_ID } from '../helpers/Enums';
 
-import { mockAllCabintypes } from './StateMockHelper';
+import { StateMockHelper } from './StateMockHelper';
 
 export function initialState() {
     const translationCache:ITranslationCache = {};
@@ -25,18 +26,14 @@ export function initialState() {
     };
 
     const selectedCruiseNid = 1;
-    const mockedSails:ISailSelectModel[] = [
-        {id: 1, title: '01.01.2012 - 01.01.2016', startDate: '01.01.2012', endDate: '01.01.2016', cruiseId: 1},
-        {id: 2, title: '02.02.2012 - 02.02.2016', startDate: '02.02.2012', endDate: '02.02.2016', cruiseId: 1},
-        {id: 3, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
-        {id: 4, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1},
-        {id: 5, title: '03.03.2012 - 03.03.2016', startDate: '03.03.2012', endDate: '03.03.2016', cruiseId: 1}
-    ];
+
 
     const providers = new StoreProviders();
+    const mockHelper = new StateMockHelper(providers, translationCache);
 
+    const mockedSails:ISailSelectModel[] = _.range(10).map(id => mockHelper.mockSail(id, selectedCruiseNid, `${id}.01.2012`, `${id}.01.2016`));
 
-    const mockedCabins = mockAllCabintypes(providers, translationCache, mockedSails);
+    const mockedCabins = mockHelper.mockAllCabintypes(mockedSails);
 
     const selectedSailId = mockedSails[0].id;
 
@@ -82,10 +79,9 @@ export class StoreDispatchers {
                 private fareService:FareService) {
 
 
-
     }
 
-    getFares = () => {
+    getFares = ():ng.IPromise<any> => {
         const selector:IFareSelector = {
             marketId: 'de' as MARKET_ID,
             bookingServiceCode: 'msc',
@@ -100,48 +96,52 @@ export class StoreDispatchers {
             flight_included: false
         };
 
-        this.fareService.getFares(selector).then(e => console.log(e));
+        return this.$q.resolve(null);
+        // todo:
+        // return this.fareService.getFares(selector).then(e => (console.log(e), e));
     };
 
 
     setSailId = (currentState:IFormState, _selectedSailId:number):ng.IPromise<IFormState> => {
-        const d = this.$q.defer<IFormState>();
+        return this.getFares()
+            .then(response => {
+
+                // todo in async, get data to update allCabins from remote service
+                const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedPax, _selectedSailId, currentState.selectedCabintypeNid);
+
+                const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
 
-        // todo in async, get data to update allCabins from remote service
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedPax, _selectedSailId, currentState.selectedCabintypeNid);
+                return nextState;
 
-        const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
-
-        d.resolve(nextState);
-        return d.promise;
+            });
     };
 
 
     setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
-        const d = this.$q.defer<IFormState>();
+        return this.getFares()
+            .then(response => {
 
-        // todo in async, get data to update allCabins from remote service
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedPax, currentState.selectedSailId, _selectedCabintypeNid);
+                // todo in async, get data to update allCabins from remote service
+                const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(currentState.translationCache, currentState.allSails, currentState.allCabintypes, currentState.selectedPax, currentState.selectedSailId, _selectedCabintypeNid);
+                const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
-        const nextState = this._providers.mergeState(currentState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
+                return nextState;
 
-        d.resolve(nextState);
-        return d.promise;
+            });
     };
 
 
     setPaxCount = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<IFormState> => {
-        const d = this.$q.defer<IFormState>();
+        return this.getFares()
+            .then(response => {
+                let nextState:IFormState = _.extend({}, currentState, {selectedPax});
+                // todo in async, get data to update allCabins from remote service
+                const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(nextState.translationCache, nextState.allSails, nextState.allCabintypes, selectedPax, nextState.selectedSailId, nextState.selectedCabintypeNid);
+                nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
 
-        let nextState:IFormState = _.extend({}, currentState, {selectedPax});
+                return nextState;
 
-        // todo in async, get data to update allCabins from remote service
-        const { allCabintypes, allSails, selectedSailId, selectedCabintypeNid } = this._providers.recalculateState(nextState.translationCache, nextState.allSails, nextState.allCabintypes, selectedPax, nextState.selectedSailId, nextState.selectedCabintypeNid);
-
-        nextState = this._providers.mergeState(nextState, allSails, allCabintypes, selectedSailId, selectedCabintypeNid);
-
-        d.resolve(nextState);
-        return d.promise;
+            });
     }
 }

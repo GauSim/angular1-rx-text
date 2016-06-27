@@ -72,6 +72,7 @@ export class HttpServiceWrapper {
 
         const doRequest = () => {
             if (this._responseCache.some(e => e.hash === hash)) {
+                console.log('from cache');
                 const response = this._responseCache.filter(e => e.hash === hash)[0].response as T;
                 return this.$q.resolve(response)
             }

@@ -1,11 +1,2 @@
-import * as should from 'should';
-
-
-describe('bla', () => {
-
-    it('blubb', () => {
-
-        should(true).be.ok();
-
-    });
-});
+import './services/StoreProviders.Spec';
+import './services/StoreDispatchers.Sepc';

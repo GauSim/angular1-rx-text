@@ -93,7 +93,7 @@ export class StoreProviders {
         const text_from = this.getTranslation(translationCache, 'from');
         const test_onRequest = this.getTranslation(translationCache, 'on request');
 
-        const displayPrice = (cheapestAvailable) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency} (id:${cheapestAvailable.id})` : test_onRequest;
+        const displayPrice = (cheapestAvailable as number != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
         return `${item.startDate} - ${item.endDate} (${displayPrice})`;
     };
 
@@ -184,9 +184,9 @@ export class StoreProviders {
             allCabintypes: allCabintypes,
             allSails: allSails,
             sailSelect: this.getSailsByCruiseId(allSails, currentState.selectedCruiseNid),
-            cabintypeSelect: this.getCabinsBySailId(allCabintypes, currentState.selectedSailId),
-            cabinGridSelect: this.getCabinGridSelect(allCabintypes, currentState.selectedSailId),
-            selectedCabin: this.getSelectedCabin(allCabintypes, currentState.selectedCabintypeNid),
+            cabintypeSelect: this.getCabinsBySailId(allCabintypes, selectedSailId),
+            cabinGridSelect: this.getCabinGridSelect(allCabintypes, selectedSailId),
+            selectedCabin: this.getSelectedCabin(allCabintypes, selectedCabintypeNid),
         });
     }
 
