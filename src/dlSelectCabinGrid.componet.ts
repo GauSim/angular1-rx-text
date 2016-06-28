@@ -1,4 +1,4 @@
-import { Store, ICabinGridSelectModel, ACTIONS } from './services/store';
+import { Store, ICabinGridSelectViewModel, ACTIONS } from './services/store';
 
 
 const template = `
@@ -40,7 +40,7 @@ const template = `
 class Controller implements ng.IComponentController {
 
     isLoading:boolean;
-    cabinGridSelect:ICabinGridSelectModel;
+    cabinGridSelect:ICabinGridSelectViewModel;
 
     onChange = (payload:number) => {
         this.store

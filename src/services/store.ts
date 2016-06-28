@@ -9,12 +9,12 @@ import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILA
 
 
 export interface IBaseModel {
-    cruise:ICruiseModel,
-    allCabins:ICabinSelectModel[],
-    allSails:ISailSelectModel[]
+    selectedCruise:ICruiseViewModel,
+    allCabins:ICabinViewModel[],
+    allSails:ISailViewModel[]
 }
 
-export interface ISailSelectModel {
+export interface ISailViewModel {
     id: number;
     cruiseId:number;
     title: string;
@@ -22,7 +22,7 @@ export interface ISailSelectModel {
     arrivalDate:string;
 }
 
-export interface ICabinSelectModel {
+export interface ICabinViewModel {
     id: string;
     cabinId:number;
     sailId:number;
@@ -45,11 +45,11 @@ export interface ICabinSelectModel {
     isSelected:boolean;
 }
 
-export interface ICabinGridSelectModel {
-    inside:ICabinSelectModel;
-    outside:ICabinSelectModel;
-    balcony:ICabinSelectModel;
-    suite:ICabinSelectModel;
+export interface ICabinGridSelectViewModel {
+    inside:ICabinViewModel;
+    outside:ICabinViewModel;
+    balcony:ICabinViewModel;
+    suite:ICabinViewModel;
 }
 
 export interface IPaxSelectModel {
@@ -76,30 +76,30 @@ export interface IPaxSelection {
     num_baby:number;
 }
 
-export interface ICruiseModel {
+export interface ICruiseViewModel {
     id:number;
     title:string;
     operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     operatorBookingServiceCode:string;
 }
 
-export interface IFormState {
+export interface IFormState extends IBaseModel{
     configuration:IConfiguration;
 
-    selectedCruiseNid:number;
+    selectedCruiseId:number;
     selectedSailId:number;
-    selectedCabintypeNid:string;
+    selectedCabinId:string;
 
-    selectedCruise:ICruiseModel;
+    selectedCruise:ICruiseViewModel;
     selectedPax:IPaxSelection;
-    selectedCabin:ICabinSelectModel;
+    selectedCabin:ICabinViewModel;
 
-    sailSelect:ISailSelectModel[];
-    cabintypeSelect:ICabinSelectModel[];
-    cabinGridSelect:ICabinGridSelectModel;
+    sailSelect:ISailViewModel[];
+    cabintypeSelect:ICabinViewModel[];
+    cabinGridSelect:ICabinGridSelectViewModel;
 
-    allCabintypes:ICabinSelectModel[];
-    allSails:ISailSelectModel[];
+    allCabins:ICabinViewModel[];
+    allSails:ISailViewModel[];
 
     paxSelectRange:IPaxSelectModel[];
 

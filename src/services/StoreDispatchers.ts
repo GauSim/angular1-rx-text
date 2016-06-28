@@ -2,7 +2,7 @@ import * as _ from 'underscore';
 
 import { FareService, IFareSelector } from './FareService';
 import { OperatorService } from './OperatorService';
-import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailSelectModel, ICabinGridSelectModel, ICabinSelectModel, ICruiseModel, IBaseModel } from './Store';
+import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailViewModel, ICabinGridSelectViewModel, ICabinViewModel, ICruiseViewModel, IBaseModel } from './Store';
 import { StoreProviders } from './StoreProviders';
 import { MARKET_ID, CABIN_AVAILABILITY } from '../helpers/Enums';
 import { ProductApiService } from './ProductApiService';
@@ -30,35 +30,30 @@ export class StoreDispatchers {
 
         return this.updateBaseModel(configuration, selectedPax)
             .then(baseModel => {
-                const selectedCruise:ICruiseModel = baseModel.cruise;
+
+                const selectedCruise:ICruiseViewModel = baseModel.selectedCruise;
                 const _selectedCruiseNid = selectedCruise.id;
                 const _selectedSailId = baseModel.allSails[0].id;
-                const _selectedCabintypeNid = baseModel.allCabins.filter(e => e.sailId === _selectedSailId)[0].id;
+                const _selectedCabinId = baseModel.allCabins.filter(e => e.sailId === _selectedSailId)[0].id;
 
 
-                const { allCabins, allSails, selectedCabintypeNid, selectedSailId, selectedCruiseNid } = this._providers.recalculateState(translationCache, baseModel.allSails, baseModel.allCabins, selectedPax, _selectedCruiseNid, _selectedSailId, _selectedCabintypeNid);
-
-                const sailSelect = this._providers.getSailsByCruiseId(allSails, selectedCruiseNid);
-                const cabintypeSelect = this._providers.getCabinsBySailId(allCabins, selectedSailId);
-                const cabinGridSelect:ICabinGridSelectModel = this._providers.getCabinGridSelect(allCabins, selectedSailId);
-                const selectedCabin:ICabinSelectModel = this._providers.getSelectedCabin(allCabins, selectedCabintypeNid);
+                const { allCabins, allSails, selectedCabinId, selectedSailId, selectedCruiseId } = this._providers.handleStateCollisionsAndFormat(translationCache, baseModel.allSails, baseModel.allCabins, selectedPax, _selectedCruiseNid, _selectedSailId, _selectedCabinId);
 
                 const state:IFormState = {
                     selectedSailId,
-                    selectedCruiseNid,
-                    selectedCabintypeNid,
+                    selectedCruiseId,
+                    selectedCabinId,
 
                     selectedCruise,
-                    selectedCabin,
                     selectedPax,
 
-                    allCabintypes: allCabins,
+                    allCabins,
                     allSails,
 
-                    cabinGridSelect,
-                    cabintypeSelect,
-                    sailSelect,
-
+                    cabinGridSelect: this._providers.getCabinGridSelect(allCabins, selectedSailId),
+                    cabintypeSelect: this._providers.getCabinsBySailId(allCabins, selectedSailId),
+                    sailSelect: this._providers.getSailsByCruiseId(allSails, selectedCruiseId),
+                    selectedCabin: this._providers.getSelectedCabin(allCabins, selectedCabinId),
                     paxSelectRange,
 
                     configuration,
@@ -74,17 +69,15 @@ export class StoreDispatchers {
         return this.productApiService.createBaseModel(configuration)
             .then(baseModelFromProductApi => {
 
-                const { allCabins, cruise, allSails } = baseModelFromProductApi;
+                const { allCabins, selectedCruise, allSails } = baseModelFromProductApi;
 
-                return this.fareService.getFares(cruise.id, configuration, cruise.operatorPaxAgeConfig, selectedPax)
+                return this.fareService.getFares(selectedCruise.id, configuration, selectedCruise.operatorPaxAgeConfig, selectedPax)
                     .then(availableFares => this.fareService.mergeCabinsAndFares(allCabins, availableFares))
                     .then(mergedCabins => {
 
-                        return {allCabins: mergedCabins, cruise, allSails};
-                    })
-
+                        return {allCabins: mergedCabins, selectedCruise, allSails};
+                    });
             });
-
     };
 
 
@@ -92,8 +85,8 @@ export class StoreDispatchers {
         return this.updateBaseModel(currentState.configuration, currentState.selectedPax)
             .then(baseModel => {
 
-                const { allCabins, allSails, selectedSailId, selectedCabintypeNid, selectedCruiseNid } = this._providers.recalculateState(currentState.translationCache, baseModel.allSails, baseModel.allCabins, currentState.selectedPax, currentState.selectedCruiseNid, _selectedSailId, currentState.selectedCabintypeNid);
-                const nextState = this._providers.mergeState(currentState, allSails, allCabins, selectedCruiseNid, selectedSailId, selectedCabintypeNid);
+                const { allCabins, allSails, selectedSailId, selectedCabinId, selectedCruiseId } = this._providers.handleStateCollisionsAndFormat(currentState.translationCache, baseModel.allSails, baseModel.allCabins, currentState.selectedPax, currentState.selectedCruiseId, _selectedSailId, currentState.selectedCabinId);
+                const nextState = this._providers.mergeState(currentState, allSails, allCabins, selectedCruiseId, selectedSailId, selectedCabinId);
 
                 return nextState;
 
@@ -105,8 +98,8 @@ export class StoreDispatchers {
         return this.updateBaseModel(currentState.configuration, currentState.selectedPax)
             .then(baseModel => {
 
-                const { allCabins, allSails, selectedSailId, selectedCabintypeNid, selectedCruiseNid } = this._providers.recalculateState(currentState.translationCache, baseModel.allSails, baseModel.allCabins, currentState.selectedPax, currentState.selectedCruiseNid, currentState.selectedSailId, _selectedCabintypeNid);
-                const nextState = this._providers.mergeState(currentState, allSails, allCabins, selectedCruiseNid, selectedSailId, selectedCabintypeNid);
+                const { allCabins, allSails, selectedSailId, selectedCabinId, selectedCruiseId } = this._providers.handleStateCollisionsAndFormat(currentState.translationCache, baseModel.allSails, baseModel.allCabins, currentState.selectedPax, currentState.selectedCruiseId, currentState.selectedSailId, _selectedCabintypeNid);
+                const nextState = this._providers.mergeState(currentState, allSails, allCabins, selectedCruiseId, selectedSailId, selectedCabinId);
 
                 return nextState;
             });
@@ -120,8 +113,8 @@ export class StoreDispatchers {
                 // todo move this into mergeState
                 let nextState:IFormState = _.extend({}, currentState, {selectedPax});
 
-                const { allCabins, allSails, selectedSailId, selectedCabintypeNid, selectedCruiseNid } = this._providers.recalculateState(nextState.translationCache, baseModel.allSails, baseModel.allCabins, selectedPax, currentState.selectedCruiseNid, nextState.selectedSailId, nextState.selectedCabintypeNid);
-                nextState = this._providers.mergeState(nextState, allSails, allCabins, selectedCruiseNid, selectedSailId, selectedCabintypeNid);
+                const { allCabins, allSails, selectedSailId, selectedCabinId, selectedCruiseId } = this._providers.handleStateCollisionsAndFormat(nextState.translationCache, baseModel.allSails, baseModel.allCabins, selectedPax, currentState.selectedCruiseId, nextState.selectedSailId, nextState.selectedCabinId);
+                nextState = this._providers.mergeState(nextState, allSails, allCabins, selectedCruiseId, selectedSailId, selectedCabinId);
 
                 return nextState;
 

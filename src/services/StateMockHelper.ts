@@ -1,6 +1,6 @@
 import * as _ from 'underscore';
 import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
-import { ICruiseModel, ISailSelectModel, ITranslationCache, ICabinSelectModel, IConfiguration, StoreProviders } from './Store';
+import { ICruiseViewModel, ISailViewModel, ITranslationCache, ICabinViewModel, IConfiguration, StoreProviders } from './Store';
 import { OperatorService } from './OperatorService';
 
 
@@ -19,7 +19,7 @@ export class StateMockHelper {
         };
     };
 
-    mockCruise = ():ICruiseModel => {
+    mockCruise = ():ICruiseViewModel => {
         return {
             id: 367247,
             title: 'einmal um die welt',
@@ -28,7 +28,7 @@ export class StateMockHelper {
         }
     };
 
-    mockSail = (id:number, cruiseId:number, startDate:string, endDate:string):ISailSelectModel => {
+    mockSail = (id:number, cruiseId:number, startDate:string, endDate:string):ISailViewModel => {
         return {
             id: id,
             title: `${startDate} - ${endDate}`,
@@ -38,11 +38,11 @@ export class StateMockHelper {
         }
     };
 
-    mockCabin = (id:number, sailId:number, cruiseId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY, price:number):ICabinSelectModel => {
+    mockCabin = (id:number, sailId:number, cruiseId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY, price:number):ICabinViewModel => {
         const kindName = CABIN_KIND[kind];
         const cabinName = `${kindName} id:${id}`;
 
-        const cabin:ICabinSelectModel = {
+        const cabin:ICabinViewModel = {
             id: `${cruiseId}_${sailId}_${id}`,
             cabinId: id,
             sailId: sailId,
@@ -70,12 +70,12 @@ export class StateMockHelper {
     };
 
 
-    mockAllCabintypes = (_allSails:ISailSelectModel[]):ICabinSelectModel[] => {
+    mockAllCabintypes = (_allSails:ISailViewModel[]):ICabinViewModel[] => {
 
         const allSails = [... _allSails];
 
 
-        const allCabintypes:ICabinSelectModel[] = [];
+        const allCabintypes:ICabinViewModel[] = [];
         allSails.forEach(sail => {
             // add cabins for each kind
             // 'inside', 'outside', 'balcony', 'suite'

@@ -1,7 +1,7 @@
 import { MARKET_ID, CURRENCY, CABIN_AVAILABILITY } from '../helpers/Enums';
 import { IOperatorPaxMetadata, IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { HttpServiceWrapper } from './HttpServiceWrapper';
-import { IPaxSelection, IConfiguration, ICruiseModel, ICabinSelectModel } from './Store';
+import { IPaxSelection, IConfiguration, ICruiseViewModel, ICabinViewModel } from './Store';
 
 export interface IFareSelector {
     marketId:MARKET_ID;
@@ -93,9 +93,9 @@ export class FareService {
             });
     };
 
-    mergeCabinsAndFares = (allCabins:ICabinSelectModel[], availableFares:IFareServiceResponse[]):ICabinSelectModel[]=> {
+    mergeCabinsAndFares = (allCabins:ICabinViewModel[], availableFares:IFareServiceResponse[]):ICabinViewModel[]=> {
 
-        return allCabins.reduce((list, item:ICabinSelectModel)=> {
+        return allCabins.reduce((list, item:ICabinViewModel)=> {
             const rates = availableFares.filter(e => e.cruise_id === item.cruiseId && e.sail_id === item.sailId && e.cabintype_id === item.cabinId);
 
             if (rates && rates[0]) {

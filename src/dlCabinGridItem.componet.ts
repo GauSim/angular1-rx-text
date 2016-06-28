@@ -1,4 +1,4 @@
-import { Store, ICabinSelectModel, ACTIONS } from './services/store';
+import { Store, ICabinViewModel, ACTIONS } from './services/store';
 
 
 const template = `
@@ -34,7 +34,7 @@ const template = `
 class Controller implements ng.IComponentController {
 
     isLoading:boolean;
-    cabin:ICabinSelectModel;
+    cabin:ICabinViewModel;
 
     constructor(private store:Store, $scope:ng.IScope) {
 

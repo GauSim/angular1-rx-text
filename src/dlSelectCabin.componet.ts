@@ -1,4 +1,4 @@
-import { Store, ICabinSelectModel, ACTIONS } from './services/store';
+import { Store, ICabinViewModel, ACTIONS } from './services/store';
 
 const template = `
 <span data-ng-show="ctrl.isLoading" class="loadingIndicator"></span>
@@ -6,8 +6,8 @@ const template = `
         title=""
         data-ng-disabled="ctrl.isLoading"
         data-ng-if="ctrl.cabintypeSelect.length"
-        data-ng-model="ctrl.selectedCabintypeNid"
-        data-ng-change="ctrl.onChange(ctrl.selectedCabintypeNid)"
+        data-ng-model="ctrl.selectedCabinId"
+        data-ng-change="ctrl.onChange(ctrl.selectedCabinId)"
         data-ng-options="cabintype.id as cabintype.title group by cabintype.kindName for cabintype in ctrl.cabintypeSelect">
 </select>
 `;
@@ -16,8 +16,8 @@ class Controller implements ng.IComponentController {
 
 
     isLoading:boolean;
-    selectedCabintypeNid:string;
-    cabintypeSelect:ICabinSelectModel[];
+    selectedCabinId:string;
+    cabintypeSelect:ICabinViewModel[];
 
 
     onChange = (payload:number) => {
@@ -33,11 +33,11 @@ class Controller implements ng.IComponentController {
         store.isLoading.subscribe(e => (this.isLoading = e));
 
         store.getLastState().then(state => {
-            this.selectedCabintypeNid = state.selectedCabintypeNid;
+            this.selectedCabinId = state.selectedCabinId;
             this.cabintypeSelect = state.cabintypeSelect;
         });
-        store.subscribe(({ selectedCabintypeNid, cabintypeSelect}) => {
-            this.selectedCabintypeNid = selectedCabintypeNid;
+        store.subscribe(({ selectedCabinId, cabintypeSelect}) => {
+            this.selectedCabinId = selectedCabinId;
             this.cabintypeSelect = cabintypeSelect;
         });
 
