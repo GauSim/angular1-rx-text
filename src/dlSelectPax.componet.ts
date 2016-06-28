@@ -111,7 +111,7 @@ class Controller implements ng.IComponentController {
 
     onSelect = (fieldName:string, value:number) => {
 
-        if (!value) {
+        if (value == undefined) {
             return;
         }
 

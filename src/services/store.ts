@@ -16,7 +16,8 @@ export interface ISailSelectModel {
 }
 
 export interface ICabinSelectModel {
-    id: number;
+    id: string;
+    cabinId:number;
     sailId:number;
     cruiseId:number;
     kind: CABIN_KIND;
@@ -26,8 +27,11 @@ export interface ICabinSelectModel {
     cabinName:string;
     currency:CURRENCY;
     availability:CABIN_AVAILABILITY;
+    bedQuantity:number;
     maxPassengers:number;
-    ratecode:string;
+    rateCode:string;
+    rateSource:string;
+    rateLastUpdate:number;
     imageUrl:string;
     hasFlightIncluded:boolean;
     isAvailable:boolean;
@@ -77,7 +81,7 @@ export interface IFormState {
 
     selectedCruiseNid:number;
     selectedSailId:number;
-    selectedCabintypeNid:number;
+    selectedCabintypeNid:string;
 
     selectedCruise:ICruiseModel;
     selectedPax:IPaxSelection;
@@ -111,10 +115,9 @@ export class Store extends EventEmitter<IFormState> {
 
     constructor(private $q:ng.IQService,
                 private fareService:FareService,
-                private operatorService:OperatorService,
                 private productApiService:ProductApiService) {
         super();
-        this._dispatchers = new StoreDispatchers($q, fareService);
+        this._dispatchers = new StoreDispatchers($q, fareService, productApiService);
     }
 
     public emitIsLoading = (force:boolean = false) => this.isLoading.emit(this.getIsLoading());
@@ -155,65 +158,14 @@ export class Store extends EventEmitter<IFormState> {
         };
         const translationCache:ITranslationCache = {
             'from': 'ab',
-            'on request': 'auf Anfrage'
+            'on request': 'auf Anfrage',
+            'person': 'Person',
+            'persons': 'Personen',
+            'max.': 'max.'
         };
 
 
-        return this.productApiService.getCruise()
-            .then((productApiResponse):{ cruise:ICruiseModel, allCabins:ICabinSelectModel[], allSails:ISailSelectModel[] } => {
-                const allSails = productApiResponse.sails.map((sail):ISailSelectModel => {
-                    return {
-                        id: sail.nid,
-                        cruiseId: productApiResponse.nid,
-                        title: '', // will be overwritten
-                        departureDate: sail.departureDate,
-                        arrivalDate: sail.arrivalDate,
-                    }
-                });
-                const allCabins:ICabinSelectModel[] = productApiResponse.sails.reduce((list, sail) => {
-                    return [...list, ...sail.cabins.map((cabin):ICabinSelectModel => {
-                        return {
-                            id: cabin.nid,
-                            cruiseId: productApiResponse.nid,
-                            sailId: sail.nid,
-                            kindName: CABIN_KIND[cabin.kindId], // will be overwritten
-                            price: 0, // will be overwritten
-                            maxPassengers: cabin.maxPassengers,
-                            currency: configuration.defaultCurrency as CURRENCY,
-                            kind: cabin.kindId as CABIN_KIND,
-                            title: cabin.title, // will be overwritten
-                            availability: CABIN_AVAILABILITY.onRequest,
-                            cabinName: cabin.title,
-                            ratecode: RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG,  // will be overwritten
-                            imageUrl: cabin.thumborImage,
-                            hasFlightIncluded: false, // todo flight field muss be fill,
-                            isAvailable: false,  // will be overwritten
-                            isSelected: false  // will be overwritten
-                        };
-                    })];
-                }, []);
-
-                console.log(allCabins);
-                const cruise = {
-                    id: productApiResponse.nid, //367247,
-                    title: productApiResponse.title,
-                    operatorPaxAgeConfig: null, // will be overwritten
-                    operatorBookingServiceCode: productApiResponse.operator.bookingServiceCode
-                };
-                return {cruise, allCabins, allSails};
-            })
-            .then((data):ng.IPromise<{ cruise:ICruiseModel, allCabins:ICabinSelectModel[], allSails:ISailSelectModel[] }> => {
-
-                return this.operatorService.getOperatorConfig(data.cruise.operatorBookingServiceCode)
-                    .then(operatorPaxAgeConfig => {
-                        const cruise = _.extend({}, data.cruise, {operatorPaxAgeConfig}) as ICruiseModel;
-                        return {cruise: cruise, allCabins: data.allCabins, allSails: data.allSails};
-                    })
-            })
-            .then((data):ng.IPromise<IFormState> => {
-                console.log(data);
-                return this._dispatchers.createInitialState(translationCache, configuration, data.cruise, data.allSails, data.allCabins)
-            })
+        return this._dispatchers.createInitialState(translationCache, configuration)
             .then(initialState => {
                 return initialState;
             })

@@ -36,16 +36,23 @@ export class StoreProviders {
 
     getTranslation = (translationCache:ITranslationCache, key:string) => translationCache[key] ? translationCache[key] : key;
 
-    getCheapestAvailableOrAlternativeCabin = (list:ICabinSelectModel[]):ICabinSelectModel => {
+    getCheapestAvailableOrAlternativeCabin = (list:ICabinSelectModel[], kind:CABIN_KIND):ICabinSelectModel => {
 
-        const cheapestAvailable = this.getCheapestAvailableCabin(list); // will return Infinity if no cabin is available
+        const byKind = list.filter(e => e.kind === kind);
+
+        const cheapestAvailable = this.getCheapestAvailableCabin(byKind); // will return Infinity if no cabin is available
 
         if ((cheapestAvailable as any) !== Infinity) {
             return cheapestAvailable;
         } else {
 
-            const cheapestNotAvailableCabinForKind = this.getCheapestCabin(list); // will return Infinity if no cabin is available
-            return cheapestNotAvailableCabinForKind ? cheapestNotAvailableCabinForKind : null;
+            const cheapest = this.getCheapestCabin(byKind); // will return Infinity if no cabin is available
+
+            if ((cheapestAvailable as any) !== Infinity) {
+                return cheapest;
+            } else {
+                return byKind[0] ? byKind[0] : null;
+            }
         }
     };
 
@@ -54,16 +61,16 @@ export class StoreProviders {
         const bySail = this.getCabinsBySailId(allCabins, selectedSailId);
 
         const cabinGridSelect:ICabinGridSelectModel = {
-            inside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.inside)),
-            outside: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.outside)),
-            balcony: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.balcony)),
-            suite: this.getCheapestAvailableOrAlternativeCabin(bySail.filter(e => e.kind === CABIN_KIND.suite)),
+            inside: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.inside),
+            outside: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.outside),
+            balcony: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.balcony),
+            suite: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.suite),
         };
 
         return cabinGridSelect;
     };
 
-    getSelectedCabin = (allCabins:ICabinSelectModel[], selectedCabintypeNid:number):ICabinSelectModel => {
+    getSelectedCabin = (allCabins:ICabinSelectModel[], selectedCabintypeNid:string):ICabinSelectModel => {
         const selectedCabin = allCabins.filter(e=> e.id === selectedCabintypeNid)[0];
         if (!selectedCabin) {
             console.log(allCabins);
@@ -98,9 +105,13 @@ export class StoreProviders {
     };
 
     formatCabinTitle = (translationCache:ITranslationCache, item:ICabinSelectModel):string => {
-        const test_onRequest = this.getTranslation(translationCache, 'on request');
-        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : test_onRequest;
-        return `${item.cabinName} (${displayPrice})`;
+        const text_onRequest = this.getTranslation(translationCache, 'on request');
+        const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : text_onRequest;
+        const text_max = this.getTranslation(translationCache, 'max.');
+        const text_person = this.getTranslation(translationCache, 'person');
+        const text_persons = this.getTranslation(translationCache, 'persons');
+        const displayMaxPax = (item.availability === CABIN_AVAILABILITY.available) ? `${text_max} ${item.maxPassengers} ${item.maxPassengers === 1 ? text_person : text_persons}` : '';
+        return `${item.cabinName} ${item.id} (${displayPrice}) ${displayMaxPax}`;
     };
 
     private _formatSails = (translationCache:ITranslationCache, allCabins:ICabinSelectModel[], sails:ISailSelectModel[]):ISailSelectModel[] => {
@@ -110,7 +121,7 @@ export class StoreProviders {
         }, []);
     };
 
-    private _formatCabins = (translationCache:ITranslationCache, cabins:ICabinSelectModel[], selectedPax:IPaxSelection, selectedCabintypeNid:number):ICabinSelectModel[] => {
+    private _formatCabins = (translationCache:ITranslationCache, cabins:ICabinSelectModel[], selectedPax:IPaxSelection, selectedCabintypeNid:string):ICabinSelectModel[] => {
 
         if (!cabins.length) {
             return [];
@@ -151,7 +162,7 @@ export class StoreProviders {
                         _allCabintypes:ICabinSelectModel[],
                         _selectedPax:IPaxSelection,
                         _selectedSailId:number,
-                        _selectedCabintypeNid:number):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:number} => {
+                        _selectedCabintypeNid:string):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:string} => {
 
         const bySail = this.getCabinsBySailId(_allCabintypes, _selectedSailId);
 
@@ -160,10 +171,15 @@ export class StoreProviders {
 
         // todo more collisions detection like pax fit in cabin
         if (!bySail.some(e => e.id === _selectedCabintypeNid)) {
-            const alternative = this.getCheapestAvailableOrAlternativeCabin(bySail);
-            selectedCabintypeNid = alternative.id;
-        }
+            const alternativeKind = this.getSelectedCabin(_allCabintypes, _selectedCabintypeNid).kind;
+            const alternative = this.getCheapestAvailableOrAlternativeCabin(bySail, alternativeKind);
+            if (alternative) {
+                selectedCabintypeNid = alternative.id;
+            } else {
+                selectedCabintypeNid = bySail[0].id;
+            }
 
+        }
 
         const allCabintypes = this._formatCabins(translationCache, _allCabintypes, _selectedPax, selectedCabintypeNid);
 
@@ -177,7 +193,7 @@ export class StoreProviders {
         };
     };
 
-    mergeState = (currentState:IFormState, allSails:ISailSelectModel[], allCabintypes:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:number):IFormState => {
+    mergeState = (currentState:IFormState, allSails:ISailSelectModel[], allCabintypes:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:string):IFormState => {
         return _.extend({}, currentState, {
             selectedCabintypeNid: selectedCabintypeNid,
             selectedSailId: selectedSailId,

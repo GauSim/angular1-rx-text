@@ -32,8 +32,8 @@ export class OperatorService {
     };
 
     public static ALLFieldsPaxAgeConfig:IOperatorPaxAgeConfig = {
-        senior: {min: 60, max: AGE_MAX, isSupported: true},
-        adult: {min: 18, max: 60, isSupported: true},
+        senior: {min: Infinity, max: Infinity, isSupported: false},
+        adult: {min: 18, max: AGE_MAX, isSupported: true},
         junior: {min: 12, max: 18, isSupported: true},
         child: {min: 1, max: 12, isSupported: true},
         baby: {min: 0, max: 1, isSupported: true}
@@ -47,7 +47,7 @@ export class OperatorService {
     getOperatorConfig = (bookingServiceCode:string):ng.IPromise<IOperatorPaxAgeConfig> => {
         // todo fetch from booking api the config for given OP
         // see https://netvacation.atlassian.net/browse/DBF-1352
-        return this.$q.resolve(OperatorService.defaultPaxAgeConfig);
+        return this.$q.resolve(OperatorService.ALLFieldsPaxAgeConfig);
     };
 
 

@@ -5,78 +5,73 @@ import { OperatorService } from './OperatorService';
 import { IFormState, IPaxSelection, ITranslationCache, IConfiguration, ISailSelectModel, ICabinGridSelectModel, ICabinSelectModel, ICruiseModel } from './Store';
 import { StoreProviders } from './StoreProviders';
 import { MARKET_ID, CABIN_AVAILABILITY } from '../helpers/Enums';
-import { StateMockHelper } from './StateMockHelper';
-
+import { ProductApiService } from './ProductApiService';
 
 export class StoreDispatchers {
 
     private _providers = new StoreProviders();
 
     constructor(private $q:ng.IQService,
-                private fareService:FareService) {
+                private fareService:FareService,
+                private productApiService:ProductApiService) {
 
     }
 
-    createInitialState = (translationCache:ITranslationCache,
-                          configuration:IConfiguration,
-                          cruise:ICruiseModel,
-                          _allSails:ISailSelectModel[],
-                          _allCabintypes:ICabinSelectModel[]):ng.IPromise<IFormState> => {
+    createInitialState = (translationCache:ITranslationCache, configuration:IConfiguration):ng.IPromise<IFormState> => {
 
-        const d = this.$q.defer<IFormState>();
+        return this.productApiService.getCruise(configuration)
+            .then(productAPI => {
+                const selectedCruise:ICruiseModel = productAPI.cruise;
+                const _allSails:ISailSelectModel[] = productAPI.allSails;
+                const _allCabintypes:ICabinSelectModel[] = productAPI.allCabins;
 
-        const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
+                const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
 
-        const selectedCruiseNid = cruise.id;
-        const selectedCruise:ICruiseModel = cruise;
-
-        const selectedPax:IPaxSelection = {
-            num_adults: (selectedCruise.operatorPaxAgeConfig.adult.isSupported ? 2 : 0),
-            num_seniors: 0,
-            num_junior: 0,
-            num_child: 0,
-            num_baby: 0,
-        };
-
-;
-
-        const selectedSailId = _allSails[0].id; //mockedSails[0].id;
-        const cabinId = _allCabintypes.filter(e => e.sailId === selectedSailId)[0].id;
-
-        const providers = new StoreProviders();
-        const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, _allSails, _allCabintypes, selectedPax, selectedSailId, cabinId);
-
-        const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
-        const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
-        const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId);
-        const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
+                const selectedCruiseNid = selectedCruise.id;
+                const selectedSailId = _allSails[0].id;
+                const cabinId = _allCabintypes.filter(e => e.sailId === selectedSailId)[0].id;
 
 
-        const state:IFormState = {
-            selectedSailId,
-            selectedCruiseNid,
-            selectedCabintypeNid,
+                const selectedPax:IPaxSelection = {
+                    num_adults: (selectedCruise.operatorPaxAgeConfig.adult.isSupported ? 2 : 0),
+                    num_seniors: 0,
+                    num_junior: 0,
+                    num_child: 0,
+                    num_baby: 0,
+                };
 
-            selectedCruise,
-            selectedCabin,
-            selectedPax,
+                const providers = new StoreProviders();
+                const { allCabintypes, allSails, selectedCabintypeNid } = providers.recalculateState(translationCache, _allSails, _allCabintypes, selectedPax, selectedSailId, cabinId);
 
-            allCabintypes,
-            allSails,
+                const sailSelect = providers.getSailsByCruiseId(allSails, selectedCruiseNid);
+                const cabintypeSelect = providers.getCabinsBySailId(allCabintypes, selectedSailId);
+                const cabinGridSelect:ICabinGridSelectModel = providers.getCabinGridSelect(allCabintypes, selectedSailId);
+                const selectedCabin:ICabinSelectModel = providers.getSelectedCabin(allCabintypes, selectedCabintypeNid);
 
-            cabinGridSelect,
-            cabintypeSelect,
-            sailSelect,
+                const state:IFormState = {
+                    selectedSailId,
+                    selectedCruiseNid,
+                    selectedCabintypeNid,
 
-            paxSelectRange,
+                    selectedCruise,
+                    selectedCabin,
+                    selectedPax,
 
-            configuration,
-            translationCache
-        };
+                    allCabintypes,
+                    allSails,
 
-        d.resolve(state);
+                    cabinGridSelect,
+                    cabintypeSelect,
+                    sailSelect,
 
-        return d.promise;
+                    paxSelectRange,
+
+                    configuration,
+                    translationCache
+                };
+
+                return state;
+            });
     };
 
     getAllCabins = (currentState:IFormState, selectedPax:IPaxSelection):ng.IPromise<ICabinSelectModel[]> => {
@@ -97,8 +92,27 @@ export class StoreDispatchers {
 
         return this.fareService.getFares(selector)
             .then(availableFares => {
-                // todo merge currentState.allCabintypes and availableFares
-                return [... currentState.allCabintypes];
+                return this.productApiService.getCruise(currentState.configuration)
+                    .then(({allCabins}) => {
+                        return allCabins.reduce((list, item:ICabinSelectModel)=> {
+                            const rates = availableFares.filter(e=>e.cruise_id === item.cruiseId && e.sail_id === item.sailId && e.cabintype_id === item.cabinId);
+                            if (rates && rates[0]) {
+                                const rate = rates[0];
+                                item.rateCode = rate.rate_code;
+                                item.rateLastUpdate = rate.updated;
+                                item.rateSource = rate.source;
+                                item.price = rate.cabin_price;
+                                item.isAvailable = true;
+                                item.availability = CABIN_AVAILABILITY.available;
+                                item.currency = rate.currency;
+                                item.hasFlightIncluded = rate.flight_included;
+                                item.maxPassengers = rate.num_adult + rate.num_junior + rate.num_child + rate.num_baby;
+                            }
+                            return [...list, item];
+                        }, []);
+                    })
+
+
             });
     };
 
@@ -117,7 +131,7 @@ export class StoreDispatchers {
     };
 
 
-    setCabinId = (currentState:IFormState, _selectedCabintypeNid:number):ng.IPromise<IFormState> => {
+    setCabinId = (currentState:IFormState, _selectedCabintypeNid:string):ng.IPromise<IFormState> => {
         return this.getAllCabins(currentState, currentState.selectedPax)
             .then(_allCabintypes => {
 

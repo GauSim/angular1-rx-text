@@ -1,5 +1,5 @@
 import * as _ from 'underscore';
-import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID } from '../helpers/Enums';
+import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
 import { ICruiseModel, ISailSelectModel, ITranslationCache, ICabinSelectModel, IConfiguration, StoreProviders } from './Store';
 import { OperatorService } from './OperatorService';
 
@@ -43,7 +43,8 @@ export class StateMockHelper {
         const cabinName = `${kindName} id:${id}`;
 
         const cabin:ICabinSelectModel = {
-            id: id,
+            id: `${cruiseId}_${sailId}_${id}`,
+            cabinId: id,
             sailId: sailId,
             cruiseId: cruiseId,
             kind: kind,
@@ -52,9 +53,12 @@ export class StateMockHelper {
             price: price,
             cabinName: cabinName,
             maxPassengers: 2,
-            title: 'Kat balcony (1000 EUR)',
+            bedQuantity: 2,
+            title: 'Kat balcony (1000 EUR)', // will be overwritten
             currency: 'EUR' as CURRENCY,
-            ratecode: (availability === CABIN_AVAILABILITY.available) ? 'RANDOMRATECODE' : 'NO_RATECODE_AVAILABEBLE',
+            rateCode: (availability === CABIN_AVAILABILITY.available) ? RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG : 'NO_RATECODE_AVAILABEBLE',
+            rateSource: RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG,
+            rateLastUpdate: Date.now(),
             imageUrl: `https://placeholdit.imgix.net/~text?txtsize=33&txt=${cabinName}&w=230&h=120`,
             isAvailable: (availability === CABIN_AVAILABILITY.available),
             isSelected: false,

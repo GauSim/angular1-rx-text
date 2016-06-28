@@ -1,5 +1,6 @@
 import { FareService } from '../../../services/FareService';
 import { OperatorService } from '../../../services/OperatorService';
+import { ProductApiService } from '../../../services/ProductApiService';
 import { HttpServiceWrapper } from '../../../services/HttpServiceWrapper';
 import { StoreDispatchers } from '../../../services/StoreDispatchers';
 import { StoreProviders } from '../../../services/StoreProviders';
@@ -30,19 +31,23 @@ describe('StoreDispatchers', () => {
         const operatorService = new OperatorService($q);
         const httpServiceWrapper = new HttpServiceWrapper($q, $http);
         const fareService = new FareService(operatorService, httpServiceWrapper);
+        const productApiService = new ProductApiService(httpServiceWrapper, operatorService);
+        instance = new StoreDispatchers($q, fareService, productApiService);
 
-        instance = new StoreDispatchers($q, fareService);
+        /*
+         const cruise = m.mockCruise();
+         const sails = _.range(10).map(id => m.mockSail(id, cruise.id, `${id}.01.2012`, `${id}.01.2016`));
+         const cabins = m.mockAllCabintypes(sails);
+         */
+
     });
     describe('setSailId', () => {
 
         it('should set sailId', (done) => {
 
             const conf = m.mockConfig();
-            const cruise = m.mockCruise();
-            const sails = _.range(10).map(id => m.mockSail(id, cruise.id, `${id}.01.2012`, `${id}.01.2016`));
-            const cabins = m.mockAllCabintypes(sails);
 
-            instance.createInitialState(translationCache, conf, cruise, sails, cabins)
+            instance.createInitialState(translationCache, conf)
                 .then(initState => {
                     const asyncTests = initState.allSails.map(sail => {
 

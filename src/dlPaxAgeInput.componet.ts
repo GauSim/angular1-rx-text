@@ -33,9 +33,11 @@ class Controller implements ng.IComponentController {
         });
 
         $scope.$watch('ctrl.selectedValue', (value:number, last) => {
-            if (!value || value === last) {
+
+            if (value == undefined || value === last) {
                 return;
             }
+
             // commit value changes to parent
             this.onSelect({value, fieldName: this.fieldName});
         });

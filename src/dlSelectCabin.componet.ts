@@ -16,7 +16,7 @@ class Controller implements ng.IComponentController {
 
 
     isLoading:boolean;
-    selectedCabintypeNid:number;
+    selectedCabintypeNid:string;
     cabintypeSelect:ICabinSelectModel[];
 
 

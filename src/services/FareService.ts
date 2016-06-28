@@ -30,6 +30,8 @@ export interface IFareServiceResponse {
     num_junior:number;
     num_baby:number;
     rate_code:string;
+    updated:number;
+    source:string;
     cabin_price:number;
     currency: CURRENCY;
 }
@@ -68,6 +70,13 @@ export class FareService {
                     url: `${this._endpoint}/ratesByCruise`,
                     method: 'POST',
                     data: payload
+                }).then((list:IFareServiceResponse[]) => {
+                    return list.filter(e => {
+                        return e.num_adult == selector.num_adult &&
+                            e.num_junior == selector.num_junior &&
+                            e.num_child == selector.num_child &&
+                            e.num_baby == selector.num_baby
+                    })
                 });
             });
     };
