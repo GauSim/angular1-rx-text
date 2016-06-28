@@ -1,5 +1,5 @@
 import { HttpServiceWrapper } from './HttpServiceWrapper';
-import { ICruiseModel, ICabinSelectModel, ISailSelectModel, IConfiguration } from './Store';
+import { ICruiseModel, ICabinSelectModel, ISailSelectModel, IConfiguration, IBaseModel } from './Store';
 import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 
@@ -27,11 +27,6 @@ interface ProductApiCabin {
     thumborImage:string;
 }
 
-interface IMappedResponse {
-    cruise:ICruiseModel,
-    allCabins:ICabinSelectModel[],
-    allSails:ISailSelectModel[]
-}
 
 export class ProductApiService {
 
@@ -41,7 +36,7 @@ export class ProductApiService {
                 private operatorService:OperatorService) {
     }
 
-    private _mapAllSails = (productApiResponse:ProductApiResponse):ISailSelectModel[] => {
+    private _mapToAllSails = (productApiResponse:ProductApiResponse):ISailSelectModel[] => {
         return productApiResponse.sails.map((sail):ISailSelectModel => {
             return {
                 id: sail.nid,
@@ -53,7 +48,7 @@ export class ProductApiService {
         });
     };
 
-    private _mapCabin = (configuration:IConfiguration, cruiseId:number, sailId:number, cabin:ProductApiCabin):ICabinSelectModel => {
+    private _mapToCabin = (configuration:IConfiguration, cruiseId:number, sailId:number, cabin:ProductApiCabin):ICabinSelectModel => {
         return {
             id: `${cruiseId}_${sailId}_${cabin.nid}`,
             cabinId: cabin.nid,
@@ -78,15 +73,15 @@ export class ProductApiService {
         };
     };
 
-    private _mapAllCabins = (response:ProductApiResponse, config:IConfiguration):ICabinSelectModel[] => {
+    private _mapToAllCabins = (response:ProductApiResponse, config:IConfiguration):ICabinSelectModel[] => {
         return response.sails.reduce((list, sail) => {
             return [...list, ...sail.cabins.map((cabin):ICabinSelectModel => {
-                return this._mapCabin(config, response.nid, sail.nid, cabin);
+                return this._mapToCabin(config, response.nid, sail.nid, cabin);
             })];
         }, []);
     };
 
-    _mapCruise = (response:ProductApiResponse, operatorPaxAgeConfig:IOperatorPaxAgeConfig):ICruiseModel => {
+    _mapToCruise = (response:ProductApiResponse, operatorPaxAgeConfig:IOperatorPaxAgeConfig):ICruiseModel => {
         return {
             id: response.nid, //367247,
             title: response.title,
@@ -95,22 +90,22 @@ export class ProductApiService {
         }
     };
 
-    _mapResponse = (config:IConfiguration, response:ProductApiResponse):ng.IPromise<IMappedResponse> => {
+    _mapToBaseModel = (config:IConfiguration, response:ProductApiResponse):ng.IPromise<IBaseModel> => {
         return this.operatorService.getOperatorConfig(response.operator.bookingServiceCode)
             .then(operatorPaxAgeConfig => {
                 return {
-                    cruise: this._mapCruise(response, operatorPaxAgeConfig),
-                    allCabins: this._mapAllCabins(response, config),
-                    allSails: this._mapAllSails(response)
+                    cruise: this._mapToCruise(response, operatorPaxAgeConfig),
+                    allCabins: this._mapToAllCabins(response, config),
+                    allSails: this._mapToAllSails(response)
                 }
             });
     };
 
-    getCruise = (config:IConfiguration):ng.IPromise<IMappedResponse> => {
+    createBaseModel = (config:IConfiguration):ng.IPromise<IBaseModel> => {
         return this.httpServiceWrapper.request<ProductApiResponse>({
                 url: `${this._endpoint}`,
                 method: 'GET'
             })
-            .then(response => this._mapResponse(config, response));
+            .then(response => this._mapToBaseModel(config, response));
     };
 }

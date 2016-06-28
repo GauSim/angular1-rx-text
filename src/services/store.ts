@@ -7,6 +7,13 @@ import { StoreProviders } from './StoreProviders';
 import { StoreDispatchers } from './StoreDispatchers';
 import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
 
+
+export interface IBaseModel {
+    cruise:ICruiseModel,
+    allCabins:ICabinSelectModel[],
+    allSails:ISailSelectModel[]
+}
+
 export interface ISailSelectModel {
     id: number;
     cruiseId:number;
@@ -62,8 +69,8 @@ export interface IConfiguration {
 }
 
 export interface IPaxSelection {
-    num_adults:number;
-    num_seniors:number;
+    num_adults:number; // todo remove s from propname
+    num_seniors:number; // todo remove s from propname
     num_junior:number;
     num_child:number;
     num_baby:number;

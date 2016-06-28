@@ -51,27 +51,6 @@ export class OperatorService {
     };
 
 
-    createFakePassengerList = (selector:IFareSelector):ng.IPromise<IOperatorPaxMetadata[]> => {
 
-        const toMetadata = (age:number):IOperatorPaxMetadata => {
-            return {age};
-        };
-
-        const { num_senior, num_adult, num_junior, num_child, num_baby } = selector;
-
-        return this.getOperatorConfig(selector.bookingServiceCode)
-            .then(PaxAgeConfig => {
-
-                const paxList:IOperatorPaxMetadata[] = [
-                    ...(!PaxAgeConfig.senior.isSupported ? [] : _.range(num_senior).map(_ => toMetadata(PaxAgeConfig.senior.min))),
-                    ...(!PaxAgeConfig.adult.isSupported ? [] : _.range(num_adult).map(_ => toMetadata(PaxAgeConfig.adult.min))),
-                    ...(!PaxAgeConfig.junior.isSupported ? [] : _.range(num_junior).map(_ => toMetadata(PaxAgeConfig.junior.min))),
-                    ...(!PaxAgeConfig.child.isSupported ? [] : _.range(num_child).map(_ => toMetadata(PaxAgeConfig.child.min))),
-                    ...(!PaxAgeConfig.baby.isSupported ? [] : _.range(num_baby).map(_ => toMetadata(PaxAgeConfig.baby.min)))
-                ];
-
-                return paxList;
-            });
-    }
 
 }

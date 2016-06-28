@@ -30,7 +30,7 @@ describe('StoreDispatchers', () => {
         const $q:ng.IQService = Q as any;
         const operatorService = new OperatorService($q);
         const httpServiceWrapper = new HttpServiceWrapper($q, $http);
-        const fareService = new FareService(operatorService, httpServiceWrapper);
+        const fareService = new FareService(httpServiceWrapper);
         const productApiService = new ProductApiService(httpServiceWrapper, operatorService);
         instance = new StoreDispatchers($q, fareService, productApiService);
 

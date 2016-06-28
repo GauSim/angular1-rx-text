@@ -1,6 +1,7 @@
-import { MARKET_ID, CURRENCY } from '../helpers/Enums';
-import { IOperatorPaxMetadata, OperatorService } from './OperatorService';
+import { MARKET_ID, CURRENCY, CABIN_AVAILABILITY } from '../helpers/Enums';
+import { IOperatorPaxMetadata, IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 import { HttpServiceWrapper } from './HttpServiceWrapper';
+import { IPaxSelection, IConfiguration, ICruiseModel, ICabinSelectModel } from './Store';
 
 export interface IFareSelector {
     marketId:MARKET_ID;
@@ -11,7 +12,6 @@ export interface IFareSelector {
     num_junior: number;
     num_baby: number;
     num_senior: number;
-    flight_included:boolean;
 }
 
 export interface IFareServiceRequest {
@@ -47,37 +47,72 @@ export class FareService {
     private _endpoint:string = 'http://localhost:9999'; //'http://rates-staging.stagev1internal.dreamlines.de';
 
 
-    constructor(private operatorService:OperatorService,
-                private httpServiceWrapper:HttpServiceWrapper) {
+    constructor(private httpServiceWrapper:HttpServiceWrapper) {
     }
 
-    private _convertSelectorToFareServiceRequest = (selector:IFareSelector):ng.IPromise<IFareServiceRequest> => {
+    createFakePassengerList = (operatorPaxAgeConfig:IOperatorPaxAgeConfig, selectedPax:IPaxSelection):IOperatorPaxMetadata[] => {
 
-        return this.operatorService.createFakePassengerList(selector)
-            .then(passengerList => ({
-                market: selector.marketId,
-                cruiseId: selector.cruise_id,
-                passengers: passengerList
-            }));
+        const toMetadata = (age:number):IOperatorPaxMetadata => {
+            return {age};
+        };
 
+        const { num_seniors, num_adults, num_junior, num_child, num_baby } = selectedPax;
+
+        const paxList:IOperatorPaxMetadata[] = [
+            ...(!operatorPaxAgeConfig.senior.isSupported ? [] : _.range(num_seniors).map(_ => toMetadata(operatorPaxAgeConfig.senior.min))),
+            ...(!operatorPaxAgeConfig.adult.isSupported ? [] : _.range(num_adults).map(_ => toMetadata(operatorPaxAgeConfig.adult.min))),
+            ...(!operatorPaxAgeConfig.junior.isSupported ? [] : _.range(num_junior).map(_ => toMetadata(operatorPaxAgeConfig.junior.min))),
+            ...(!operatorPaxAgeConfig.child.isSupported ? [] : _.range(num_child).map(_ => toMetadata(operatorPaxAgeConfig.child.min))),
+            ...(!operatorPaxAgeConfig.baby.isSupported ? [] : _.range(num_baby).map(_ => toMetadata(operatorPaxAgeConfig.baby.min)))
+        ];
+
+        return paxList;
     };
 
 
-    getFares = (selector:IFareSelector):ng.IPromise<IFareServiceResponse[]> => {
-        return this._convertSelectorToFareServiceRequest(selector)
-            .then(payload => {
-                return this.httpServiceWrapper.request<IFareServiceResponse[]>({
-                    url: `${this._endpoint}/ratesByCruise`,
-                    method: 'POST',
-                    data: payload
-                }).then((list:IFareServiceResponse[]) => {
-                    return list.filter(e => {
-                        return e.num_adult == selector.num_adult &&
-                            e.num_junior == selector.num_junior &&
-                            e.num_child == selector.num_child &&
-                            e.num_baby == selector.num_baby
-                    })
-                });
+    getFares = (curiseId:number, configuration:IConfiguration, operatorPaxAgeConfig:IOperatorPaxAgeConfig, selectedPax:IPaxSelection):ng.IPromise<IFareServiceResponse[]> => {
+
+        const payload:IFareServiceRequest = {
+            market: configuration.marketId as MARKET_ID,
+            cruiseId: curiseId,
+            passengers: this.createFakePassengerList(operatorPaxAgeConfig, selectedPax)
+        };
+
+        return this.httpServiceWrapper.request<IFareServiceResponse[]>({
+                url: `${this._endpoint}/ratesByCruise`,
+                method: 'POST',
+                data: payload
+            })
+            .then((list:IFareServiceResponse[]) => {
+                return list.filter(e => {
+                    return e.num_adult == selectedPax.num_adults &&
+                        e.num_junior == selectedPax.num_junior &&
+                        e.num_child == selectedPax.num_child &&
+                        e.num_baby == selectedPax.num_baby
+                })
             });
     };
+
+    mergeCabinsAndFares = (allCabins:ICabinSelectModel[], availableFares:IFareServiceResponse[]):ICabinSelectModel[]=> {
+
+        return allCabins.reduce((list, item:ICabinSelectModel)=> {
+            const rates = availableFares.filter(e => e.cruise_id === item.cruiseId && e.sail_id === item.sailId && e.cabintype_id === item.cabinId);
+
+            if (rates && rates[0]) {
+                const rate = rates[0];
+                item.rateCode = rate.rate_code;
+                item.rateLastUpdate = rate.updated;
+                item.rateSource = rate.source;
+                item.price = rate.cabin_price;
+                item.isAvailable = true;
+                item.availability = CABIN_AVAILABILITY.available;
+                item.currency = rate.currency;
+                item.hasFlightIncluded = rate.flight_included;
+                item.maxPassengers = rate.num_adult + rate.num_junior + rate.num_child + rate.num_baby;
+            }
+
+            return [...list, item];
+        }, []);
+
+    }
 }

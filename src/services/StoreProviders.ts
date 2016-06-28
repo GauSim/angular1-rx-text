@@ -161,8 +161,9 @@ export class StoreProviders {
                         _allSails:ISailSelectModel[],
                         _allCabintypes:ICabinSelectModel[],
                         _selectedPax:IPaxSelection,
+                        _selectedCruiseNid:number,
                         _selectedSailId:number,
-                        _selectedCabintypeNid:string):{allCabintypes:ICabinSelectModel[], allSails:ISailSelectModel[],selectedSailId:number, selectedCabintypeNid:string} => {
+                        _selectedCabintypeNid:string):{allCabins:ICabinSelectModel[], allSails:ISailSelectModel[], selectedCruiseNid:number, selectedSailId:number, selectedCabintypeNid:string} => {
 
         const bySail = this.getCabinsBySailId(_allCabintypes, _selectedSailId);
 
@@ -178,7 +179,6 @@ export class StoreProviders {
             } else {
                 selectedCabintypeNid = bySail[0].id;
             }
-
         }
 
         const allCabintypes = this._formatCabins(translationCache, _allCabintypes, _selectedPax, selectedCabintypeNid);
@@ -186,15 +186,17 @@ export class StoreProviders {
         const allSails = this._formatSails(translationCache, allCabintypes, _allSails);
 
         return {
+            selectedCruiseNid: _selectedCruiseNid,
             selectedCabintypeNid: selectedCabintypeNid,
             selectedSailId: _selectedSailId,
-            allCabintypes: allCabintypes,
+            allCabins: allCabintypes,
             allSails: allSails
         };
     };
 
-    mergeState = (currentState:IFormState, allSails:ISailSelectModel[], allCabintypes:ICabinSelectModel[], selectedSailId:number, selectedCabintypeNid:string):IFormState => {
+    mergeState = (currentState:IFormState, allSails:ISailSelectModel[], allCabintypes:ICabinSelectModel[], selectedCruiseNid:number, selectedSailId:number, selectedCabintypeNid:string):IFormState => {
         return _.extend({}, currentState, {
+            selectedCruiseNid: selectedCruiseNid,
             selectedCabintypeNid: selectedCabintypeNid,
             selectedSailId: selectedSailId,
             allCabintypes: allCabintypes,
