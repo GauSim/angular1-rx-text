@@ -9,7 +9,7 @@ import dlSelectPax from './components/dlSelectPax';
 import dlPaxAgeInput from './components/dlPaxAgeInput';
 import dlSelectCabinGrid from './components/dlSelectCabinGrid';
 import dlCabinGridItem from './components/dlCabinGridItem';
-import dlDisplaySelectedCabin from './components/dlDisplaySelectedCabin'
+import dlDisplaySelectedCabin from './components/dlDisplaySelectedCabin';
 
 import { TrustHtml} from './filters/TrustHtml';
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';
@@ -37,12 +37,7 @@ function registerApp() {
         .service('productApiService', ProductApiService)
         .service('operatorService', OperatorService)
         .service('store', Store)
-        .filter('trustHtml', TrustHtml)
-        .run(() => {
-            console.log('running');
-        });
-
-
+        .filter('trustHtml', TrustHtml);
 }
 
 

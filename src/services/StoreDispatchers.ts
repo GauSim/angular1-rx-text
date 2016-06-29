@@ -30,7 +30,7 @@ export class StoreDispatchers {
             num_seniors: 0,
             num_junior: 0,
             num_child: 0,
-            num_baby: 0,
+            num_baby: 0
         };
 
         return this.updateBaseModel(configuration, selectedPax)

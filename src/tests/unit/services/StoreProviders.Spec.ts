@@ -14,7 +14,7 @@ describe('StoreProviders', () => {
     const providers = new StoreProviders();
     const m = new StateMockHelper(providers, translationCache);
 
-    describe('formatSailTitle', ()=> {
+    describe('formatSailTitle', () => {
         it('format for show the price of the cheapest cabin', () => {
 
 

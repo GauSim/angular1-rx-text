@@ -11,10 +11,10 @@ import {
 import {
     CABIN_AVAILABILITY,
     CABIN_KIND
-} from '../helpers/Enums'
+} from '../helpers/Enums';
 
 
-function compose<F1Result,F2Result,F2Input>(f1:(e:F2Result)=>F1Result, f2:(e:F2Input)=>F2Result) {
+function compose<F1Result, F2Result, F2Input>(f1:(e:F2Result) => F1Result, f2:(e:F2Input) => F2Result) {
     return (x:F2Input) => {
         return f1(f2(x));
     };
@@ -22,10 +22,6 @@ function compose<F1Result,F2Result,F2Input>(f1:(e:F2Result)=>F1Result, f2:(e:F2I
 
 
 export class StoreProviders {
-
-    constructor() {
-
-    }
 
     getCheapestCabin = (cabins:ICabinViewModel[]):ICabinViewModel => _.min(cabins, (item:ICabinViewModel) => item.price);
     getAvailableCabins = (cabins:ICabinViewModel[]):ICabinViewModel[] => cabins.filter(item => item.availability === CABIN_AVAILABILITY.available);
@@ -64,17 +60,16 @@ export class StoreProviders {
             inside: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.inside),
             outside: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.outside),
             balcony: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.balcony),
-            suite: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.suite),
+            suite: this.getCheapestAvailableOrAlternativeCabin(bySail, CABIN_KIND.suite)
         };
 
         return cabinGridSelect;
     };
 
     getSelectedCabin = (allCabins:ICabinViewModel[], selectedCabinId:string):ICabinViewModel => {
-        const selectedCabin = allCabins.filter(e=> e.id === selectedCabinId)[0];
+        const selectedCabin = allCabins.filter(e => e.id === selectedCabinId)[0];
         if (!selectedCabin) {
             console.log(allCabins);
-            debugger;
             throw new Error(`can not find cabinId ${selectedCabinId} in state.allCabins`);
         }
         return selectedCabin;
@@ -89,8 +84,8 @@ export class StoreProviders {
 
         return [
             ... (!grpd.available) ? [] : _.sortBy(grpd.available, (c:ICabinViewModel) => c.price),
-            ... (!grpd.onRequest) ? [] : grpd.onRequest,
-        ]
+            ... (!grpd.onRequest) ? [] : grpd.onRequest
+        ];
     };
 
     formatSailTitle = (t:ITranslationCache, allCabins:ICabinViewModel[], item:ISailViewModel):string => {
@@ -100,7 +95,7 @@ export class StoreProviders {
         const text_from = this.getTranslation(t, 'from');
         const test_onRequest = this.getTranslation(t, 'on request');
 
-        const displayPrice = ((cheapestAvailable as any) != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
+        const displayPrice = ((cheapestAvailable as any) !== Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
         return `${item.departureDate} - ${item.arrivalDate} (${displayPrice})`;
     };
 
@@ -115,7 +110,7 @@ export class StoreProviders {
     };
 
     formatSails = (t:ITranslationCache, allCabins:ICabinViewModel[], sails:ISailViewModel[]):ISailViewModel[] => {
-        return sails.reduce((list, item:ISailViewModel)=> {
+        return sails.reduce((list, item:ISailViewModel) => {
             const title = this.formatSailTitle(t, allCabins, item);
             return [...list, _.extend({}, item, {title})];
         }, []);
@@ -127,10 +122,10 @@ export class StoreProviders {
             return [];
         }
 
-        const formatedCabins = cabins.reduce((list, item:ICabinViewModel)=> {
+        const formatedCabins = cabins.reduce((list, item:ICabinViewModel) => {
 
             // todo does selectedPax fit in cabin ?
-            item.availability = item.availability // = CABIN_AVAILABILITY.onRequest;
+            item.availability = item.availability; // = CABIN_AVAILABILITY.onRequest;
 
             const isSelected = item.id === selectedCabinId;
             const title = this.formatCabinTitle(t, item);
@@ -150,7 +145,7 @@ export class StoreProviders {
             ... !grpd.inside ? [] : this.orderByAvailabilityThenPrice(grpd.inside),
             ... !grpd.outside ? [] : this.orderByAvailabilityThenPrice(grpd.outside),
             ... !grpd.balcony ? [] : this.orderByAvailabilityThenPrice(grpd.balcony),
-            ... !grpd.suite ? [] : this.orderByAvailabilityThenPrice(grpd.suite),
+            ... !grpd.suite ? [] : this.orderByAvailabilityThenPrice(grpd.suite)
         ];
 
         return sorted;
@@ -202,7 +197,7 @@ export class StoreProviders {
             sailSelect: this.getSailsByCruiseId(allSails, selectedCruiseId),
             cabintypeSelect: this.getCabinsBySailId(allCabins, selectedSailId),
             cabinGridSelect: this.getCabinGridSelect(allCabins, selectedSailId),
-            selectedCabin: this.getSelectedCabin(allCabins, selectedCabinId),
+            selectedCabin: this.getSelectedCabin(allCabins, selectedCabinId)
         });
     }
 

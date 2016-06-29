@@ -16,7 +16,8 @@
     "prewatch": "npm run clean",
     "watch": "tsc -p . -w --pretty",
     "typings": "typings",
-    "clean": "rimraf ./dist/"
+    "clean": "rimraf ./dist/",
+    "lint": "tslint -c tslint.json 'src/**/**.ts'"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "rimraf": "^2.5.2",
     "should": "^9.0.2",
     "systemjs-builder": "^0.15.23",
+    "tslint": "^3.12.1",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
   },

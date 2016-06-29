@@ -63,9 +63,9 @@ class Controller implements ng.IComponentController {
             this.cabinGridSelect = state.cabinGridSelect;
         });
 
-        store.subscribe(({ cabinGridSelect })=> {
+        store.subscribe(({ cabinGridSelect }) => {
             this.cabinGridSelect = cabinGridSelect;
-        })
+        });
     }
 }
 

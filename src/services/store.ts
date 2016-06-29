@@ -9,10 +9,10 @@ import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILA
 
 
 export interface IBaseModel {
-    configuration:IConfiguration,
-    selectedCruise:ICruiseViewModel,
-    allCabins:ICabinViewModel[],
-    allSails:ISailViewModel[]
+    configuration:IConfiguration;
+    selectedCruise:ICruiseViewModel;
+    allCabins:ICabinViewModel[];
+    allSails:ISailViewModel[];
 }
 
 export interface ISailViewModel {
@@ -158,7 +158,7 @@ export class Store extends EventEmitter<IFormState> {
 
             // if not - initializeState
             this._initializeState()
-                .then(init=> {
+                .then(init => {
                     this._state = init;
                     return this._state;
                 })
@@ -194,8 +194,8 @@ export class Store extends EventEmitter<IFormState> {
             .then(initialState => {
                 return initialState;
             })
-            .finally(()=> {
-                this.runingActions = this.runingActions.filter(e => e != INITIALIZING);
+            .finally(() => {
+                this.runingActions = this.runingActions.filter(e => e !== INITIALIZING);
                 this.emitIsLoading();
             });
     };
@@ -216,7 +216,7 @@ export class Store extends EventEmitter<IFormState> {
             this._state = state;
             this.emit(state);
 
-            this.runingActions = this.runingActions.filter(e => e != hash);
+            this.runingActions = this.runingActions.filter(e => e !== hash);
             this.emitIsLoading();
         };
 

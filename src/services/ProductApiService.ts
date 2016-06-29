@@ -10,14 +10,14 @@ interface ProductApiResponse {
     operator:{
         bookingServiceCode:string;
     };
-    sails:ProductApiSail[]
+    sails:ProductApiSail[];
 }
 
 interface ProductApiSail {
     nid:number;
     arrivalDate:string;
     departureDate:string;
-    cabins:ProductApiCabin[]
+    cabins:ProductApiCabin[];
 }
 interface ProductApiCabin {
     nid: number;
@@ -58,8 +58,8 @@ export class ProductApiService {
                 cruiseId: productApiResponse.nid,
                 title: '', // will be overwritten
                 departureDate: sail.departureDate,
-                arrivalDate: sail.arrivalDate,
-            }
+                arrivalDate: sail.arrivalDate
+            };
         });
     };
 
@@ -110,7 +110,7 @@ export class ProductApiService {
             id: response.nid, //367247,
             title: response.title,
             operatorBookingServiceCode: response.operator.bookingServiceCode
-        }
+        };
     };
     _mapToConfiguration = (configuration:IConfiguration, operatorPaxAgeConfig:IOperatorPaxAgeConfig):IConfiguration => {
 
@@ -125,7 +125,7 @@ export class ProductApiService {
                     allCabins: this._mapToAllCabins(response, configuration),
                     allSails: this._mapToAllSails(response),
                     configuration: this._mapToConfiguration(configuration, operatorPaxAgeConfig)
-                }
+                };
             });
     };
 

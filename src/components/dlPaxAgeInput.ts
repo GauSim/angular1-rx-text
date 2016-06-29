@@ -19,7 +19,7 @@ class Controller implements ng.IComponentController {
     fieldName:string;
     selectOptions:IPaxSelectViewModel[];
     selectedValue:number;
-    onSelect:(s:{fieldName:string, value:number})=>void;
+    onSelect:(s:{fieldName:string, value:number}) => void;
 
     public static $inject = [
         '$scope',
@@ -38,7 +38,7 @@ class Controller implements ng.IComponentController {
 
         $scope.$watch('ctrl.selectedValue', (value:number, last) => {
 
-            if (value == undefined || value === last) {
+            if (value === undefined || value === last) {
                 return;
             }
 

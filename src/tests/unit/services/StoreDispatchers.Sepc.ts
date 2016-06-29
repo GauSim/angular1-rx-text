@@ -14,7 +14,7 @@ import * as Q from 'q';
 const create$httpMock = (ok:boolean, data:any) => {
     return (option:any) => {
         return ok ? Q.resolve({data}) : Q.reject(new Error(data));
-    }
+    };
 };
 
 describe('StoreDispatchers', () => {
@@ -25,7 +25,7 @@ describe('StoreDispatchers', () => {
     const m = new StateMockHelper(new StoreProviders(), translationCache);
 
 
-    beforeEach(()=> {
+    beforeEach(() => {
         const $http:ng.IHttpService = create$httpMock(true, []) as any;
         const $q:ng.IQService = Q as any;
         const operatorService = new OperatorService($q);
@@ -84,6 +84,6 @@ describe('StoreDispatchers', () => {
 
         });
 
-    })
+    });
 
 });

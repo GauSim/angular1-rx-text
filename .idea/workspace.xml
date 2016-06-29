@@ -5,28 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d9dbec8-0acb-49ef-b346-c5e4798aa154" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/systemjs.config.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/proxy.js" afterPath="$PROJECT_DIR$/tools/proxy.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlCabinGridItem.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlCabinGridItem.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlDisplaySelectedCabin.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlIndex.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlIndex.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlPaxAgeInput.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlPaxAgeInput.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlSelectCabin.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectCabin.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlSelectCabinGrid.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlSelectPax.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectPax.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/componets/dlSelectSail.componet.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectSail.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/filters/TrustHtml.ts" afterPath="$PROJECT_DIR$/src/filters/TrustHtml.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts" afterPath="$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlIndex.ts" afterPath="$PROJECT_DIR$/src/components/dlIndex.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlPaxAgeInput.ts" afterPath="$PROJECT_DIR$/src/components/dlPaxAgeInput.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlSelectCabin.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectCabin.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlSelectPax.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectPax.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/dlSelectSail.ts" afterPath="$PROJECT_DIR$/src/components/dlSelectSail.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/EventEmitter.ts" afterPath="$PROJECT_DIR$/src/helpers/EventEmitter.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/Observable.ts" afterPath="$PROJECT_DIR$/src/helpers/Observable.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/FareService.ts" afterPath="$PROJECT_DIR$/src/services/FareService.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" afterPath="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/OperatorService.ts" afterPath="$PROJECT_DIR$/src/services/OperatorService.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/ProductApiService.ts" afterPath="$PROJECT_DIR$/src/services/ProductApiService.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" afterPath="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="$PROJECT_DIR$/tsconfig.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typings.json" afterPath="$PROJECT_DIR$/typings.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/StoreProviders.ts" afterPath="$PROJECT_DIR$/src/services/StoreProviders.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/systemjs.config.ts" afterPath="$PROJECT_DIR$/src/systemjs.config.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts" afterPath="$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" afterPath="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" afterPath="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" />
     </list>
     <ignored path="angular1-rx-text.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,67 +47,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StoreDispatchers.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
+      <file leaf-file-name="dlDisplaySelectedCabin.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="17" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StoreProviders.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.330671">
-              <caret line="113" column="34" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.4025559">
+              <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
               <folding>
-                <element signature="n#!!block;n#compose#0" expanded="false" />
-                <element signature="e#391#424#0" expanded="false" />
-                <element signature="n#!!block;n#constructor#0;n#StoreProviders#0" expanded="false" />
-                <element signature="e#1323#1925#0" expanded="false" />
-                <element signature="e#1562#1611#0" expanded="false" />
-                <element signature="e#1617#1919#0" expanded="false" />
-                <element signature="e#1787#1835#0" expanded="false" />
-                <element signature="e#1841#1909#0" expanded="false" />
-                <element signature="e#2035#2592#0" expanded="false" />
-                <element signature="e#2171#2552#0" expanded="false" />
-                <element signature="e#2691#2998#0" expanded="false" />
-                <element signature="e#2802#2962#0" expanded="false" />
-                <element signature="e#3084#3516#0" expanded="false" />
-                <element signature="e#3114#3148#0" expanded="false" />
-                <element signature="e#3343#3510#0" expanded="false" />
-                <element signature="e#3623#4156#0" expanded="false" />
-                <element signature="e#5001#5211#0" expanded="false" />
-                <element signature="e#5061#5199#0" expanded="false" />
-                <element signature="e#5353#6592#0" expanded="false" />
-                <element signature="e#5384#5418#0" expanded="false" />
-                <element signature="e#5496#5836#0" expanded="false" />
-                <element signature="e#6212#6561#0" expanded="false" />
-                <element signature="e#8057#8291#0" expanded="false" />
-                <element signature="e#8486#9070#0" expanded="false" />
-                <element signature="e#8530#9062#0" expanded="false" />
+                <marker date="1467204026000" expanded="true" signature="124:219" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="154:212" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="256:3456" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="468:849" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="651:838" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="919:3449" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1020:1131" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1228:3438" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1289:1509" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1566:1782" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1848:2055" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="2155:2737" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="2811:3132" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="2920:3090" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="3196:3423" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OperatorService.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/OperatorService.ts">
+      <file leaf-file-name="Observable.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/helpers/Observable.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="43" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductApiService.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/ProductApiService.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="47" selection-end-column="6" />
+              <caret line="368" column="0" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -118,45 +87,18 @@
         <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="50" selection-end-column="6" />
+              <caret line="105" column="60" selection-start-line="105" selection-start-column="60" selection-end-line="105" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpServiceWrapper.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/HttpServiceWrapper.ts">
+      <file leaf-file-name="EventEmitter.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/helpers/EventEmitter.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="51" selection-end-column="6" />
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Store.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="137" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dlSelectPax.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/dlSelectPax.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="3" selection-start-line="68" selection-start-column="3" selection-end-line="70" selection-end-column="6" />
-              <folding>
-                <marker date="1467203073000" expanded="true" signature="213:533" placeholder="..." />
-                <marker date="1467203073000" expanded="true" signature="277:533" placeholder="..." />
-                <marker date="1467203073000" expanded="true" signature="553:868" placeholder="..." />
-                <marker date="1467203073000" expanded="true" signature="888:1206" placeholder="..." />
-                <marker date="1467203073000" expanded="true" signature="1226:1539" placeholder="..." />
-                <marker date="1467203073000" expanded="true" signature="1559:1867" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -165,20 +107,85 @@
         <entry file="file://$PROJECT_DIR$/src/components/dlSelectSail.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
-                <marker date="1467203102000" expanded="true" signature="187:480" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="187:480" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrustHtml.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/filters/TrustHtml.ts">
+      <file leaf-file-name="dlSelectPax.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dlSelectPax.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-              <folding />
+              <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+              <folding>
+                <marker date="1467204026000" expanded="true" signature="213:533" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="277:533" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="553:868" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="888:1206" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1226:1539" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="1559:1867" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlSelectCabinGrid.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding>
+                <marker date="1467204026000" expanded="true" signature="117:1138" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="142:369" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="395:625" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="651:881" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="907:1131" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlSelectCabin.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabin.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding>
+                <marker date="1467204026000" expanded="true" signature="112:849" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="298:842" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="413:831" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlPaxAgeInput.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dlPaxAgeInput.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+              <folding>
+                <marker date="1467204026000" expanded="true" signature="143:681" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="493:674" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlIndex.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dlIndex.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding>
+                <marker date="1467204026000" expanded="true" signature="186:662" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="217:605" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="439:589" placeholder="..." />
+                <marker date="1467204026000" expanded="true" signature="636:651" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,24 +207,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.ts" />
-        <option value="$PROJECT_DIR$/src/tests/unit/index.ts" />
-        <option value="$PROJECT_DIR$/dist/services/HttpServiceWrapper.js" />
         <option value="$PROJECT_DIR$/src/dlSelectSail.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectCabinGrid.componet.ts" />
         <option value="$PROJECT_DIR$/src/helpers/Enums.ts" />
         <option value="$PROJECT_DIR$/src/dlCabinGridItem.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlPaxAgeInput.componet.ts" />
-        <option value="$PROJECT_DIR$/src/services/StoreProviders.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectCabin.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlForm.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlDisplaySelectedCabin.componet.ts" />
         <option value="$PROJECT_DIR$/src/dlIndex.componet.ts" />
         <option value="$PROJECT_DIR$/src/services/StateMockHelper.ts" />
         <option value="$PROJECT_DIR$/src/dlSelectPax.componet.ts" />
-        <option value="$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts" />
-        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
-        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" />
         <option value="$PROJECT_DIR$/src/componets/dlSelectPax.componet.ts" />
         <option value="$PROJECT_DIR$/src/componets/dlCabinGridItem.componet.ts" />
         <option value="$PROJECT_DIR$/src/componets/dlDisplaySelectedCabin.componet.ts" />
@@ -229,28 +229,35 @@
         <option value="$PROJECT_DIR$/typings.json" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/tools/bundle-builder.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/systemjs.config-v2.ts" />
-        <option value="$PROJECT_DIR$/src/systemjs.config.ts" />
         <option value="$PROJECT_DIR$/indexDist.html" />
         <option value="$PROJECT_DIR$/tools/bundle.js" />
-        <option value="$PROJECT_DIR$/src/components/dlIndex.ts" />
         <option value="$PROJECT_DIR$/src/components/dlCabinGridItem.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlPaxAgeInput.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlSelectCabin.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlSelectPax.ts" />
-        <option value="$PROJECT_DIR$/src/components/dlSelectSail.ts" />
         <option value="$PROJECT_DIR$/src/filters/TrustHtml.ts" />
-        <option value="$PROJECT_DIR$/src/services/FareService.ts" />
-        <option value="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
-        <option value="$PROJECT_DIR$/src/services/OperatorService.ts" />
-        <option value="$PROJECT_DIR$/src/services/ProductApiService.ts" />
-        <option value="$PROJECT_DIR$/src/services/Store.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/tslint.json" />
+        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts" />
+        <option value="$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts" />
+        <option value="$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts" />
+        <option value="$PROJECT_DIR$/src/systemjs.config.ts" />
+        <option value="$PROJECT_DIR$/src/services/StoreProviders.ts" />
         <option value="$PROJECT_DIR$/src/services/StoreDispatchers.ts" />
+        <option value="$PROJECT_DIR$/src/services/Store.ts" />
+        <option value="$PROJECT_DIR$/src/services/ProductApiService.ts" />
+        <option value="$PROJECT_DIR$/src/services/OperatorService.ts" />
+        <option value="$PROJECT_DIR$/src/services/HttpServiceWrapper.ts" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/helpers/Observable.ts" />
+        <option value="$PROJECT_DIR$/src/helpers/EventEmitter.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlSelectSail.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlSelectPax.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlSelectCabin.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlPaxAgeInput.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlIndex.ts" />
+        <option value="$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts" />
+        <option value="$PROJECT_DIR$/src/services/FareService.ts" />
       </list>
     </option>
   </component>
@@ -311,106 +318,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filters" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular1-rx-text" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -612,10 +519,9 @@
           <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
           <folding>
             <element signature="n#!!block;n#compose#0" expanded="false" />
-            <element signature="e#391#424#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#StoreProviders#0" expanded="false" />
-            <element signature="e#1562#1611#0" expanded="false" />
-            <element signature="e#1617#1919#0" expanded="false" />
+            <element signature="e#398#431#0" expanded="false" />
+            <element signature="e#1541#1590#0" expanded="false" />
+            <element signature="e#1596#1898#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -633,8 +539,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="17" selection-start-line="64" selection-start-column="15" selection-end-line="64" selection-end-column="17" />
           <folding>
-            <element signature="e#5485#5585#0" expanded="false" />
-            <element signature="e#6934#7038#0" expanded="false" />
+            <element signature="e#5489#5589#0" expanded="false" />
+            <element signature="e#6939#7043#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -651,14 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/EventEmitter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16346154">
-          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -683,30 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -737,26 +611,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36833334">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48166665">
           <caret line="17" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/systemjs.config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -777,14 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dlCabinGridItem.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -801,90 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
-          <folding>
-            <marker date="1467203038000" expanded="true" signature="124:219" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="154:212" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="256:3456" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="468:849" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="651:838" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="919:3449" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="1020:1131" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="1228:3438" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="1289:1509" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="1566:1782" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="1848:2055" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="2155:2737" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="2811:3132" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="2920:3090" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="3196:3423" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlIndex.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="41" selection-end-column="6" />
-          <folding>
-            <marker date="1467202993000" expanded="true" signature="186:662" placeholder="..." />
-            <marker date="1467202993000" expanded="true" signature="217:605" placeholder="..." />
-            <marker date="1467202993000" expanded="true" signature="439:589" placeholder="..." />
-            <marker date="1467202993000" expanded="true" signature="636:651" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlPaxAgeInput.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding>
-            <marker date="1467203038000" expanded="true" signature="143:681" placeholder="..." />
-            <marker date="1467203038000" expanded="true" signature="493:674" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabin.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <marker date="1467203064000" expanded="true" signature="112:849" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="298:842" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="413:831" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
-          <folding>
-            <marker date="1467203064000" expanded="true" signature="117:1138" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="142:369" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="395:625" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="651:881" placeholder="..." />
-            <marker date="1467203064000" expanded="true" signature="907:1131" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlSelectSail.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <marker date="1467203102000" expanded="true" signature="187:480" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/filters/TrustHtml.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -893,57 +659,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dlSelectPax.ts">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="3" selection-start-line="68" selection-start-column="3" selection-end-line="70" selection-end-column="6" />
-          <folding>
-            <marker date="1467203073000" expanded="true" signature="213:533" placeholder="..." />
-            <marker date="1467203073000" expanded="true" signature="277:533" placeholder="..." />
-            <marker date="1467203073000" expanded="true" signature="553:868" placeholder="..." />
-            <marker date="1467203073000" expanded="true" signature="888:1206" placeholder="..." />
-            <marker date="1467203073000" expanded="true" signature="1226:1539" placeholder="..." />
-            <marker date="1467203073000" expanded="true" signature="1559:1867" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="50" selection-end-column="6" />
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/HttpServiceWrapper.ts">
+    <entry file="file://$PROJECT_DIR$/tslint.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="51" selection-end-column="6" />
+        <state vertical-scroll-proportion="-3.6037736">
+          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/OperatorService.ts">
+    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreProviders.Spec.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="43" selection-end-column="6" />
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/ProductApiService.ts">
+    <entry file="file://$PROJECT_DIR$/src/tests/unit/services/StoreDispatchers.Sepc.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="47" selection-end-column="6" />
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
+    <entry file="file://$PROJECT_DIR$/src/tests/helpers/StateMockHelper.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="137" selection-end-column="6" />
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/systemjs.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="88" selection-start-line="62" selection-start-column="88" selection-end-line="62" selection-end-column="88" />
           <folding />
         </state>
       </provider>
@@ -951,41 +718,170 @@
     <entry file="file://$PROJECT_DIR$/src/services/StoreDispatchers.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="17" selection-end-column="6" />
+          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/StoreProviders.ts">
+    <entry file="file://$PROJECT_DIR$/src/services/Store.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.330671">
-          <caret line="113" column="34" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="259" column="0" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/ProductApiService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/OperatorService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/HttpServiceWrapper.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="73" selection-start-line="11" selection-start-column="73" selection-end-line="11" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/Observable.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="368" column="0" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/EventEmitter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlSelectSail.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#compose#0" expanded="false" />
-            <element signature="e#391#424#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#StoreProviders#0" expanded="false" />
-            <element signature="e#1323#1925#0" expanded="false" />
-            <element signature="e#1562#1611#0" expanded="false" />
-            <element signature="e#1617#1919#0" expanded="false" />
-            <element signature="e#1787#1835#0" expanded="false" />
-            <element signature="e#1841#1909#0" expanded="false" />
-            <element signature="e#2035#2592#0" expanded="false" />
-            <element signature="e#2171#2552#0" expanded="false" />
-            <element signature="e#2691#2998#0" expanded="false" />
-            <element signature="e#2802#2962#0" expanded="false" />
-            <element signature="e#3084#3516#0" expanded="false" />
-            <element signature="e#3114#3148#0" expanded="false" />
-            <element signature="e#3343#3510#0" expanded="false" />
-            <element signature="e#3623#4156#0" expanded="false" />
-            <element signature="e#5001#5211#0" expanded="false" />
-            <element signature="e#5061#5199#0" expanded="false" />
-            <element signature="e#5353#6592#0" expanded="false" />
-            <element signature="e#5384#5418#0" expanded="false" />
-            <element signature="e#5496#5836#0" expanded="false" />
-            <element signature="e#6212#6561#0" expanded="false" />
-            <element signature="e#8057#8291#0" expanded="false" />
-            <element signature="e#8486#9070#0" expanded="false" />
-            <element signature="e#8530#9062#0" expanded="false" />
+            <marker date="1467204026000" expanded="true" signature="187:480" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlSelectPax.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="213:533" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="277:533" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="553:868" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="888:1206" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1226:1539" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1559:1867" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabinGrid.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="117:1138" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="142:369" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="395:625" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="651:881" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="907:1131" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlSelectCabin.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="112:849" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="298:842" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="413:831" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlPaxAgeInput.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="143:681" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="493:674" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlIndex.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="186:662" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="217:605" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="439:589" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="636:651" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/FareService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="60" selection-start-line="105" selection-start-column="60" selection-end-line="105" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dlDisplaySelectedCabin.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4025559">
+          <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+          <folding>
+            <marker date="1467204026000" expanded="true" signature="124:219" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="154:212" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="256:3456" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="468:849" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="651:838" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="919:3449" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1020:1131" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1228:3438" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1289:1509" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1566:1782" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="1848:2055" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="2155:2737" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="2811:3132" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="2920:3090" placeholder="..." />
+            <marker date="1467204026000" expanded="true" signature="3196:3423" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -1,5 +1,5 @@
 import * as _ from 'underscore';
-import { IFareSelector }from './FareService';
+import { IFareSelector } from './FareService';
 
 export interface IOperatorPaxAgeRange {
     max:number;
@@ -52,6 +52,5 @@ export class OperatorService {
         // see https://netvacation.atlassian.net/browse/DBF-1352
         return this.$q.resolve(OperatorService.ALLFieldsPaxAgeConfig);
     };
-
 
 }

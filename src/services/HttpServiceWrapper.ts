@@ -79,7 +79,7 @@ export class HttpServiceWrapper {
             if (this._responseCache.some(e => e.hash === hash)) {
                 console.log('from cache', hash);
                 const response = this._responseCache.filter(e => e.hash === hash)[0].response as T;
-                return this.$q.resolve(response)
+                return this.$q.resolve(response);
             }
 
             // fetch from remote

@@ -92,7 +92,7 @@ class Controller implements ng.IComponentController {
         });
         store.subscribe(({ selectedCabin }) => {
             this.selectedCabin = selectedCabin;
-        })
+        });
 
     }
 }

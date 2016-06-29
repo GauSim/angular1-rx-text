@@ -25,7 +25,7 @@ export class StateMockHelper {
             id: 367247,
             title: 'einmal um die welt',
             operatorBookingServiceCode: 'msc'
-        }
+        };
     };
 
     mockSail = (id:number, cruiseId:number, startDate:string, endDate:string):ISailViewModel => {
@@ -35,7 +35,7 @@ export class StateMockHelper {
             departureDate: startDate,
             arrivalDate: endDate,
             cruiseId: cruiseId
-        }
+        };
     };
 
     mockCabin = (id:number, sailId:number, cruiseId:number, kind:CABIN_KIND, availability:CABIN_AVAILABILITY, price:number):ICabinViewModel => {
@@ -97,7 +97,7 @@ export class StateMockHelper {
                 // add available and not available cabins
                 [1, 2].forEach(availability => {
 
-                    _.range(5).forEach(x=> {
+                    _.range(5).forEach(x => {
 
                         const id = allCabintypes.length + 1;
                         const price = (availability === CABIN_AVAILABILITY.available) ? _.sample<number>([50, 100, 200, 500, 1000, 1200, 1300, 1500, 2000, 2500]) : 0;

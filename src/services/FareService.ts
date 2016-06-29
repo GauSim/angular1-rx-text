@@ -100,11 +100,11 @@ export class FareService {
             })
             .then((list:IFareServiceResponse[]) => {
                 return list.filter(e => {
-                    return e.num_adult == selectedPax.num_adults &&
-                        e.num_junior == selectedPax.num_junior &&
-                        e.num_child == selectedPax.num_child &&
-                        e.num_baby == selectedPax.num_baby
-                })
+                    return e.num_adult === selectedPax.num_adults &&
+                        e.num_junior === selectedPax.num_junior &&
+                        e.num_child === selectedPax.num_child &&
+                        e.num_baby === selectedPax.num_baby;
+                });
             });
     };
 
@@ -114,9 +114,9 @@ export class FareService {
      * @param availableFares
      * @returns {ICabinViewModel[]}
      */
-    mergeCabinsAndFares = (allCabins:ICabinViewModel[], availableFares:IFareServiceResponse[]):ICabinViewModel[]=> {
+    mergeCabinsAndFares = (allCabins:ICabinViewModel[], availableFares:IFareServiceResponse[]):ICabinViewModel[] => {
 
-        return allCabins.reduce((list, item:ICabinViewModel)=> {
+        return allCabins.reduce((list, item:ICabinViewModel) => {
             const rates = availableFares.filter(e => e.cruise_id === item.cruiseId && e.sail_id === item.sailId && e.cabintype_id === item.cabinId);
 
             if (rates && rates[0]) {

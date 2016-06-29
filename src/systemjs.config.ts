@@ -1,13 +1,13 @@
 (function (global) {
     // map tells the System loader where to look for things
     var map = {
-        'app': 'dist/build/',
+        'app': 'dist/build/'
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app': {
             main: 'index.js',
-            defaultExtension: 'js',
+            defaultExtension: 'js'
         }
     };
 
@@ -23,7 +23,7 @@
         meta[key] = {
             build: true,
             format: 'global'
-        }
+        };
     });
 
     const config = {
