@@ -44,7 +44,7 @@ export class FareService {
      * @type {string}
      * @private
      */
-    private _endpoint:string = 'http://localhost:9999'; //'http://rates-staging.stagev1internal.dreamlines.de';
+    private _endpoint:string = 'http://localhost:9999'; //'http://rates-staging.stagev1internal.dreamlines.de'; //
 
     public static $inject = [
         'httpServiceWrapper'

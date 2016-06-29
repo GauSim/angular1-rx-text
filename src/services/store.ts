@@ -181,6 +181,7 @@ export class Store extends EventEmitter<IFormState> {
             hasDualCurrency: false,
             operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig // will be overwritten
         };
+
         const translationCache:ITranslationCache = {
             'from': 'ab',
             'on request': 'auf Anfrage',
@@ -188,7 +189,6 @@ export class Store extends EventEmitter<IFormState> {
             'persons': 'Personen',
             'max.': 'max.'
         };
-
 
         return this._dispatchers.createInitialState(translationCache, configuration)
             .then(initialState => {

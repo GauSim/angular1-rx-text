@@ -2,16 +2,16 @@ import 'angular';
 import 'angular-translate';
 
 
-import dlIndex from './components/dlIndex';
-import dlSelectSail from './components/dlSelectSail';
-import dlSelectCabin from './components/dlSelectCabin';
-import dlSelectPax from './components/dlSelectPax';
-import dlPaxAgeInput from './components/dlPaxAgeInput';
-import dlSelectCabinGrid from './components/dlSelectCabinGrid';
-import dlCabinGridItem from './components/dlCabinGridItem';
-import dlDisplaySelectedCabin from './components/dlDisplaySelectedCabin';
+import {dlIndex} from './components/dlIndex';
+import {dlSelectSail} from './components/dlSelectSail';
+import {dlSelectCabin} from './components/dlSelectCabin';
+import {dlSelectPax} from './components/dlSelectPax';
+import {dlPaxAgeInput} from './components/dlPaxAgeInput';
+import {dlSelectCabinGrid} from './components/dlSelectCabinGrid';
+import {dlCabinGridItem} from './components/dlCabinGridItem';
+import {dlDisplaySelectedCabin} from './components/dlDisplaySelectedCabin';
 
-import { TrustHtml} from './filters/TrustHtml';
+import { TrustHtml } from './filters/TrustHtml';
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';
 import { FareService } from './services/FareService';
 import { ProductApiService } from './services/ProductApiService';
