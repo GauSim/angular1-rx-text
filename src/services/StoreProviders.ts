@@ -34,7 +34,7 @@ export class StoreProviders {
     getSailsByCruiseId = (sails:ISailViewModel[], cruiseId:number):ISailViewModel[] => sails ? sails.filter(item => item.cruiseId === cruiseId) : [];
 
 
-    getTranslation = (translationCache:ITranslationCache, key:string) => translationCache[key] ? translationCache[key] : key;
+    getTranslation = (t:ITranslationCache, key:string) => t[key] ? t[key] : key;
 
     getCheapestAvailableOrAlternativeCabin = (list:ICabinViewModel[], kind:CABIN_KIND):ICabinViewModel => {
 
@@ -93,35 +93,35 @@ export class StoreProviders {
         ]
     };
 
-    formatSailTitle = (translationCache:ITranslationCache, allCabins:ICabinViewModel[], item:ISailViewModel):string => {
+    formatSailTitle = (t:ITranslationCache, allCabins:ICabinViewModel[], item:ISailViewModel):string => {
         const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
         const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
 
-        const text_from = this.getTranslation(translationCache, 'from');
-        const test_onRequest = this.getTranslation(translationCache, 'on request');
+        const text_from = this.getTranslation(t, 'from');
+        const test_onRequest = this.getTranslation(t, 'on request');
 
         const displayPrice = ((cheapestAvailable as any) != Infinity) ? `${text_from} ${cheapestAvailable.price} ${cheapestAvailable.currency}` : test_onRequest;
         return `${item.departureDate} - ${item.arrivalDate} (${displayPrice})`;
     };
 
-    formatCabinTitle = (translationCache:ITranslationCache, item:ICabinViewModel):string => {
-        const text_onRequest = this.getTranslation(translationCache, 'on request');
+    formatCabinTitle = (t:ITranslationCache, item:ICabinViewModel):string => {
+        const text_onRequest = this.getTranslation(t, 'on request');
         const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : text_onRequest;
-        const text_max = this.getTranslation(translationCache, 'max.');
-        const text_person = this.getTranslation(translationCache, 'person');
-        const text_persons = this.getTranslation(translationCache, 'persons');
+        const text_max = this.getTranslation(t, 'max.');
+        const text_person = this.getTranslation(t, 'person');
+        const text_persons = this.getTranslation(t, 'persons');
         const displayMaxPax = (item.availability === CABIN_AVAILABILITY.available) ? `${text_max} ${item.maxPassengers} ${item.maxPassengers === 1 ? text_person : text_persons}` : '';
-        return `${item.cabinName} ${item.id} (${displayPrice}) ${displayMaxPax}`;
+        return `${item.cabinName} (${displayPrice}) ${displayMaxPax}`;
     };
 
-    private _formatSails = (translationCache:ITranslationCache, allCabins:ICabinViewModel[], sails:ISailViewModel[]):ISailViewModel[] => {
+    formatSails = (t:ITranslationCache, allCabins:ICabinViewModel[], sails:ISailViewModel[]):ISailViewModel[] => {
         return sails.reduce((list, item:ISailViewModel)=> {
-            const title = this.formatSailTitle(translationCache, allCabins, item);
+            const title = this.formatSailTitle(t, allCabins, item);
             return [...list, _.extend({}, item, {title})];
         }, []);
     };
 
-    private _formatCabins = (translationCache:ITranslationCache, cabins:ICabinViewModel[], selectedPax:IPaxSelection, selectedCabinId:string):ICabinViewModel[] => {
+    formatCabins = (t:ITranslationCache, cabins:ICabinViewModel[], selectedPax:IPaxSelection, selectedCabinId:string):ICabinViewModel[] => {
 
         if (!cabins.length) {
             return [];
@@ -133,7 +133,7 @@ export class StoreProviders {
             item.availability = item.availability // = CABIN_AVAILABILITY.onRequest;
 
             const isSelected = item.id === selectedCabinId;
-            const title = this.formatCabinTitle(translationCache, item);
+            const title = this.formatCabinTitle(t, item);
 
             return [...list, _.extend({}, item, {title, isSelected})];
         }, []);
@@ -155,7 +155,6 @@ export class StoreProviders {
 
         return sorted;
     };
-
 
     handleStateCollisionsAndFormat = (translationCache:ITranslationCache,
                                       _allSails:ISailViewModel[],
@@ -181,8 +180,8 @@ export class StoreProviders {
             }
         }
 
-        const allCabinsFormatted = this._formatCabins(translationCache, _allCabins, _selectedPax, selectedCabinId);
-        const allSailsFormatted = this._formatSails(translationCache, allCabinsFormatted, _allSails);
+        const allCabinsFormatted = this.formatCabins(translationCache, _allCabins, _selectedPax, selectedCabinId);
+        const allSailsFormatted = this.formatSails(translationCache, allCabinsFormatted, _allSails);
 
         return {
             selectedCruiseId: _selectedCruiseId,

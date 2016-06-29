@@ -10,8 +10,15 @@ const template = `
         <div class="col-md-6">
             <dl-select-sail></dl-select-sail>
             <dl-select-pax></dl-select-pax>
+
             <dl-select-cabin></dl-select-cabin>
-            <dl-display-selected-cabin></dl-display-selected-cabin>
+
+            <div class="clearfix"></div>
+
+            <dl-display-selected-cabin
+                class="col-xs-12 col-is-8 col-sm-8 col-lg-9 col-is-offset-4 col-sm-offset-4 col-lg-offset-3">
+            </dl-display-selected-cabin>
+
         </div>
         <div class="col-md-6">
         </div>

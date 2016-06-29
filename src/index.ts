@@ -11,11 +11,13 @@ import dlSelectCabinGrid from './dlSelectCabinGrid.componet';
 import dlCabinGridItem from './dlCabinGridItem.componet';
 import dlDisplaySelectedCabin from './dlDisplaySelectedCabin.componet'
 
+import { TrustHtml} from './filters/TrustHtml';
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';
 import { FareService } from './services/FareService';
 import { ProductApiService } from './services/ProductApiService';
 import { OperatorService } from './services/OperatorService';
 import { Store } from './services/store';
+
 
 const MAIN_MODULE_NAME = 'requestFrom';
 
@@ -35,6 +37,7 @@ function registerApp() {
         .service('productApiService', ProductApiService)
         .service('operatorService', OperatorService)
         .service('store', Store)
+        .filter('trustHtml', TrustHtml)
         .run(() => {
             console.log('running');
         });

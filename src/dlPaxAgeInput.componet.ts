@@ -1,10 +1,10 @@
-import { Store, IPaxSelectModel } from './services/store';
+import { Store, IPaxSelectViewModel } from './services/store';
 import { AGE_MAX } from './services/OperatorService';
 
 const template = `
 <div>
     <div data-ng-show="ctrl.isLoading" class="loadingIndicator"></div>
-    <div>  {{ ctrl.fieldName }} (<span data-ng-if="(ctrl.paxAgeConfig.max === ctrl.AGE_MAX)">+</span>{{ ctrl.paxAgeConfig.min }}<span data-ng-if="(ctrl.paxAgeConfig.max !== ctrl.AGE_MAX)"> - {{ ctrl.paxAgeConfig.max }}</span>)</div>
+    <div>  {{ ctrl.fieldName | translate }} (<span data-ng-if="(ctrl.paxAgeConfig.max === ctrl.AGE_MAX)">+</span>{{ ctrl.paxAgeConfig.min }}<span data-ng-if="(ctrl.paxAgeConfig.max !== ctrl.AGE_MAX)"> - {{ ctrl.paxAgeConfig.max }}</span>)</div>
     <select class="form-control"
             data-ng-disabled="ctrl.isLoading"
             data-ng-model="ctrl.selectedValue"
@@ -17,7 +17,7 @@ class Controller implements ng.IComponentController {
     AGE_MAX:number = AGE_MAX;
     isLoading:boolean;
     fieldName:string;
-    selectOptions:IPaxSelectModel[];
+    selectOptions:IPaxSelectViewModel[];
     selectedValue:number;
     onSelect:(s:{fieldName:string, value:number})=>void;
 

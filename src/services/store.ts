@@ -30,6 +30,15 @@ export interface ICabinViewModel {
     kind: CABIN_KIND;
     kindName:string;
     title: string;
+    guaranteeCabinInfo:string;
+    location:string;
+    size:string;
+    bed: string;
+    windows: string;
+    balcony: string;
+    amenities: string;
+    advantages: string[];
+    information: string;
     price:number;
     cabinName:string;
     currency:CURRENCY;
@@ -52,7 +61,7 @@ export interface ICabinGridSelectViewModel {
     suite:ICabinViewModel;
 }
 
-export interface IPaxSelectModel {
+export interface IPaxSelectViewModel {
     id: number;
     title: string;
 }
@@ -83,7 +92,7 @@ export interface ICruiseViewModel {
     operatorBookingServiceCode:string;
 }
 
-export interface IFormState extends IBaseModel{
+export interface IFormState extends IBaseModel {
     configuration:IConfiguration;
 
     selectedCruiseId:number;
@@ -101,7 +110,7 @@ export interface IFormState extends IBaseModel{
     allCabins:ICabinViewModel[];
     allSails:ISailViewModel[];
 
-    paxSelectRange:IPaxSelectModel[];
+    paxSelectRange:IPaxSelectViewModel[];
 
     translationCache:ITranslationCache;
 }

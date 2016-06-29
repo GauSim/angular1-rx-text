@@ -1,4 +1,4 @@
-import { Store, IPaxSelection, IPaxSelectModel, ACTIONS } from './services/store';
+import { Store, IPaxSelection, IPaxSelectViewModel, ITranslationCache, ACTIONS } from './services/store';
 import { IOperatorPaxAgeConfig } from './services/OperatorService';
 
 const template = `
@@ -60,11 +60,11 @@ class Controller implements ng.IComponentController {
     num_child:number;
     num_baby:number;
 
-    paxSeniorSelect:IPaxSelectModel[];
-    paxAdultSelect:IPaxSelectModel[];
-    paxJuniorSelect:IPaxSelectModel[];
-    paxChildSelect:IPaxSelectModel[];
-    paxBabySelect:IPaxSelectModel[];
+    paxSeniorSelect:IPaxSelectViewModel[];
+    paxAdultSelect:IPaxSelectViewModel[];
+    paxJuniorSelect:IPaxSelectViewModel[];
+    paxChildSelect:IPaxSelectViewModel[];
+    paxBabySelect:IPaxSelectViewModel[];
 
     constructor(private store:Store) {
         this.isLoading = store.getIsLoading();
@@ -80,14 +80,14 @@ class Controller implements ng.IComponentController {
             this.num_baby = num_baby;
 
 
-            this.paxJuniorSelect = [... state.paxSelectRange];
-            this.paxSeniorSelect = [... state.paxSelectRange];
-            this.paxAdultSelect = [... state.paxSelectRange];
-            this.paxChildSelect = [... state.paxSelectRange];
-            this.paxBabySelect = [... state.paxSelectRange];
+            this.paxJuniorSelect = state.paxSelectRange.map(e => this._map(state.translationCache, e, 'junior', 'juniors'));
+            this.paxSeniorSelect = state.paxSelectRange.map(e => this._map(state.translationCache, e, 'senior', 'seniors'));
+            this.paxAdultSelect = state.paxSelectRange.map(e => this._map(state.translationCache, e, 'adult', 'adults'));
+            this.paxChildSelect = state.paxSelectRange.map(e => this._map(state.translationCache, e, 'child', 'children'));
+            this.paxBabySelect = state.paxSelectRange.map(e => this._map(state.translationCache, e, 'baby', 'babies'));
         });
 
-        store.subscribe(({ paxSelectRange, selectedCruise, selectedPax  }) => {
+        store.subscribe(({ paxSelectRange, selectedCruise, selectedPax, translationCache  }) => {
 
             this.operatorPaxAgeConfig = selectedCruise.operatorPaxAgeConfig;
 
@@ -98,16 +98,21 @@ class Controller implements ng.IComponentController {
             this.num_adults = num_adults;
             this.num_seniors = num_seniors;
 
-            this.paxJuniorSelect = [... paxSelectRange];
-            this.paxSeniorSelect = [... paxSelectRange];
-            this.paxAdultSelect = [... paxSelectRange];
-            this.paxChildSelect = [... paxSelectRange];
-            this.paxBabySelect = [... paxSelectRange];
+            this.paxJuniorSelect = paxSelectRange.map(e => this._map(translationCache, e, 'junior', 'juniors'));
+            this.paxSeniorSelect = paxSelectRange.map(e => this._map(translationCache, e, 'senior', 'seniors'));
+            this.paxAdultSelect = paxSelectRange.map(e => this._map(translationCache, e, 'adult', 'adults'));
+            this.paxChildSelect = paxSelectRange.map(e => this._map(translationCache, e, 'child', 'children'));
+            this.paxBabySelect = paxSelectRange.map(e => this._map(translationCache, e, 'baby', 'babies'));
         });
 
         store.isLoading.subscribe(e => (this.isLoading = e));
 
     }
+
+    _map = (t:ITranslationCache, item:IPaxSelectViewModel, singular:string, plural:string):IPaxSelectViewModel => {
+        const text = item.id === 1 ? (t[singular] || singular) : (t[plural] || plural);
+        return _.extend({}, item, {title: `${item.id} ${text}`});
+    };
 
     onSelect = (fieldName:string, value:number) => {
 

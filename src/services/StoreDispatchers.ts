@@ -19,7 +19,6 @@ export class StoreDispatchers {
 
     createInitialState = (translationCache:ITranslationCache, configuration:IConfiguration):ng.IPromise<IFormState> => {
 
-        const paxSelectRange = _.range(0, 10).map(n => ({id: n, title: `${n}`}));
         const selectedPax:IPaxSelection = {
             num_adults: 2,
             num_seniors: 0,
@@ -54,7 +53,7 @@ export class StoreDispatchers {
                     cabintypeSelect: this._providers.getCabinsBySailId(allCabins, selectedSailId),
                     sailSelect: this._providers.getSailsByCruiseId(allSails, selectedCruiseId),
                     selectedCabin: this._providers.getSelectedCabin(allCabins, selectedCabinId),
-                    paxSelectRange,
+                    paxSelectRange: _.range(0, 10).map(n => ({id: n, title: `${n}`})),
 
                     configuration,
                     translationCache

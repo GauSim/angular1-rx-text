@@ -25,6 +25,15 @@ interface ProductApiCabin {
     bedQuantity: number;
     maxPassengers:number;
     thumborImage:string;
+    guaranteeCabinInfo:string;
+    location:string; // name of the deck
+    size:string;
+    bed: string;
+    windows: string;
+    balcony: string;
+    amenities: string;
+    advantages: string[];
+    information: string;
 }
 
 
@@ -57,6 +66,15 @@ export class ProductApiService {
             kind: cabin.kindId as CABIN_KIND,
             bedQuantity: cabin.bedQuantity,
             cabinName: cabin.title,
+            guaranteeCabinInfo: cabin.guaranteeCabinInfo,
+            location: cabin.location,
+            size: cabin.size,
+            bed: cabin.bed,
+            windows: cabin.windows,
+            balcony: cabin.balcony,
+            amenities: cabin.amenities,
+            advantages: cabin.advantages,
+            information: cabin.information,
             maxPassengers: cabin.maxPassengers, // will be overwritten
             kindName: CABIN_KIND[cabin.kindId], // will be overwritten
             price: 0, // will be overwritten
