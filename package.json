@@ -6,10 +6,14 @@
   "scripts": {
     "test": "NODE_ENV='test' _mocha './dist/tests/unit/index.js' -c --inline-diffs --reporter 'list' --ui 'bdd'",
     "test:watch": "npm run test -- --watch",
-    "dev": "npm run build && lite-server",
+    "start:dev": "npm run build && lite-server",
+    "start:dev:proxy": "node ./tools/proxy.js",
     "postinstall": "typings install",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
+    "prebundle": "npm run build",
+    "bundle": "node ./tools/bundle.js",
+    "prewatch": "npm run clean",
     "watch": "tsc -p . -w --pretty",
     "typings": "typings",
     "clean": "rimraf ./dist/"
@@ -24,6 +28,7 @@
     "q": "^1.4.1",
     "rimraf": "^2.5.2",
     "should": "^9.0.2",
+    "systemjs-builder": "^0.15.23",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
   },

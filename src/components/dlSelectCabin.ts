@@ -35,6 +35,10 @@ class Controller implements ng.IComponentController {
             }, 'cabinDD');
     };
 
+    public static $inject = [
+        'store'
+    ];
+
     constructor(private store:Store) {
         this.isLoading = store.getIsLoading();
         store.isLoading.subscribe(e => (this.isLoading = e));

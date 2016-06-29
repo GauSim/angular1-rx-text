@@ -8,13 +8,15 @@
     <link href="https://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet">
     <link href="https://www.dreamlines.de/wp-content/themes/de/detail.css?ver=v1.42.1.2934" rel="stylesheet">
 
-    <!-- 1. Load libraries -->
-    <!-- Polyfill(s) for older browsers -->
+
+    <!-- include this for dist -->
     <script src="/node_modules/systemjs/dist/system.src.js"></script>
-    <!-- 2. Configure SystemJS -->
     <script src="/dist/build/systemjs.config.js"></script>
+    <script src="/dist/build/bundle.js"></script>
+
+
     <script>
-        System.import('app').catch(function (err) {
+        System.import('index.js').catch(function (err) {
             console.error(err);
         });
     </script>

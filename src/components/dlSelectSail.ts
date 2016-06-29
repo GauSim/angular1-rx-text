@@ -27,6 +27,10 @@ class Controller implements ng.IComponentController {
             }, 'saildd');
     };
 
+    public static $inject = [
+        'store'
+    ];
+
     constructor(private store:Store) {
         this.isLoading = store.getIsLoading();
 

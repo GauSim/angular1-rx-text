@@ -2,14 +2,14 @@ import 'angular';
 import 'angular-translate';
 
 
-import dlIndex from './componets/dlIndex.componet';
-import dlSelectSail from './componets/dlSelectSail.componet';
-import dlSelectCabin from './componets/dlSelectCabin.componet';
-import dlSelectPax from './componets/dlSelectPax.componet';
-import dlPaxAgeInput from './componets/dlPaxAgeInput.componet';
-import dlSelectCabinGrid from './componets/dlSelectCabinGrid.componet';
-import dlCabinGridItem from './componets/dlCabinGridItem.componet';
-import dlDisplaySelectedCabin from './componets/dlDisplaySelectedCabin.componet'
+import dlIndex from './components/dlIndex';
+import dlSelectSail from './components/dlSelectSail';
+import dlSelectCabin from './components/dlSelectCabin';
+import dlSelectPax from './components/dlSelectPax';
+import dlPaxAgeInput from './components/dlPaxAgeInput';
+import dlSelectCabinGrid from './components/dlSelectCabinGrid';
+import dlCabinGridItem from './components/dlCabinGridItem';
+import dlDisplaySelectedCabin from './components/dlDisplaySelectedCabin'
 
 import { TrustHtml} from './filters/TrustHtml';
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';

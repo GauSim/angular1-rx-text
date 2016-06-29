@@ -50,7 +50,11 @@ class Controller implements ng.IComponentController {
             }, 'dlCabinGridSelect');
     };
 
-    constructor(private store:Store, $scope:ng.IScope) {
+    public static $inject = [
+        'store'
+    ];
+
+    constructor(private store:Store) {
 
         this.isLoading = store.getIsLoading();
         store.isLoading.subscribe(e => (this.isLoading = e));

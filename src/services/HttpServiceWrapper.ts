@@ -46,6 +46,11 @@ export class HttpServiceWrapper {
      */
     private _responseCache:{ hash:string, response:any }[] = [];
 
+    public static $inject = [
+        '$q',
+        '$http'
+    ];
+
     constructor(private $q:ng.IQService,
                 private $http:ng.IHttpService) {
     }

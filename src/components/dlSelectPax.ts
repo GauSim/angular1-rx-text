@@ -66,6 +66,10 @@ class Controller implements ng.IComponentController {
     paxChildSelect:IPaxSelectViewModel[];
     paxBabySelect:IPaxSelectViewModel[];
 
+    public static $inject = [
+        'store'
+    ];
+
     constructor(private store:Store) {
         this.isLoading = store.getIsLoading();
 

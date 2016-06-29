@@ -11,6 +11,12 @@ export class StoreDispatchers {
 
     private _providers = new StoreProviders();
 
+    public static $inject = [
+        '$q',
+        'fareService',
+        'productApiService'
+    ];
+
     constructor(private $q:ng.IQService,
                 private fareService:FareService,
                 private productApiService:ProductApiService) {

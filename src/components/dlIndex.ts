@@ -36,6 +36,11 @@ class Controller implements ng.IComponentController {
 
     state:IFormState;
 
+
+    public static $inject = [
+        'store'
+    ];
+
     constructor(private store:Store) {
         store.getLastState().then(state => {
             this.state = state;

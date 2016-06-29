@@ -130,6 +130,13 @@ export class Store extends EventEmitter<IFormState> {
     private _dispatchers:StoreDispatchers;
     private _state:IFormState;
 
+
+    public static $inject = [
+        '$q',
+        'fareService',
+        'productApiService'
+    ];
+
     constructor(private $q:ng.IQService,
                 private fareService:FareService,
                 private productApiService:ProductApiService) {

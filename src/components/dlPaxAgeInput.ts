@@ -21,6 +21,10 @@ class Controller implements ng.IComponentController {
     selectedValue:number;
     onSelect:(s:{fieldName:string, value:number})=>void;
 
+    public static $inject = [
+        '$scope',
+        'store'
+    ];
 
     constructor(private $scope:ng.IScope, private store:Store) {
 

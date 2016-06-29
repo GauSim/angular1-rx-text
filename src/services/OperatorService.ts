@@ -39,6 +39,9 @@ export class OperatorService {
         baby: {min: 0, max: 1, isSupported: true}
     };
 
+    public static $inject = [
+        '$q'
+    ];
 
     constructor(private $q:ng.IQService) {
 
@@ -49,8 +52,6 @@ export class OperatorService {
         // see https://netvacation.atlassian.net/browse/DBF-1352
         return this.$q.resolve(OperatorService.ALLFieldsPaxAgeConfig);
     };
-
-
 
 
 }

@@ -42,6 +42,11 @@ export class ProductApiService {
 
     private _endpoint:string = 'http://localhost:3000/src/tests/mockData/367247.json';
 
+    public static $inject = [
+        'httpServiceWrapper',
+        'operatorService'
+    ];
+
     constructor(private httpServiceWrapper:HttpServiceWrapper,
                 private operatorService:OperatorService) {
     }
