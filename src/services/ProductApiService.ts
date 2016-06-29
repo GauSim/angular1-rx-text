@@ -1,3 +1,4 @@
+import * as _ from 'underscore';
 import { HttpServiceWrapper } from './HttpServiceWrapper';
 import { ICruiseViewModel, ICabinViewModel, ISailViewModel, IConfiguration, IBaseModel } from './Store';
 import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
@@ -39,7 +40,7 @@ interface ProductApiCabin {
 
 export class ProductApiService {
 
-    private _endpoint:string = 'http://localhost:3000/src/mockData/367247.json';
+    private _endpoint:string = 'http://localhost:3000/src/tests/mockData/367247.json';
 
     constructor(private httpServiceWrapper:HttpServiceWrapper,
                 private operatorService:OperatorService) {
@@ -99,31 +100,35 @@ export class ProductApiService {
         }, []);
     };
 
-    _mapToCruise = (response:ProductApiResponse, operatorPaxAgeConfig:IOperatorPaxAgeConfig):ICruiseViewModel => {
+    _mapToCruise = (response:ProductApiResponse):ICruiseViewModel => {
         return {
             id: response.nid, //367247,
             title: response.title,
-            operatorPaxAgeConfig: operatorPaxAgeConfig,
             operatorBookingServiceCode: response.operator.bookingServiceCode
         }
     };
+    _mapToConfiguration = (configuration:IConfiguration, operatorPaxAgeConfig:IOperatorPaxAgeConfig):IConfiguration => {
 
-    _mapToBaseModel = (config:IConfiguration, response:ProductApiResponse):ng.IPromise<IBaseModel> => {
+        return _.extend({}, configuration, {operatorPaxAgeConfig: operatorPaxAgeConfig});
+    };
+
+    _mapToBaseModel = (configuration:IConfiguration, response:ProductApiResponse):ng.IPromise<IBaseModel> => {
         return this.operatorService.getOperatorConfig(response.operator.bookingServiceCode)
             .then((operatorPaxAgeConfig):IBaseModel => {
                 return {
-                    selectedCruise: this._mapToCruise(response, operatorPaxAgeConfig),
-                    allCabins: this._mapToAllCabins(response, config),
-                    allSails: this._mapToAllSails(response)
+                    selectedCruise: this._mapToCruise(response),
+                    allCabins: this._mapToAllCabins(response, configuration),
+                    allSails: this._mapToAllSails(response),
+                    configuration: this._mapToConfiguration(configuration, operatorPaxAgeConfig)
                 }
             });
     };
 
-    createBaseModel = (config:IConfiguration):ng.IPromise<IBaseModel> => {
+    createBaseModel = (configuration:IConfiguration):ng.IPromise<IBaseModel> => {
         return this.httpServiceWrapper.request<ProductApiResponse>({
                 url: `${this._endpoint}`,
                 method: 'GET'
             })
-            .then(response => this._mapToBaseModel(config, response));
+            .then(response => this._mapToBaseModel(configuration, response));
     };
 }

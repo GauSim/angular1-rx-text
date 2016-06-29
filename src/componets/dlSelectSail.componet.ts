@@ -1,4 +1,4 @@
-import { Store, ISailViewModel, ACTIONS } from './services/store';
+import { Store, ISailViewModel, ACTIONS } from '../services/store';
 
 const template = `
  <span data-ng-show="ctrl.isLoading" class="loadingIndicator"></span>

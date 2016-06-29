@@ -1,4 +1,4 @@
-import { Store, ICabinGridSelectViewModel, ACTIONS } from './services/store';
+import { Store, ICabinGridSelectViewModel, ACTIONS } from '../services/store';
 
 
 const template = `

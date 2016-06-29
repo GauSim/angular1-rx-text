@@ -50,6 +50,12 @@ export class FareService {
     constructor(private httpServiceWrapper:HttpServiceWrapper) {
     }
 
+    /**
+     * creates "fake" IOperatorPaxMetadata for each passenger
+     * @param operatorPaxAgeConfig
+     * @param selectedPax
+     * @returns {IOperatorPaxMetadata[]}
+     */
     createFakePassengerList = (operatorPaxAgeConfig:IOperatorPaxAgeConfig, selectedPax:IPaxSelection):IOperatorPaxMetadata[] => {
 
         const toMetadata = (age:number):IOperatorPaxMetadata => {
@@ -70,12 +76,19 @@ export class FareService {
     };
 
 
-    getFares = (curiseId:number, configuration:IConfiguration, operatorPaxAgeConfig:IOperatorPaxAgeConfig, selectedPax:IPaxSelection):ng.IPromise<IFareServiceResponse[]> => {
+    /**
+     * loades fares from remote endpoint
+     * @param curiseId
+     * @param configuration
+     * @param selectedPax
+     * @returns {IPromise<IFareServiceResponse[]|T[]>}
+     */
+    getFares = (curiseId:number, configuration:IConfiguration, selectedPax:IPaxSelection):ng.IPromise<IFareServiceResponse[]> => {
 
         const payload:IFareServiceRequest = {
             market: configuration.marketId as MARKET_ID,
             cruiseId: curiseId,
-            passengers: this.createFakePassengerList(operatorPaxAgeConfig, selectedPax)
+            passengers: this.createFakePassengerList(configuration.operatorPaxAgeConfig, selectedPax)
         };
 
         return this.httpServiceWrapper.request<IFareServiceResponse[]>({
@@ -93,6 +106,12 @@ export class FareService {
             });
     };
 
+    /**
+     * merges cabinfrom ProductApi and Fares and updates fields on each cabin
+     * @param allCabins
+     * @param availableFares
+     * @returns {ICabinViewModel[]}
+     */
     mergeCabinsAndFares = (allCabins:ICabinViewModel[], availableFares:IFareServiceResponse[]):ICabinViewModel[]=> {
 
         return allCabins.reduce((list, item:ICabinViewModel)=> {

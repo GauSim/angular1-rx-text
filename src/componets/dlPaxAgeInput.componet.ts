@@ -1,5 +1,5 @@
-import { Store, IPaxSelectViewModel } from './services/store';
-import { AGE_MAX } from './services/OperatorService';
+import { Store, IPaxSelectViewModel } from '../services/store';
+import { AGE_MAX } from '../services/OperatorService';
 
 const template = `
 <div>

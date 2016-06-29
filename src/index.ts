@@ -2,14 +2,14 @@ import 'angular';
 import 'angular-translate';
 
 
-import dlForm from './dlForm.componet';
-import dlSelectSail from './dlSelectSail.componet';
-import dlSelectCabin from './dlSelectCabin.componet';
-import dlSelectPax from './dlSelectPax.componet';
-import dlPaxAgeInput from './dlPaxAgeInput.componet';
-import dlSelectCabinGrid from './dlSelectCabinGrid.componet';
-import dlCabinGridItem from './dlCabinGridItem.componet';
-import dlDisplaySelectedCabin from './dlDisplaySelectedCabin.componet'
+import dlIndex from './componets/dlIndex.componet';
+import dlSelectSail from './componets/dlSelectSail.componet';
+import dlSelectCabin from './componets/dlSelectCabin.componet';
+import dlSelectPax from './componets/dlSelectPax.componet';
+import dlPaxAgeInput from './componets/dlPaxAgeInput.componet';
+import dlSelectCabinGrid from './componets/dlSelectCabinGrid.componet';
+import dlCabinGridItem from './componets/dlCabinGridItem.componet';
+import dlDisplaySelectedCabin from './componets/dlDisplaySelectedCabin.componet'
 
 import { TrustHtml} from './filters/TrustHtml';
 import { HttpServiceWrapper } from './services/HttpServiceWrapper';
@@ -24,7 +24,7 @@ const MAIN_MODULE_NAME = 'requestFrom';
 function registerApp() {
 
     const app = angular.module(MAIN_MODULE_NAME, ['pascalprecht.translate'])
-        .component('dlForm', dlForm)
+        .component('dlIndex', dlIndex)
         .component('dlSelectSail', dlSelectSail)
         .component('dlSelectCabin', dlSelectCabin)
         .component('dlSelectPax', dlSelectPax)
@@ -51,7 +51,7 @@ export function bootstrap() {
 
     function injectApp() {
 
-        document.body.innerHTML = `<div class="container"><dl-form></dl-form><div>`;
+        document.body.innerHTML = `<div class="container"><dl-Index></dl-Index><div>`;
         angular.bootstrap(document, [MAIN_MODULE_NAME]);
     }
 

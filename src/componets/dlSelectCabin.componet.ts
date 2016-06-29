@@ -1,4 +1,4 @@
-import { Store, ICabinViewModel, ACTIONS } from './services/store';
+import { Store, ICabinViewModel, ACTIONS } from '../services/store';
 
 const template = `
 <div class="form-group">

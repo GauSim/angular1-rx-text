@@ -1,4 +1,4 @@
-import { Store, IFormState } from './services/store';
+import { Store, IFormState } from '../services/store';
 
 const template = `
 
@@ -47,11 +47,11 @@ class Controller implements ng.IComponentController {
 }
 
 
-const dlForm:ng.IComponentOptions = {
+const dlIndex:ng.IComponentOptions = {
     template: template,
     controller: Controller,
     controllerAs: 'ctrl',
     bindings: {}
 
 };
-export default dlForm;
+export default dlIndex;

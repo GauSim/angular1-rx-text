@@ -9,6 +9,7 @@ import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILA
 
 
 export interface IBaseModel {
+    configuration:IConfiguration,
     selectedCruise:ICruiseViewModel,
     allCabins:ICabinViewModel[],
     allSails:ISailViewModel[]
@@ -75,6 +76,7 @@ export interface IConfiguration {
     marketId:MARKET_ID;
     defaultCurrency:CURRENCY;
     hasDualCurrency:boolean;
+    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
 }
 
 export interface IPaxSelection {
@@ -88,7 +90,6 @@ export interface IPaxSelection {
 export interface ICruiseViewModel {
     id:number;
     title:string;
-    operatorPaxAgeConfig:IOperatorPaxAgeConfig;
     operatorBookingServiceCode:string;
 }
 
@@ -170,7 +171,8 @@ export class Store extends EventEmitter<IFormState> {
         const configuration:IConfiguration = {
             marketId: 'de' as MARKET_ID,
             defaultCurrency: 'EUR' as CURRENCY,
-            hasDualCurrency: false
+            hasDualCurrency: false,
+            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig // will be overwritten
         };
         const translationCache:ITranslationCache = {
             'from': 'ab',

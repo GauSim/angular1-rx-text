@@ -70,7 +70,7 @@ export class StoreDispatchers {
 
                 const { allCabins, selectedCruise, allSails } = baseModelFromProductApi;
 
-                return this.fareService.getFares(selectedCruise.id, configuration, selectedCruise.operatorPaxAgeConfig, selectedPax)
+                return this.fareService.getFares(selectedCruise.id, configuration, selectedPax)
                     .then(availableFares => this.fareService.mergeCabinsAndFares(allCabins, availableFares))
                     .then(mergedCabins => {
 

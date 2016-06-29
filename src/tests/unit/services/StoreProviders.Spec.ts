@@ -1,5 +1,5 @@
 import { StoreProviders } from '../../../services/StoreProviders';
-import { StateMockHelper } from '../../../services/StateMockHelper';
+import { StateMockHelper } from '../../helpers/StateMockHelper';
 import { ITranslationCache } from '../../../services/Store';
 import { CABIN_AVAILABILITY, CABIN_KIND } from '../../../helpers/Enums';
 

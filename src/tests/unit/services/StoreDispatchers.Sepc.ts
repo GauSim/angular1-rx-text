@@ -4,7 +4,7 @@ import { ProductApiService } from '../../../services/ProductApiService';
 import { HttpServiceWrapper } from '../../../services/HttpServiceWrapper';
 import { StoreDispatchers } from '../../../services/StoreDispatchers';
 import { StoreProviders } from '../../../services/StoreProviders';
-import { StateMockHelper } from '../../../services/StateMockHelper';
+import { StateMockHelper } from '../../helpers/StateMockHelper';
 import { ITranslationCache, IConfiguration } from '../../../services/Store';
 
 

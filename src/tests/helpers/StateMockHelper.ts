@@ -1,7 +1,7 @@
 import * as _ from 'underscore';
-import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
-import { ICruiseViewModel, ISailViewModel, ITranslationCache, ICabinViewModel, IConfiguration, StoreProviders } from './Store';
-import { OperatorService } from './OperatorService';
+import { CABIN_KIND, CURRENCY, CABIN_AVAILABILITY, MARKET_ID, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../../helpers/Enums';
+import { ICruiseViewModel, ISailViewModel, ITranslationCache, ICabinViewModel, IConfiguration, StoreProviders } from '../../services/Store';
+import { OperatorService } from '../../services/OperatorService';
 
 
 export class StateMockHelper {
@@ -15,7 +15,8 @@ export class StateMockHelper {
         return {
             marketId: 'de' as MARKET_ID,
             hasDualCurrency: false,
-            defaultCurrency: 'EUR' as CURRENCY
+            defaultCurrency: 'EUR' as CURRENCY,
+            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig
         };
     };
 
@@ -23,7 +24,6 @@ export class StateMockHelper {
         return {
             id: 367247,
             title: 'einmal um die welt',
-            operatorPaxAgeConfig: OperatorService.defaultPaxAgeConfig,
             operatorBookingServiceCode: 'msc'
         }
     };
