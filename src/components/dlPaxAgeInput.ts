@@ -63,4 +63,4 @@ const dlPaxAgeInput:ng.IComponentOptions = {
 
 };
 
-export default dlPaxAgeInput;
+export {dlPaxAgeInput};

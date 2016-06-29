@@ -55,4 +55,4 @@ const dlSelectSail:ng.IComponentOptions = {
     bindings: {}
 
 };
-export default dlSelectSail;
+export {dlSelectSail};

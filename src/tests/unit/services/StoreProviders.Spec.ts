@@ -7,7 +7,7 @@ import * as should from 'should';
 import * as Q from 'q';
 
 describe('StoreProviders', () => {
-    const translationCache:ITranslationCache = {
+    const translationCache: ITranslationCache = {
         'from': 'ab',
         'on request': 'auf Anfrage'
     };

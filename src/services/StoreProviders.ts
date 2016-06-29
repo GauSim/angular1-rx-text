@@ -88,7 +88,7 @@ export class StoreProviders {
         ];
     };
 
-    formatSailTitle = (t:ITranslationCache, allCabins:ICabinViewModel[], item:ISailViewModel):string => {
+    formatSailTitle = (t:ITranslationCache, allCabins: ICabinViewModel[], item: ISailViewModel):string => {
         const cabinsForSail = this.getCabinsBySailId(allCabins, item.id);
         const cheapestAvailable = this.getCheapestAvailableCabin(cabinsForSail);
 
@@ -99,7 +99,7 @@ export class StoreProviders {
         return `${item.departureDate} - ${item.arrivalDate} (${displayPrice})`;
     };
 
-    formatCabinTitle = (t:ITranslationCache, item:ICabinViewModel):string => {
+    formatCabinTitle = (t: ITranslationCache, item: ICabinViewModel):string => {
         const text_onRequest = this.getTranslation(t, 'on request');
         const displayPrice = (item.availability === CABIN_AVAILABILITY.available) ? `${item.price} ${item.currency}` : text_onRequest;
         const text_max = this.getTranslation(t, 'max.');
@@ -109,20 +109,20 @@ export class StoreProviders {
         return `${item.cabinName} (${displayPrice}) ${displayMaxPax}`;
     };
 
-    formatSails = (t:ITranslationCache, allCabins:ICabinViewModel[], sails:ISailViewModel[]):ISailViewModel[] => {
-        return sails.reduce((list, item:ISailViewModel) => {
+    formatSails = (t: ITranslationCache, allCabins: ICabinViewModel[], sails: ISailViewModel[]):ISailViewModel[] => {
+        return sails.reduce((list, item: ISailViewModel) => {
             const title = this.formatSailTitle(t, allCabins, item);
             return [...list, _.extend({}, item, {title})];
         }, []);
     };
 
-    formatCabins = (t:ITranslationCache, cabins:ICabinViewModel[], selectedPax:IPaxSelection, selectedCabinId:string):ICabinViewModel[] => {
+    formatCabins = (t: ITranslationCache, cabins: ICabinViewModel[], selectedPax: IPaxSelection, selectedCabinId: string):ICabinViewModel[] => {
 
         if (!cabins.length) {
             return [];
         }
 
-        const formatedCabins = cabins.reduce((list, item:ICabinViewModel) => {
+        const formatedCabins = cabins.reduce((list, item: ICabinViewModel) => {
 
             // todo does selectedPax fit in cabin ?
             item.availability = item.availability; // = CABIN_AVAILABILITY.onRequest;
@@ -133,10 +133,10 @@ export class StoreProviders {
             return [...list, _.extend({}, item, {title, isSelected})];
         }, []);
 
-        const grpd:{
-            inside?:ICabinViewModel[],
-            outside?:ICabinViewModel[],
-            balcony?:ICabinViewModel[],
+        const grpd: {
+            inside?: ICabinViewModel[],
+            outside?: ICabinViewModel[],
+            balcony?: ICabinViewModel[],
             suite?:ICabinViewModel[]
         } = _.groupBy<ICabinViewModel>(formatedCabins, ((e:ICabinViewModel) => e.kindName)) as any;
 

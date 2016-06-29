@@ -63,4 +63,4 @@ const dlSelectCabin:ng.IComponentOptions = {
     bindings: {}
 
 };
-export default dlSelectCabin;
+export {dlSelectCabin};

@@ -76,4 +76,4 @@ const dlSelectCabinGrid:ng.IComponentOptions = {
     bindings: {}
 
 };
-export default dlSelectCabinGrid;
+export {dlSelectCabinGrid};

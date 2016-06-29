@@ -59,4 +59,4 @@ const dlIndex:ng.IComponentOptions = {
     bindings: {}
 
 };
-export default dlIndex;
+export {dlIndex};

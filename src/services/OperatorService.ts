@@ -2,21 +2,21 @@ import * as _ from 'underscore';
 import { IFareSelector } from './FareService';
 
 export interface IOperatorPaxAgeRange {
-    max:number;
-    min:number;
-    isSupported:boolean;
+    max: number;
+    min: number;
+    isSupported: boolean;
 }
 
 export interface IOperatorPaxMetadata {
-    age:number;
+    age: number;
 }
 
 export interface IOperatorPaxAgeConfig {
-    senior:IOperatorPaxAgeRange;
-    adult:IOperatorPaxAgeRange;
-    junior:IOperatorPaxAgeRange;
-    child:IOperatorPaxAgeRange;
-    baby:IOperatorPaxAgeRange;
+    senior: IOperatorPaxAgeRange;
+    adult: IOperatorPaxAgeRange;
+    junior: IOperatorPaxAgeRange;
+    child: IOperatorPaxAgeRange;
+    baby: IOperatorPaxAgeRange;
 }
 
 export const AGE_MAX = 999;
@@ -47,7 +47,7 @@ export class OperatorService {
 
     }
 
-    getOperatorConfig = (bookingServiceCode:string):ng.IPromise<IOperatorPaxAgeConfig> => {
+    getOperatorConfig = (bookingServiceCode: string):ng.IPromise<IOperatorPaxAgeConfig> => {
         // todo fetch from booking api the config for given OP
         // see https://netvacation.atlassian.net/browse/DBF-1352
         return this.$q.resolve(OperatorService.ALLFieldsPaxAgeConfig);

@@ -64,6 +64,7 @@
       "allow-null-check"
     ],
     "variable-name": false,
+    "use-isnan": true,
     "whitespace": [
       true,
       "check-typecast",
@@ -73,6 +74,29 @@
       "check-module",
       "check-separator"
     ],
-    "typedef": false
+    "typedef": false,
+    "interface-name": [
+      "always-prefix"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "switch-default": true,
+    "no-namespace": true,
+    "no-inferrable-types": true,
+    "no-reference": true,
+    "no-require-imports": true,
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "no-default-export": true
   }
 }

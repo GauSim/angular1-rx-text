@@ -117,7 +117,7 @@ export interface IFormState extends IBaseModel {
 }
 
 
-interface Action {
+interface IAction {
     type: string;
     payload: any;
 }
@@ -144,7 +144,7 @@ export class Store extends EventEmitter<IFormState> {
         this._dispatchers = new StoreDispatchers($q, fareService, productApiService);
     }
 
-    public emitIsLoading = (force:boolean = false) => this.isLoading.emit(this.getIsLoading());
+    public emitIsLoading = (force = false) => this.isLoading.emit(this.getIsLoading());
     public getIsLoading = () => this.runingActions.length > 0;
 
     public getLastState = ():ng.IPromise<IFormState> => {
@@ -201,7 +201,7 @@ export class Store extends EventEmitter<IFormState> {
     };
 
     runingActions = [];
-    public dispatchState = ({type, payload}:Action, debug:string = ''):void => {
+    public dispatchState = ({type, payload}:IAction, debug = ''):void => {
 
         const hash = JSON.stringify({type, payload});
 

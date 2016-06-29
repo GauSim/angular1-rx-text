@@ -150,4 +150,4 @@ const dlSelectPax:ng.IComponentOptions = {
     bindings: {}
 
 };
-export default dlSelectPax;
+export {dlSelectPax};

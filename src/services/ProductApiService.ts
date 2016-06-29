@@ -4,31 +4,31 @@ import { ICruiseViewModel, ICabinViewModel, ISailViewModel, IConfiguration, IBas
 import { CABIN_AVAILABILITY, CABIN_KIND, MARKET_ID, CURRENCY, RATECODE_NO_AVAILABLE_IN_RATESERVICE_FOR_PAX_CONFIG } from '../helpers/Enums';
 import { IOperatorPaxAgeConfig, OperatorService } from './OperatorService';
 
-interface ProductApiResponse {
-    nid:number;
-    title:string;
-    operator:{
-        bookingServiceCode:string;
+interface IProductApiResponse {
+    nid: number;
+    title: string;
+    operator: {
+        bookingServiceCode: string;
     };
-    sails:ProductApiSail[];
+    sails: IProductApiSail[];
 }
 
-interface ProductApiSail {
-    nid:number;
-    arrivalDate:string;
-    departureDate:string;
-    cabins:ProductApiCabin[];
+interface IProductApiSail {
+    nid: number;
+    arrivalDate: string;
+    departureDate: string;
+    cabins: IProductApiCabin[];
 }
-interface ProductApiCabin {
+interface IProductApiCabin {
     nid: number;
     title: string;
     kindId: number;
     bedQuantity: number;
-    maxPassengers:number;
-    thumborImage:string;
-    guaranteeCabinInfo:string;
-    location:string; // name of the deck
-    size:string;
+    maxPassengers: number;
+    thumborImage: string;
+    guaranteeCabinInfo: string;
+    location: string; // name of the deck
+    size: string;
     bed: string;
     windows: string;
     balcony: string;
@@ -47,12 +47,12 @@ export class ProductApiService {
         'operatorService'
     ];
 
-    constructor(private httpServiceWrapper:HttpServiceWrapper,
-                private operatorService:OperatorService) {
+    constructor(private httpServiceWrapper: HttpServiceWrapper,
+                private operatorService: OperatorService) {
     }
 
-    private _mapToAllSails = (productApiResponse:ProductApiResponse):ISailViewModel[] => {
-        return productApiResponse.sails.map((sail):ISailViewModel => {
+    private _mapToAllSails = (productApiResponse: IProductApiResponse): ISailViewModel[] => {
+        return productApiResponse.sails.map((sail): ISailViewModel => {
             return {
                 id: sail.nid,
                 cruiseId: productApiResponse.nid,
@@ -63,7 +63,7 @@ export class ProductApiService {
         });
     };
 
-    private _mapToCabin = (configuration:IConfiguration, cruiseId:number, sailId:number, cabin:ProductApiCabin):ICabinViewModel => {
+    private _mapToCabin = (configuration: IConfiguration, cruiseId: number, sailId: number, cabin: IProductApiCabin): ICabinViewModel => {
         return {
             id: `${cruiseId}_${sailId}_${cabin.nid}`,
             cabinId: cabin.nid,
@@ -97,27 +97,27 @@ export class ProductApiService {
         };
     };
 
-    private _mapToAllCabins = (response:ProductApiResponse, config:IConfiguration):ICabinViewModel[] => {
+    private _mapToAllCabins = (response: IProductApiResponse, config: IConfiguration): ICabinViewModel[] => {
         return response.sails.reduce((list, sail) => {
-            return [...list, ...sail.cabins.map((cabin):ICabinViewModel => {
+            return [...list, ...sail.cabins.map((cabin): ICabinViewModel => {
                 return this._mapToCabin(config, response.nid, sail.nid, cabin);
             })];
         }, []);
     };
 
-    _mapToCruise = (response:ProductApiResponse):ICruiseViewModel => {
+    _mapToCruise = (response: IProductApiResponse): ICruiseViewModel => {
         return {
             id: response.nid, //367247,
             title: response.title,
             operatorBookingServiceCode: response.operator.bookingServiceCode
         };
     };
-    _mapToConfiguration = (configuration:IConfiguration, operatorPaxAgeConfig:IOperatorPaxAgeConfig):IConfiguration => {
+    _mapToConfiguration = (configuration: IConfiguration, operatorPaxAgeConfig: IOperatorPaxAgeConfig): IConfiguration => {
 
         return _.extend({}, configuration, {operatorPaxAgeConfig: operatorPaxAgeConfig});
     };
 
-    _mapToBaseModel = (configuration:IConfiguration, response:ProductApiResponse):ng.IPromise<IBaseModel> => {
+    _mapToBaseModel = (configuration:IConfiguration, response: IProductApiResponse): ng.IPromise<IBaseModel> => {
         return this.operatorService.getOperatorConfig(response.operator.bookingServiceCode)
             .then((operatorPaxAgeConfig):IBaseModel => {
                 return {
@@ -129,8 +129,8 @@ export class ProductApiService {
             });
     };
 
-    createBaseModel = (configuration:IConfiguration):ng.IPromise<IBaseModel> => {
-        return this.httpServiceWrapper.request<ProductApiResponse>({
+    createBaseModel = (configuration: IConfiguration): ng.IPromise<IBaseModel> => {
+        return this.httpServiceWrapper.request<IProductApiResponse>({
                 url: `${this._endpoint}`,
                 method: 'GET'
             })

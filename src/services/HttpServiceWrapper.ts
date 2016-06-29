@@ -30,13 +30,13 @@ export class HttpServiceWrapper {
      * contains hashes of running http requests
      * @type {Array}
      */
-    private _runningRequests:string[] = [];
+    private _runningRequests: string[] = [];
 
     /**
      * a Queue of request hashes an the corresponding rejection and resolve handlers of the promise
      * @type {Array}
      */
-    private _requestQueue:{ hash:string, resolve:(r:any) => void, reject:(r:any) => void }[] = [];
+    private _requestQueue: { hash: string, resolve: (r:any) => void, reject: (r:any) => void }[] = [];
 
 
     /**
@@ -44,15 +44,15 @@ export class HttpServiceWrapper {
      * @type {Array}
      * @private
      */
-    private _responseCache:{ hash:string, response:any }[] = [];
+    private _responseCache:{ hash: string, response: any }[] = [];
 
     public static $inject = [
         '$q',
         '$http'
     ];
 
-    constructor(private $q:ng.IQService,
-                private $http:ng.IHttpService) {
+    constructor(private $q: ng.IQService,
+                private $http: ng.IHttpService) {
     }
 
     /**
@@ -67,7 +67,7 @@ export class HttpServiceWrapper {
      * @private
      */
 
-    public request = <T>(options:ng.IRequestConfig):ng.IPromise<T> => {
+    public request = <T>(options: ng.IRequestConfig):ng.IPromise<T> => {
 
         const d = this.$q.defer<T>();
 

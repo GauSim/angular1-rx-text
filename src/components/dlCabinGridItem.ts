@@ -59,5 +59,5 @@ const dlCabinGridItem:ng.IComponentOptions = {
 
 };
 
-export default dlCabinGridItem;
+export {dlCabinGridItem};
 

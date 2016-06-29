@@ -11,8 +11,8 @@ import { ITranslationCache, IConfiguration } from '../../../services/Store';
 import * as should from 'should';
 import * as Q from 'q';
 
-const create$httpMock = (ok:boolean, data:any) => {
-    return (option:any) => {
+const create$httpMock = (ok: boolean, data: any) => {
+    return (option: any) => {
         return ok ? Q.resolve({data}) : Q.reject(new Error(data));
     };
 };
@@ -20,14 +20,14 @@ const create$httpMock = (ok:boolean, data:any) => {
 describe('StoreDispatchers', () => {
 
 
-    let instance:StoreDispatchers;
-    const translationCache:ITranslationCache = {};
+    let instance: StoreDispatchers;
+    const translationCache: ITranslationCache = {};
     const m = new StateMockHelper(new StoreProviders(), translationCache);
 
 
     beforeEach(() => {
-        const $http:ng.IHttpService = create$httpMock(true, []) as any;
-        const $q:ng.IQService = Q as any;
+        const $http: ng.IHttpService = create$httpMock(true, []) as any;
+        const $q: ng.IQService = Q as any;
         const operatorService = new OperatorService($q);
         const httpServiceWrapper = new HttpServiceWrapper($q, $http);
         const fareService = new FareService(httpServiceWrapper);

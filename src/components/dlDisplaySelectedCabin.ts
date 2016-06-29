@@ -106,5 +106,5 @@ const dlDisplaySelectedCabin:ng.IComponentOptions = {
 
 };
 
-export default dlDisplaySelectedCabin;
+export {dlDisplaySelectedCabin};
 
